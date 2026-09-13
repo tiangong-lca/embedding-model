@@ -29,8 +29,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-05-28
-lastReviewedCommit: 5bdbd3dad053014f15ad6527fd59fe6fae6a3673
+lastReviewedAt: 2026-09-13
+lastReviewedCommit: bd0a532428e0c6e495cf4a0a613bd919c8fb4170
+lastReviewedNote: "Reviewed for Embedding #10: active canonical repository is tiangong-lca/embedding-model; the original onboarding Issue citation, experiment data/model provenance, Python environment and functioning local AI-doc gate remain unchanged."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml

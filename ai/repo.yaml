@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-05-28",
-  "lastReviewedCommit": "5bdbd3dad053014f15ad6527fd59fe6fae6a3673",
+  "lastReviewedAt": "2026-09-13",
+  "lastReviewedCommit": "bd0a532428e0c6e495cf4a0a613bd919c8fb4170",
   "repo": {
     "id": "domain-embedding",
     "path": "lca-domain-embedding",
-    "canonicalRepo": "Biaoo/lca-domain-embedding",
+    "canonicalRepo": "tiangong-lca/embedding-model",
     "purpose": "LCA retrieval embedding fine-tuning, evaluation, and model packaging repository.",
     "entryDoc": "AGENTS.md",
     "docImpactDoc": "ai/doc-impact.yaml",
