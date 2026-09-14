@@ -9,7 +9,7 @@ language: en
 whenToUse:
   - when a task may change LCA embedding data preparation, fine-tuning, cached evaluation, reporting, or model packaging assets
   - when deciding whether work belongs in this repository, in tiangong-lca-mcp, or in a product/runtime repo
-  - when routing from the workspace root into lca-domain-embedding
+  - when routing from the workspace root into embedding-model
 whenToUpdate:
   - when pipeline stages, runtime prerequisites, or ownership boundaries change
   - when canonical script entrypoints or dataset assumptions change
@@ -29,9 +29,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-09-13
-lastReviewedCommit: bd0a532428e0c6e495cf4a0a613bd919c8fb4170
-lastReviewedNote: "Reviewed for Embedding #10: active canonical repository is tiangong-lca/embedding-model; the original onboarding Issue citation, experiment data/model provenance, Python environment and functioning local AI-doc gate remain unchanged."
+lastReviewedAt: 2026-09-14
+lastReviewedCommit: 3a18e750051870e55c58e171719a785d3742c520
+lastReviewedNote: "Reviewed for Embedding #12: ai/repo.yaml records the canonical embedding-model physical path while keeping id domain-embedding and canonicalRepo tiangong-lca/embedding-model, and AGENTS.md routes from the workspace root into embedding-model. The local governance mechanism, model artifacts, endpoints, dependencies and historical records are unchanged."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml

@@ -1,7 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-09-13",
-  "lastReviewedCommit": "bd0a532428e0c6e495cf4a0a613bd919c8fb4170",
+  "lastReviewedAt": "2026-09-14",
+  "lastReviewedCommit": "3a18e750051870e55c58e171719a785d3742c520",
+  "lastReviewedNote": "Reviewed for Embedding #12: ai/repo.yaml records the canonical embedding-model physical path while keeping id domain-embedding and canonicalRepo tiangong-lca/embedding-model, and AGENTS.md routes from the workspace root into embedding-model. The rule graph, local governance mechanism, model artifacts, endpoints, dependencies and historical records are unchanged.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
