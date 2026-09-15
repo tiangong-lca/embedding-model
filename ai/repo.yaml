@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-09-14",
-  "lastReviewedCommit": "3a18e750051870e55c58e171719a785d3742c520",
-  "lastReviewedNote": "Reviewed for Embedding #12: ai/repo.yaml records the canonical embedding-model physical path while keeping id domain-embedding and canonicalRepo tiangong-lca/embedding-model, and AGENTS.md routes from the workspace root into embedding-model. The local governance mechanism, model artifacts, endpoints, dependencies and historical records are unchanged.",
+  "lastReviewedAt": "2026-09-15",
+  "lastReviewedCommit": "2030e3b0abe82520f97e63b3bf086729a018dcc7",
+  "lastReviewedNote": "Reviewed for Embedding #14: manual CI now invokes the unchanged unit-then-lint shell gate once. Nine unit tests, real workflow/gate traces, duplicate and set-e mutation RED, primary independent diff review and actionlint pass. Existing model/data/runtime ownership, manual trigger and gate failure behavior remain; exact CI and root delivery pending.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
