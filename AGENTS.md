@@ -9,7 +9,7 @@ language: en
 whenToUse:
   - when a task may change LCA embedding data preparation, fine-tuning, cached evaluation, reporting, or model packaging assets
   - when deciding whether work belongs in this repository, in tiangong-lca-mcp, or in a product/runtime repo
-  - when routing from the workspace root into lca-domain-embedding
+  - when routing from the workspace root into embedding-model
 whenToUpdate:
   - when pipeline stages, runtime prerequisites, or ownership boundaries change
   - when canonical script entrypoints or dataset assumptions change
@@ -31,9 +31,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-05-28
-lastReviewedCommit: 358d26564f322b1012ef0bb5f16cfb34c97a157a
-lastReviewedNote: 'Reviewed for Issue #8: Python TIDAS SDK is exact 0.2.14, compatible direct dependencies are current, Qwen/CUDA12 pins are executable contracts, and canonical Markdown plus strict-invalid behavior has isolated Python 3.12 proof.'
+lastReviewedAt: 2026-09-15
+lastReviewedCommit: 2030e3b0abe82520f97e63b3bf086729a018dcc7
+lastReviewedNote: "Reviewed for Embedding #8 and #14: Python TIDAS SDK is exact 0.2.14, compatible direct dependencies are current, Qwen/CUDA12 pins are executable contracts, canonical Markdown and strict-invalid behavior have isolated Python 3.12 proof, and manual CI invokes the unchanged unit-then-lint shell gate once."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml

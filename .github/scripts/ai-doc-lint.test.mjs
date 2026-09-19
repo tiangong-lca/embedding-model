@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
@@ -165,4 +167,76 @@ test('loadImpactFiles supports repo-root mode', () => {
   assert.equal(loadedRules.length, 1);
   assert.equal(matches.length, 1);
   assert.deepEqual([...expectedDocs.keys()], ['ai/validation.md']);
+});
+
+// Trace the real workflow commands and shell gate. The fake node terminates at
+// the process boundary rather than recursively executing this same test suite.
+function traceDocGate(t, { unitStatus = 0, lintStatus = 0, base = 'HEAD', workflow = false } = {}) {
+  const repo = fileURLToPath(new URL('../..', import.meta.url));
+  const temp = mkdtempSync(path.join(os.tmpdir(), 'ai-doc-gate-trace-'));
+  t.after(() => rmSync(temp, { recursive: true, force: true }));
+  const trace = path.join(temp, 'trace');
+  const transport = `
+node() {
+  printf '%s\n' "$*" >> "$GATE_TRACE"
+  if [ "$1" = "--test" ]; then return "$UNIT_STATUS"; fi
+  return "$LINT_STATUS"
+}
+git() {
+  case "$*" in
+    'rev-parse --show-toplevel') printf '%s\n' "$GATE_REPO" ;;
+    'merge-base HEAD HEAD'|'rev-parse HEAD') printf '%040d\n' 1 ;;
+    'merge-base HEAD refs/heads/ai-doc-test-missing-base') return 1 ;;
+    *) return 90 ;;
+  esac
+}
+`;
+  const env = { ...process.env, GATE_REPO: repo, GATE_TRACE: trace,
+    UNIT_STATUS: String(unitStatus), LINT_STATUS: String(lintStatus), BASE_REF: base,
+    DOCPACT_HEAD_REF: 'HEAD' };
+  const commands = workflow
+    ? [...readFileSync(path.join(repo, '.github/workflows/ai-doc-lint.yml'), 'utf8')
+      .matchAll(/^\s+run: (.+)$/gm)].map((match) => match[1])
+      .filter((command) => command.includes('ai-doc-lint'))
+    : ['scripts/ai-doc-lint-gate.sh --base "$BASE_REF"'];
+  assert.ok(commands.length > 0, 'workflow must invoke doc validation');
+  let status;
+  for (const command of commands) {
+    // Source the unchanged gate in this shell so transport functions apply to
+    // its actual argv/error paths without fake executables or recursive tests.
+    let executable = command;
+    if (command.startsWith('scripts/ai-doc-lint-gate.sh')) {
+      assert.equal(command, 'scripts/ai-doc-lint-gate.sh --base "$BASE_REF"');
+      executable = 'set -- --base "$BASE_REF"; . scripts/ai-doc-lint-gate.sh';
+    }
+    const shellArgs = workflow ? ['-e', '-c'] : ['-c'];
+    const result = spawnSync('sh', [...shellArgs, transport + executable], { cwd: repo, env, encoding: 'utf8' });
+    assert.ifError(result.error);
+    status = result.status;
+    if (status !== 0) break;
+  }
+  let calls = [];
+  try { calls = readFileSync(trace, 'utf8').trim().split('\n'); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  return { status, calls };
+}
+
+test('manual workflow invokes unit then enforced lint exactly once through its shell gate', (t) => {
+  const { status, calls } = traceDocGate(t, { workflow: true });
+  assert.equal(status, 0);
+  assert.equal(calls.length, 2, `unexpected validation calls: ${calls.join(' -> ')}`);
+  assert.equal(calls[0], '--test .github/scripts/ai-doc-lint.test.mjs');
+  assert.match(calls[1], /^\.github\/scripts\/ai-doc-lint\.mjs --mode enforce --base [a-f0-9]{40} --head [a-f0-9]{40}$/);
+});
+
+test('shell gate stops after failed unit tests, propagates lint failures and rejects missing base', (t) => {
+  const unitFailure = traceDocGate(t, { unitStatus: 7 });
+  assert.equal(unitFailure.status, 7);
+  assert.deepEqual(unitFailure.calls, ['--test .github/scripts/ai-doc-lint.test.mjs']);
+  const lintFailure = traceDocGate(t, { lintStatus: 9 });
+  assert.equal(lintFailure.status, 9);
+  assert.equal(lintFailure.calls.length, 2);
+  const missingBase = traceDocGate(t, { base: 'refs/heads/ai-doc-test-missing-base' });
+  assert.equal(missingBase.status, 2);
+  assert.deepEqual(missingBase.calls, []);
 });

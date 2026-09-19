@@ -1,7 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-08-31",
-  "lastReviewedCommit": "358d26564f322b1012ef0bb5f16cfb34c97a157a",
+  "lastReviewedAt": "2026-09-15",
+  "lastReviewedCommit": "2030e3b0abe82520f97e63b3bf086729a018dcc7",
+  "lastReviewedNote": "Reviewed for Embedding #14: manual CI now invokes the unchanged unit-then-lint shell gate once. Nine unit tests, real workflow/gate traces, duplicate and set-e mutation RED, primary independent diff review and actionlint pass. Existing model/data/runtime ownership, manual trigger and gate failure behavior remain; exact CI and root delivery pending.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
