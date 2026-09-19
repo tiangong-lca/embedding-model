@@ -10,7 +10,7 @@ from tidas_sdk import create_flow_from_json, create_process_from_json
 from tidas_sdk.entities.utils import default_timestamp
 from tqdm import tqdm
 
-ROOT_PATH = Path(__file__).parent.parent.resolve()
+ROOT_PATH = Path(__file__).resolve().parents[2]
 sys.path.append(str(ROOT_PATH))
 
 DEFAULT_INPUT_DIR = ROOT_PATH / "data" / "tidas" / "processes"

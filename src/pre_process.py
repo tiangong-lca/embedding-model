@@ -1,13 +1,9 @@
 """将 TIDAS JSON 文件转换为 Markdown 格式"""
 
-import json
 from pathlib import Path
 from typing import Optional
 
-from tidas_sdk import TidasProcess
-root_path = Path(__file__).parent.parent
-import sys
-sys.path.append(str(root_path))
+from tidas_sdk import create_process_from_json
 
 from src.utils import tidas_process_to_markdown
 
@@ -19,7 +15,7 @@ DEFAULT_OUTPUT_DIR = ROOT_PATH / "data" / "tidas" / "markdown"
 def convert_single_file(
     input_path: Path,
     output_path: Optional[Path] = None,
-    lang: str = "en"
+    lang: str = "en",
 ) -> Path:
     """将单个 TIDAS JSON 文件转换为 Markdown
 
@@ -31,8 +27,7 @@ def convert_single_file(
     Returns:
         输出文件路径
     """
-    json_data = json.loads(input_path.read_text(encoding="utf-8"))
-    process = TidasProcess(json_data)
+    process = create_process_from_json(input_path)
     markdown = tidas_process_to_markdown(process, lang)
     print(markdown)
 
@@ -48,7 +43,7 @@ def convert_single_file(
 def convert_all_files(
     input_dir: Optional[Path] = None,
     output_dir: Optional[Path] = None,
-    lang: str = "en"
+    lang: str = "en",
 ) -> dict:
     """批量将目录下所有 TIDAS JSON 文件转换为 Markdown
 
@@ -91,6 +86,6 @@ def convert_all_files(
 
 
 if __name__ == "__main__":
-    file_path = root_path / 'data'/'tidas'/'processes'/'0a0bf34e-6af3-3f63-a1f5-6032e1eca2e5.json'
-    output_path = root_path / 'data'/'markdown'/'processes'/'0a0bf34e-6af3-3f63-a1f5-6032e1eca2e5.md'
-    convert_single_file(file_path,output_path=output_path)
+    file_path = ROOT_PATH / "data" / "tidas" / "processes" / "0a0bf34e-6af3-3f63-a1f5-6032e1eca2e5.json"
+    output_path = ROOT_PATH / "data" / "markdown" / "processes" / f"{file_path.stem}.md"
+    convert_single_file(file_path, output_path=output_path)

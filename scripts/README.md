@@ -12,6 +12,8 @@
 - 06_evaluate_cached.py
 - 07_evaluate_st.py
 
+`01_generate_markdown.py` resolves its default `data/` directories from the repository root and delegates process/flow rendering to TIDAS SDK 0.2.14's canonical Markdown surface. Use `python scripts/pipeline/01_generate_markdown.py --help` for the exact current arguments.
+
 ## reports/
 
 报告生成：

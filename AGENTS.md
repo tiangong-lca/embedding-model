@@ -22,16 +22,18 @@ checkPaths:
   - ai/**/*.yaml
   - .githooks/**
   - pyproject.toml
+  - uv.lock
   - src/**
   - scripts/**
+  - tests/**
   - config/**
   - data/**
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: 2030e3b0abe82520f97e63b3bf086729a018dcc7
-lastReviewedNote: "Reviewed for Embedding #14: manual CI now invokes the unchanged unit-then-lint shell gate once. Nine unit tests, real workflow/gate traces, duplicate and set-e mutation RED, primary independent diff review and actionlint pass. Existing model/data/runtime ownership, manual trigger and gate failure behavior remain; exact CI and root delivery pending."
+lastReviewedAt: 2026-09-19
+lastReviewedCommit: 69eb8cee83d07753d49413b73e12017430701df1
+lastReviewedNote: "Reviewed for Embedding #8 and #14: Python TIDAS SDK is exact 0.2.14, compatible direct dependencies are current, Qwen/CUDA12 pins are executable contracts, canonical Markdown and strict-invalid behavior have isolated Python 3.12 proof, and manual CI invokes the unchanged unit-then-lint shell gate once."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -83,13 +85,18 @@ Route those tasks to:
 - Repo-local AI-doc maintenance is enforced by the `.githooks/pre-push` hook via `scripts/ai-doc-lint-gate.sh`; `.github/workflows/ai-doc-lint.yml` is manual-only fallback.
 - Python baseline: `>=3.12`
 - Package/dependency manager: `uv`
-- This repo currently has no single checked-in green-bar test wrapper like `pytest` or `make check`; validation is change-scoped and should use the narrowest safe pipeline or tool command that proves the touched stage
-- If future canonical validation commands are added, document them here and in `ai/repo.yaml` in the same change
+- dependency/runtime proof: `uv lock --check --python 3.12` and `PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v`
+- source syntax proof: `python3.12 -m compileall -q src scripts tests`
+- TIDAS baseline: exact Python SDK `0.2.14`; `src.pre_process` and the legacy public wrapper delegate to the SDK's canonical `TidasProcess.to_markdown()` instead of duplicating the 0.1 object model
+- latest-compatible ML boundary: Sentence Transformers `5.7.x` remains below 6 because 6.0 requires Transformers 5; the released Qwen fine-tuning stack retains exact PEFT `0.13.0`, Transformers `4.51.3`, and Torch `2.9.1`
+- CUDA boundary: `faiss-gpu-cu12` and Torch `2.9.1` retain CUDA 12 artifacts; the dependency contract rejects CUDA 13 lock drift
+- the full GPU project cannot sync on macOS because `faiss-gpu-cu12` publishes Linux x86_64 wheels only; macOS runs the isolated TIDAS/dependency contracts, while full training/import validation belongs on the reviewed Linux x86_64 CUDA 12 environment
 
 ## Hard Boundaries
 
 - Do not treat experiment code here as the source of truth for production search contracts
 - Do not change pipeline assumptions without updating the repo contract in the same change
+- Do not replace the reviewed Qwen/Transformers 4 + CUDA 12 stack with Sentence Transformers 6, Transformers 5, or CUDA 13 without a separately tracked GPU qualification
 - Do not treat a merged repo PR here as workspace-delivery complete if the root repo still needs a submodule bump
 
 ## Workspace Integration

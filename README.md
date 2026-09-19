@@ -2,6 +2,25 @@
 
 This project asks one question: for professional Lifecycle Assessment (LCA) retrieval, how much does domain embedding fine-tuning help?
 
+## Runtime and dependency baseline
+
+- Python: 3.12; dependency manager: `uv`
+- TIDAS: exact `tidas-sdk==0.2.14`; process conversion uses the SDK's canonical `to_markdown()` surface and keeps strict validation failures observable
+- current compatible direct graph: Accelerate 1.14.0, Datasets 5.0.1, DeepSpeed 0.19.6, FAISS GPU CUDA12 1.14.1.post1, FlagEmbedding 1.4.2, GGUF 0.19.0, Matplotlib 3.11.1, ModelScope 1.39.1, OpenAI 3.6.0, python-dotenv 1.2.3, Requests 2.34.2, Sentence Transformers 5.7.0, and Supabase 2.31.0
+- Qwen compatibility pins: `peft==0.13.0`, `transformers==4.51.3`, and `torch==2.9.1`
+
+The 2026-08-31 PyPI audit found Sentence Transformers 6.0.1, but it requires Transformers 5.x and is incompatible with this repository's released Qwen/Transformers 4 training line. Sentence Transformers therefore stays on the latest compatible 5.7.x line. Torch is explicit at the already reviewed 2.9.1 so the Linux training lock stays on CUDA 12 with `faiss-gpu-cu12`; an unconstrained upgrade would mix in CUDA 13 packages.
+
+`faiss-gpu-cu12` publishes Linux x86_64 wheels only, so a full `uv sync` is intentionally unavailable on macOS. Run the lightweight TIDAS/dependency contracts on any Python 3.12 host:
+
+```bash
+uv lock --check --python 3.12
+PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v
+python3.12 -m compileall -q src scripts tests
+```
+
+Run full model imports, training, and FAISS/GPU stages on the reviewed Linux x86_64 CUDA 12 environment.
+
 ## Background & Goal
 
 Generic embedding models work well in open domains, but LCA retrieval often requires domain constraints (e.g., geography/technology/time) and long, multi-field documents. We use a unified evaluation setup to quantify the impact of domain fine-tuning versus a generic baseline and cloud embedding models.
