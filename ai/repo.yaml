@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-09-15",
-  "lastReviewedCommit": "2030e3b0abe82520f97e63b3bf086729a018dcc7",
-  "lastReviewedNote": "Reviewed for Embedding #14: manual CI now invokes the unchanged unit-then-lint shell gate once. Nine unit tests, real workflow/gate traces, duplicate and set-e mutation RED, primary independent diff review and actionlint pass. Existing model/data/runtime ownership, manual trigger and gate failure behavior remain; exact CI and root delivery pending.",
+  "lastReviewedAt": "2026-09-19",
+  "lastReviewedCommit": "69eb8cee83d07753d49413b73e12017430701df1",
+  "lastReviewedNote": "Reviewed for Embedding #8 and #14: dependency/runtime changes retain the exact TIDAS 0.2.14 and Qwen/CUDA12 contracts, while the single manual AI-doc gate and the documented Linux CUDA12 qualification boundary remain valid.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",

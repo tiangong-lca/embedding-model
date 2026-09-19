@@ -31,8 +31,8 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-09-15
-lastReviewedCommit: 2030e3b0abe82520f97e63b3bf086729a018dcc7
+lastReviewedAt: 2026-09-19
+lastReviewedCommit: 69eb8cee83d07753d49413b73e12017430701df1
 lastReviewedNote: "Reviewed for Embedding #8 and #14: Python TIDAS SDK is exact 0.2.14, compatible direct dependencies are current, Qwen/CUDA12 pins are executable contracts, canonical Markdown and strict-invalid behavior have isolated Python 3.12 proof, and manual CI invokes the unchanged unit-then-lint shell gate once."
 related:
   - ai/repo.yaml
