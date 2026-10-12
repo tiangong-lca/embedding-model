@@ -1,0 +1,42 @@
+{
+  "daemon": {
+    "context": "default",
+    "current_context": "default",
+    "endpoint": "unix:///var/run/docker.sock",
+    "id": "16a6eb7b-78a7-4100-a7a2-20a40a7b3f31"
+  },
+  "effects": [
+    {
+      "action": {
+        "op": "remove",
+        "resource": "container:37eeb7ecd6add6c9f4e448ccc652ce2128cff26d8c45de367cf934ed9572a365"
+      },
+      "finished_at": "2026-10-12T05:09:25.944770+00:00",
+      "started_at": "2026-10-12T05:09:25.447540+00:00",
+      "status": "verified"
+    },
+    {
+      "action": {
+        "op": "remove",
+        "resource": "container:f2f022dd6238efcd2477e373f6d39a2fca210c41f83b1e6f3afc171c9a542742"
+      },
+      "finished_at": "2026-10-12T05:09:26.883147+00:00",
+      "started_at": "2026-10-12T05:09:26.395297+00:00",
+      "status": "verified"
+    },
+    {
+      "action": {
+        "op": "remove",
+        "resource": "container:f60e47e393155075b71345f6703c9954b75452d6a021fece509b38ca5831940d"
+      },
+      "finished_at": "2026-10-12T05:09:27.805456+00:00",
+      "started_at": "2026-10-12T05:09:27.328029+00:00",
+      "status": "verified"
+    }
+  ],
+  "finished_at": "2026-10-12T05:09:27.806974+00:00",
+  "plan_sha256": "9d6d91f28b1ae0aed6d2c4de084da31282d2bd8d2360b13d1c45c01f2cbfabdf",
+  "schema": "workspace.dev-resources.receipt.v2",
+  "started_at": "2026-10-12T05:09:24.992477+00:00",
+  "status": "completed"
+}

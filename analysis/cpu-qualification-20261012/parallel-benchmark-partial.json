@@ -1,0 +1,6223 @@
+{
+  "kind": "warm_cpu_benchmark",
+  "manifest": {
+    "model_directory": "/model",
+    "dtype": "fp32",
+    "max_length": 1024,
+    "pooling": "last valid token via sum(mask)-1",
+    "normalization": "L2",
+    "prompts": "none; matches deployed custom handler",
+    "padding_side": "right",
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.float32",
+    "intraop_threads": 4,
+    "interop_threads": 1,
+    "startup_seconds_excluded_from_latency": 0.6892654740076978,
+    "files_sha256": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "chat_template.jinja": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+      "code/inference.py": "6034ff474d3964b12a47ac75b77d263eb9d5c9adf1d4215fe9f73f0b5f8efbaf",
+      "code/requirements.txt": "2bcc4ddc2e1caa68e3113a8bd492fb263a241a69b82c5ed28f0e627f70096667",
+      "config.json": "685a083d2f03ec3fbc292b77e9f82291b93b615894002a2ec4eb6f94b0c39f7f",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "a13692bcf8f32ca5d931132bfabdf82846289fac89a3257f343d23c6908c60c1",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "61084483006918bd5966b448e72ac5dc520ffcab6b586d2a1e31da47bdafdcca",
+      "tokenizer_config.json": "9a7ed8853b220ac6d359ecff4abe8737326323471536e6d5f52b21db6736a5c6",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "runtime": {
+      "torch": "2.6.0+cpu",
+      "transformers": "4.51.3",
+      "numpy": "2.3.5",
+      "tokenizers": "0.21.4",
+      "safetensors": "0.8.0"
+    },
+    "isolation": {
+      "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+      "machine": "x86_64",
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cpu.max": "400000 100000",
+      "cpuset.cpus.effective": "0-3",
+      "memory.max": "8589934592",
+      "memory.swap.max": "0",
+      "cpu.stat": "usage_usec 4080506\nuser_usec 3533438\nsystem_usec 547067\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 38\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+      "memory.peak": "314613760",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+      "cpu_model": "Intel(R) Xeon(R) w5-3425"
+    },
+    "artifact_archive_sha256": "df73c8671f74e238bdc0a41c06d7bb33a03744e795becfb507f620a908571cf2",
+    "reviewed_handler_parity": [
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          7
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          183
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 2,
+        "input_tokens": [
+          7,
+          183
+        ],
+        "max_abs_difference": 0.0
+      }
+    ]
+  },
+  "mode": "closed-loop concurrent single-input handler calls; no HTTP/network latency",
+  "cold_start_acceptable": false,
+  "cells": [
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 1,
+      "warmup_calls_excluded": 4,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 16.911525415984215,
+      "requests_per_second": 7.095752573956455,
+      "peak_rss_mib": 2274.46875,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 0.13939651800319552,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 0.14039970200974494,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 0.14008075799210928,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 0.14075488600065,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 0.14042777300346643,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 0.13886711301165633,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 0.14020209401496686,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 0.14102781700785272,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 0.14023158699274063,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 0.14108558601583354,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 0.1407020110054873,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 0.13945262000197545,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 0.13904338897555135,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 0.14029248701990582,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 0.13983847500639968,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.13993616300285794,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 0.14136607802356593,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 0.14063796799746342,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 0.14021308600786142,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 0.13889374502468854,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 0.13985647200024687,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 0.14404065397684462,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 0.14080260900664143,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 0.14063692701165564,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 0.14116524599376135,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 0.1400935880083125,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 0.1393487780005671,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 0.13953343901084736,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 0.1392785340140108,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 0.1399707279924769,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 0.13890076000825502,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 0.14025431699701585,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 0.13912263000383973,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 0.14091736599220894,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 0.14056640499620698,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 0.14217750198440626,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 0.14147543199942447,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 0.13926051600719802,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 0.13998314400669187,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 0.14083073899382725,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 0.14006342698121443,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 0.1403310300083831,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 0.1401562249811832,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 0.1394235170155298,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 0.14119743998162448,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 0.14050294301705435,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 0.14054082697839476,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.13984260999131948,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 0.13988408300792798,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 0.13911146501777694,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 0.14239381201332435,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 0.1409202840004582,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 0.1399320880009327,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 0.1414191630028654,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 0.1402206000057049,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 0.14030928802094422,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 0.1403647570114117,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 0.14115370000945404,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 0.14028909799526446,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 0.13966199499554932,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 0.1411704980127979,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 0.14035947501542978,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 0.1399983320152387,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 0.13976419498794712,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 0.14002451501437463,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 0.1407193779887166,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 0.13999469700502232,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 0.14132535899989307,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 0.1403246929985471,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 0.14097865199437365,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 0.145019924006192,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 0.14550677599618211,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 0.1471384319884237,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 0.1425567359838169,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 0.14226264000171795,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 0.14166784897679463,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 0.1397111410042271,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 0.13986754001234658,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 0.14100522798253223,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 0.1404421059996821,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 0.14077470000484027,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 0.1410050010017585,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 0.1410858260060195,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 0.1409927929926198,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.140260821004631,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 0.14141362899681553,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 0.14138452999759465,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 0.14102953500696458,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 0.14154421800049022,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 0.14158661899273284,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 0.1403191539866384,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 0.14036998499068432,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 0.14359855800285004,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 0.14154226900427602,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 0.14093882098677568,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 0.14191589000984095,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 0.14178366601117887,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 0.1414399979985319,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 0.14125165200675838,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 0.14114493000670336,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 0.14192022400675341,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 0.14260244101751596,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 0.14219457501894794,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 0.14131293899845332,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 0.1411820009816438,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 0.14074946800246835,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 0.1431499519967474,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 0.14334812099696137,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 0.14192154500051402,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 0.14264369799639098,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 0.142520184017485,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 0.14147139401757158,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 0.1416087799880188,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 0.14124264699057676,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 0.1429871779982932,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.14163303197710775,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 0.1414730469987262,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 0.1413590320153162,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.14083325100364164,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 0.14077647801605053,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 68292108\nuser_usec 66566031\nsystem_usec 1726077\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 232\nnr_throttled 6\nthrottled_usec 7036\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "490897408",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 140.7755890104454,
+      "p95_ms": 143.1598604467581,
+      "p99_ms": 145.414274118084,
+      "max_ms": 147.1384319884237,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 3,
+      "warmup_calls_excluded": 6,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 16.315627947013127,
+      "requests_per_second": 7.354911523461663,
+      "peak_rss_mib": 2274.46875,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 0.376341594994301,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 0.3891772030037828,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 0.3956230829935521,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 0.4058936819783412,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 0.3969193509838078,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 0.39264378501684405,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 0.4164470790128689,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 0.38849902601214126,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 0.4130839410063345,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 0.40936034999322146,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 0.40675655301311053,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 0.39892629100359045,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 0.4004657110199332,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 0.4182231829909142,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 0.411967794992961,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.4042374809796456,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 0.41092707400093786,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 0.4009633300011046,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 0.41246693301945925,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 0.3998711390013341,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 0.4203356539946981,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 0.40647709000040777,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 0.41212324099615216,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 0.4107135499943979,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 0.41307676301221363,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 0.40320129800238647,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 0.4177710859803483,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 0.42530498502310365,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 0.398344579996774,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 0.4230885050201323,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 0.40206539898645133,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 0.4105775869975332,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 0.42028401099378243,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 0.4101058669912163,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 0.4042043380031828,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 0.41145872298511676,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 0.4168939240043983,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 0.41718107101041824,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 0.4093583239882719,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 0.41003053600434214,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 0.3983510789985303,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 0.4107214180112351,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 0.4058858079952188,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 0.42982281898730434,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 0.4167478119779844,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 0.4034478150133509,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 0.4230243549973238,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.4191869600035716,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 0.40736524600652047,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 0.4007134169805795,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 0.39696082001319155,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 0.4145263959944714,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 0.4127551690035034,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 0.4116096769866999,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 0.41345541502232663,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 0.417255128006218,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 0.397303801990347,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 0.4160646229865961,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 0.40610555998864584,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 0.40903882699785754,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 0.416988674987806,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 0.41563407800276764,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 0.4085066050174646,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 0.4084279930102639,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 0.41487333399709314,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 0.40083429199876264,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 0.40542515300330706,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 0.3988998949935194,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 0.411711666994961,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 0.40384210902266204,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 0.4111112209793646,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 0.4157250779971946,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 0.41365656501147896,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 0.4141183409956284,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 0.4071462709980551,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 0.4113984209834598,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 0.40173817801405676,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 0.40267755699460395,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 0.4035508400120307,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 0.4069108119874727,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 0.40765561201260425,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 0.4123366469866596,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 0.4010128910013009,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 0.4065440359991044,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.4116032030142378,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 0.4065441440034192,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 0.4022286069812253,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 0.40117222399567254,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 0.4051688269828446,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 0.39919084499706514,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 0.4077463150024414,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 0.4022136660059914,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 0.405991059000371,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 0.39498165997792967,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 0.40692358699743636,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 0.42147156700957566,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 0.41705610998906195,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 0.4100154470070265,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 0.401914999994915,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 0.4031764150131494,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 0.408390258991858,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 0.40737197498674504,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 0.4109824789920822,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 0.41927867897902615,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 0.4070651700021699,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 0.4100222080014646,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 0.40387055699829943,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 0.39386773901060224,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 0.415480085008312,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 0.407029402005719,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 0.39998590300092474,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 0.4020273689820897,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 0.4136240679945331,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 0.41920486200251617,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 0.39905638599884696,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.40110364902648143,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 0.4071361400128808,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 0.39633315498940647,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.41010475301300175,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 0.39829604199621826,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 124344791\nuser_usec 121046741\nsystem_usec 3298050\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 399\nnr_throttled 6\nthrottled_usec 7036\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "490897408",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 407.51379349967465,
+      "p95_ms": 420.2865931438282,
+      "p99_ms": 424.88385382253915,
+      "max_ms": 429.82281898730434,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 6,
+      "warmup_calls_excluded": 9,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 13.872510136017809,
+      "requests_per_second": 8.65020092423207,
+      "peak_rss_mib": 2274.46875,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 0.7248873089847621,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 0.6979781039990485,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 0.6957412830088288,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 0.7207728950015735,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 0.6658383859903552,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 0.6679360480047762,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 0.6881458639982156,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 0.7831338359974325,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 0.6188688180118334,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 0.7718185760022607,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 0.6238728479947895,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 0.6890009219932836,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 0.6880929749750067,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 0.7701717519958038,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 0.7801764619944151,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.7198284700280055,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 0.5689919230062515,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 0.6214957710180897,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 0.6841235679748934,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 0.6055672479851637,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 0.7331575590069406,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 0.7297346120176371,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 0.6710020739992615,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 0.7274940159986727,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 0.6467429139884189,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 0.6953824860102031,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 0.7509164869843516,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 0.6787392130063381,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 0.6399722050118726,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 0.6674752300023101,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 0.6585989769955631,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 0.7491377549886238,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 0.7586335510131903,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 0.6422861859900877,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 0.6933388710021973,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 0.6690251310064923,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 0.6746837560203858,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 0.6740541239851154,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 0.6027992019953672,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 0.6994843819993548,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 0.7646396339987405,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 0.6986372400133405,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 0.7041427289950661,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 0.6363485690089874,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 0.6589039339742158,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 0.7628633590065874,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 0.7348607679887209,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.7009784599940758,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 0.6978923629794735,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 0.7325867650215514,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 0.7330035479972139,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 0.6934274939994793,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 0.7195453970052768,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 0.643843856989406,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 0.6915187140111811,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 0.7520428329880815,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 0.6720008559932467,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 0.6470613010169473,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 0.6854406579805072,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 0.713527118001366,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 0.6944127850001678,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 0.7059581829817034,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 0.715668493998237,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 0.6971560969832353,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 0.7207415729935747,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 0.5928393180074636,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 0.7138897629920393,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 0.7692676229926292,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 0.6032028740155511,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 0.6835179570189212,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 0.7072149010200519,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 0.7225327290070709,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 0.6569233249756508,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 0.7401397400244605,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 0.7108358280092943,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 0.6753246879961807,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 0.6728547829843592,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 0.6964073019917123,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 0.5937919529969804,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 0.6815087209979538,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 0.6990952420164831,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 0.6959706339985132,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 0.7075457739992999,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 0.6759917880117428,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.6873453049920499,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 0.6839786189957522,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 0.6498508139920887,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 0.7468147040053736,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 0.7311835129803512,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 0.8249180429847911,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 0.6419953580189031,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 0.6175906359858345,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 0.6524361080082599,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 0.6899046649923548,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 0.7224418540135957,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 0.7389603970223106,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 0.687595928000519,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 0.6952763450099155,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 0.6884873769886326,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 0.6677641939895693,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 0.7474243710166775,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 0.7027615779952612,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 0.6638558889972046,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 0.7350484960188624,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 0.6401020180201158,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 0.6905697809997946,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 0.8051588579837698,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 0.6309113969909959,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 0.6551522499939892,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 0.7338013749977108,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 0.6664933559950441,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 0.6705560919945128,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 0.7397661709983367,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 0.6656034440093208,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 0.5665201869851444,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.41280746198026463,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 0.6593193259905092,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 0.5538896250072867,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.5036341699887998,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 0.6744681370037142,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 181290623\nuser_usec 176661321\nsystem_usec 4629301\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 545\nnr_throttled 9\nthrottled_usec 8415\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "490897408",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 690.2372229960747,
+      "p95_ms": 769.3128294427879,
+      "p99_ms": 800.9741038063657,
+      "max_ms": 824.9180429847911,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 1,
+      "warmup_calls_excluded": 4,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 31.31238740097615,
+      "requests_per_second": 3.8323491103798446,
+      "peak_rss_mib": 2334.8359375,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 0.25472455500857905,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 0.2584113570046611,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 0.26309663298889063,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 0.25905283199972473,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 0.2622940620058216,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 0.2586362790025305,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 0.2583346030151006,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 0.2587013859883882,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 0.259628622996388,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 0.25866587000200525,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 0.26154067798051983,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 0.25501833701855503,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 0.2595432910020463,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 0.2583040690224152,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 0.25666549400193617,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.2618746460066177,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 0.26278409198857844,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 0.2604344119899906,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 0.25968984700739384,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 0.2546679509978276,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 0.25985602600849234,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 0.2586568529950455,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 0.26180520400521345,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 0.25989481300348416,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 0.26333977500326,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 0.26036242800182663,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 0.26315705699380487,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 0.2586109680123627,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 0.2638059039891232,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 0.25832911001634784,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 0.2599860880000051,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 0.25858119697659276,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 0.26321787299821153,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 0.2615175470127724,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 0.26534255500882864,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 0.26362805100507103,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 0.2583181709924247,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 0.26124461900326423,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 0.26044685099623166,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 0.2584722489991691,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 0.2573702429945115,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 0.2594407169963233,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 0.2571890590188559,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 0.26161443401360884,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 0.25801203699666075,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 0.26593261101515964,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 0.260283370007528,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.26216353100608103,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 0.25859220800339244,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 0.25937793802586384,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 0.26098160399124026,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 0.2604723669937812,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 0.2584351300029084,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 0.2633301309833769,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 0.25883596899802797,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 0.26114364599925466,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 0.26264644201728515,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 0.2586052149999887,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 0.25936744798673317,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 0.25921630999073386,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 0.26279746400541626,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 0.25529417299549095,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 0.262076018989319,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 0.2646669350215234,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 0.2626782200240996,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 0.259703123010695,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 0.2549966590013355,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 0.2597304260125384,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 0.25731058497331105,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 0.2629141579964198,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 0.265883773972746,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 0.2592273270129226,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 0.2604618020122871,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 0.260755238996353,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 0.26367097499314696,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 0.25436079400242306,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 0.2619235620077234,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 0.2542599970183801,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 0.2595994030125439,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 0.26574368798173964,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 0.26798253899323754,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 0.266073299018899,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 0.2628118069842458,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 0.26199984599952586,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.26069758797530085,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 0.265947445994243,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 0.2621530370088294,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 0.26090742999804206,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 0.25903481399291195,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 0.25749891600571573,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 0.26515356698655523,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 0.26128614600747824,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 0.2615010129811708,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 0.26485320599749684,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 0.25692811800399795,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 0.26404921399080195,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 0.2640696149901487,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 0.26105464101419784,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 0.2640368219872471,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 0.2604245950060431,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 0.2618852430023253,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 0.26228540600277483,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 0.2610174260044005,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 0.26166997698601335,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 0.26743372101918794,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 0.257387777994154,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 0.261898131982889,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 0.2645775639975909,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 0.261824886983959,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 0.26422156899934635,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 0.2642496220069006,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 0.26453239502734505,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 0.26141370498226024,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 0.2626910700055305,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 0.2565902790229302,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.2627738319861237,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 0.26358898598118685,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 0.2659556170110591,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.26318573599564843,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 0.26257106199045666,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 299316166\nuser_usec 290781738\nsystem_usec 8534427\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 868\nnr_throttled 13\nthrottled_usec 11613\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "541728768",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 261.03603350929916,
+      "p95_ms": 265.88621582486667,
+      "p99_ms": 267.17524083913304,
+      "max_ms": 267.98253899323754,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 3,
+      "warmup_calls_excluded": 6,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 41.37431338598253,
+      "requests_per_second": 2.9003502458280206,
+      "peak_rss_mib": 2441.203125,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 1.022935579996556,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 1.0461639509885572,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 1.0020820960053243,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 1.0260123980115168,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 1.0758418260084,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 1.0251732839969918,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 1.0044102880056016,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 1.0602246540074702,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 1.0191305880143773,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 1.0141124200017657,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 1.0531944209942594,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 1.0095534450083505,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 1.0607016200083308,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 1.0026364799996372,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 1.0259136439999565,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.9977333080023527,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 1.0443947700259741,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 1.0288196969777346,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 1.0065041679772548,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 1.0067436569952406,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 1.0683732280158438,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 1.024730659002671,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 1.0979251129901968,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 1.0622477419965435,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 1.0045040420081932,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 1.0529198559815995,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 1.0270004899939522,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 1.033738625003025,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 1.0592225969885476,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 1.0252412910049316,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 1.0260260709910654,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 1.0302545219892636,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 1.0365610080189072,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 1.0433922450174578,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 1.067456961987773,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 1.0096624629804865,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 1.023664109990932,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 1.0635289679921698,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 1.0395383069990203,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 1.0232763809908647,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 1.036272632976761,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 1.0095326860027853,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 1.0698348189762328,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 1.0263792449841276,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 1.0340352969942614,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 1.0422238839964848,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 1.0650773310044315,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.9892764780088328,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 1.055077128985431,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 1.0203000929905102,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 1.0481625850079581,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 1.0254784510179888,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 1.0548678969789762,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 1.0866352299926803,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 1.0147221630031709,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 1.0798116259975359,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 1.0076730030123144,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 1.0510617899999488,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 1.039119886001572,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 1.0330989499925636,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 1.029393758974038,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 1.052601774019422,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 1.0022548669949174,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 1.0313940250198357,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 1.0270891260006465,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 1.0010234899818897,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 1.0482423939974979,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 1.0617638640105724,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 1.0603498650016263,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 1.0357848219864536,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 1.0477742869989015,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 1.0137555399851408,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 1.0200641929986887,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 1.066925588005688,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 1.0391326020180713,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 1.0372671539953444,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 1.0653368900239002,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 1.0316382700111717,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 1.0561371679941658,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 1.0279421290033497,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 1.0618985469918698,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 1.036843301000772,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 1.0694994350196794,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 1.0178653390030377,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.9914278560027014,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 1.0335771419922821,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 1.075568991014734,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 1.0296172340167686,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 1.0613724290160462,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 1.0496943519974593,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 1.0199115760042332,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 1.0693791790108662,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 1.0202231899893377,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 1.0472163149970584,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 1.0084525760030374,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 1.028014234994771,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 1.0104609600093681,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 1.0652106899942737,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 1.0626638710091356,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 1.0179252829984762,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 1.0297017029952258,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 1.0073014039953705,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 1.0198574420064688,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 1.041676955006551,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 1.0390525170078035,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 1.0749113020137884,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 1.0580185549915768,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 1.0071056079759728,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 1.0190878589928616,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 1.058574149996275,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 1.04185835501994,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 1.0368689799797721,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 1.0428418740048073,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 1.0031907319789752,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 1.0261011199909262,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 1.0374525290098973,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 1.0231282480235677,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 1.0292917230108287,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.46626240899786353,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 1.0088498650002293,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 461924212\nuser_usec 426711127\nsystem_usec 35213085\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 1292\nnr_throttled 13\nthrottled_usec 11613\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "654163968",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 1033.3380459924228,
+      "p95_ms": 1070.0886431281106,
+      "p99_ms": 1085.3387452336028,
+      "max_ms": 1097.9251129901968,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 6,
+      "warmup_calls_excluded": 9,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 34.257008047017734,
+      "requests_per_second": 3.502932884135708,
+      "peak_rss_mib": 2609.9609375,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 1.7231525650131516,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 1.405048564018216,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 2.00179181798012,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 2.045556700002635,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 2.0157456140150316,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 1.3190735010139178,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 2.077720072993543,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 1.6480446239875164,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 1.256381128972862,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 1.6269290749914944,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 1.5544391839939635,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 1.6564543319982477,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 1.4269759860180784,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 2.3045146140211727,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 1.7262814480054658,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 1.4810500080056954,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 1.6929790169815533,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 1.5935238300007768,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 1.6783477300195955,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 2.0239037379797082,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 1.410313047003001,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 1.978265405021375,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 1.392913090006914,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 1.8283769419940654,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 1.8849098820064683,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 1.7815909579803701,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 1.788090021989774,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 1.4224227849917952,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 2.3121717530011665,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 1.5896553049969953,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 1.8305792280007154,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 1.594415823026793,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 1.5009304999839514,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 1.5835496689833235,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 1.9537096569838468,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 1.3735337789985351,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 2.2290767060185317,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 1.5616695689968765,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 1.5993525100057013,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 1.9804961099871434,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 1.546916144026909,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 1.9999110689968802,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 1.658685720001813,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 1.8647610350162722,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 1.5638761309965048,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 1.4849381399981212,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 1.8638511080062017,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 1.4971470019954722,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 1.421416782977758,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 1.9258802520052996,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 1.4823201370018069,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 1.7529903749818914,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 1.84762879399932,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 1.8103759129880928,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 1.4466165319900028,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 1.5817648759984877,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 2.0885388150054496,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 1.4481312849966343,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 1.8269320379768033,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 1.7656681329826824,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 1.9302882439806126,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 1.7415590599994175,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 1.886070890002884,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 1.6814892069960479,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 1.5741624500078615,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 1.7898237719782628,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 1.407690807012841,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 1.9535099439963233,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 1.7644345249864273,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 1.5738836379896384,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 1.7489298180153128,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 1.4503274210146628,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 1.984783972002333,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 1.8842819679994136,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 1.5796452799986582,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 1.4682562050002161,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 1.4178696559974924,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 1.8664520559832454,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 1.3034656019881368,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 1.9995763759943657,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 1.9630614490015432,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 1.4381832190265413,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 1.3904855319997296,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 2.236171638011001,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 2.3245318820117973,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 1.4362028729810845,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 1.622685641021235,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 1.5419231610139832,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 2.1708135470107663,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 1.4324371840048116,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 1.6754610519856215,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 2.0110148249950726,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 1.8320424139965326,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 1.427577847003704,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 1.6828271470149048,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 1.782213733997196,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 1.8286661249876488,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 1.751620103023015,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 1.4866583090042695,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 1.2946426129783504,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 1.7386582850012928,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 1.2801607089932077,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 1.3062288439832628,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 1.5959977260208689,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 2.2501822970225476,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 1.9508669710194226,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 1.5581437829823699,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 1.7914911510015372,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 1.5408172459865455,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 1.6090186460060067,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 1.5292228900070768,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 1.4262325140007306,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 1.7872940280067269,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 1.9443561299995054,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 1.1438115420169197,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.5778619960183278,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 1.4419295680127107,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 1.9487998410186265,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 1.0617645909951534,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 1.5447064070031047,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 605451657\nuser_usec 563328890\nsystem_usec 42122767\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 1652\nnr_throttled 111\nthrottled_usec 106340\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "831819776",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 1667.0733859937172,
+      "p95_ms": 2173.7267049611546,
+      "p99_ms": 2310.7168965949677,
+      "max_ms": 2324.5318820117973,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 512,
+      "encoded_tokens": 512,
+      "concurrency": 1,
+      "warmup_calls_excluded": 4,
+      "requested": 120,
+      "errors": 0,
+      "wall_seconds": 109.35837503400398,
+      "requests_per_second": 1.0973096478681865,
+      "peak_rss_mib": 2655.91796875,
+      "raw": [
+        {
+          "index": 0,
+          "seconds": 0.9017520320194308,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 1,
+          "seconds": 0.9179583269869909,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 2,
+          "seconds": 0.900696294993395,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 3,
+          "seconds": 0.9155454600113444,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 4,
+          "seconds": 0.8778862030012533,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 5,
+          "seconds": 0.9073232430091593,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 6,
+          "seconds": 0.9168574489885941,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 7,
+          "seconds": 0.8877416680043098,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 8,
+          "seconds": 0.8988620589952916,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 9,
+          "seconds": 0.9305934899894055,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 10,
+          "seconds": 0.8954940770054236,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 11,
+          "seconds": 0.8961920680012554,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 12,
+          "seconds": 0.9417050579795614,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 13,
+          "seconds": 0.939516233978793,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 14,
+          "seconds": 0.9090205329994205,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 15,
+          "seconds": 0.9401999200053979,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 16,
+          "seconds": 0.9180665829917416,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 17,
+          "seconds": 0.9139480179874226,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 18,
+          "seconds": 0.9138032569899224,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 19,
+          "seconds": 0.9187771590077318,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 20,
+          "seconds": 0.918896223010961,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 21,
+          "seconds": 0.9187656530120876,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 22,
+          "seconds": 0.8822655999974813,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 23,
+          "seconds": 0.922525723988656,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 24,
+          "seconds": 0.9137855290027801,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 25,
+          "seconds": 0.8628550059802365,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 26,
+          "seconds": 0.8769395749841351,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 27,
+          "seconds": 0.9109084889933001,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 28,
+          "seconds": 0.9174381319899112,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 29,
+          "seconds": 0.9524460379907396,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 30,
+          "seconds": 0.9172371030144859,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 31,
+          "seconds": 0.9038934969867114,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 32,
+          "seconds": 0.8607145510031842,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 33,
+          "seconds": 0.902656502003083,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 34,
+          "seconds": 0.9162622180010658,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 35,
+          "seconds": 0.9062063889869023,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 36,
+          "seconds": 0.8796163549995981,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 37,
+          "seconds": 0.9092804960091598,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 38,
+          "seconds": 0.9123375439958181,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 39,
+          "seconds": 0.9405344309925567,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 40,
+          "seconds": 0.9143491959839594,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 41,
+          "seconds": 0.935138769011246,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 42,
+          "seconds": 0.908872259024065,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 43,
+          "seconds": 0.9338463250023779,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 44,
+          "seconds": 0.905291898001451,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 45,
+          "seconds": 0.8765015279932413,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 46,
+          "seconds": 0.8794472480076365,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 47,
+          "seconds": 0.9265439180016983,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 48,
+          "seconds": 0.9355983469868079,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 49,
+          "seconds": 0.9810023989994079,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 50,
+          "seconds": 0.9118032490077894,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 51,
+          "seconds": 0.9118044220085721,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 52,
+          "seconds": 0.9126237590098754,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 53,
+          "seconds": 0.8843552119797096,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 54,
+          "seconds": 0.902409511996666,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 55,
+          "seconds": 0.8974554679880384,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 56,
+          "seconds": 0.9717048969760071,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 57,
+          "seconds": 0.9343996480165515,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 58,
+          "seconds": 0.8683141359942965,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 59,
+          "seconds": 0.9383790850115474,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 60,
+          "seconds": 0.9244887140230276,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 61,
+          "seconds": 0.9342167199938558,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 62,
+          "seconds": 0.9373078150092624,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 63,
+          "seconds": 0.9446037870075088,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 64,
+          "seconds": 0.9303328599780798,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 65,
+          "seconds": 0.8813214410038199,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 66,
+          "seconds": 0.9180862749926746,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 67,
+          "seconds": 0.8922853599942755,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 68,
+          "seconds": 0.8873995149915572,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 69,
+          "seconds": 0.9362224020005669,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 70,
+          "seconds": 0.933058674010681,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 71,
+          "seconds": 0.8897535190044437,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 72,
+          "seconds": 0.9197778590023518,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 73,
+          "seconds": 0.9338020600262098,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 74,
+          "seconds": 0.9396691790025216,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 75,
+          "seconds": 0.8707184139930177,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 76,
+          "seconds": 0.8858318550046533,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 77,
+          "seconds": 0.8838596960122231,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 78,
+          "seconds": 0.9242255819845013,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 79,
+          "seconds": 0.891218928998569,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 80,
+          "seconds": 0.852241143991705,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 81,
+          "seconds": 0.9109294950030744,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 82,
+          "seconds": 0.8586704930057749,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 83,
+          "seconds": 0.929585459001828,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 84,
+          "seconds": 0.8951793430023827,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 85,
+          "seconds": 0.9112124149978627,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 86,
+          "seconds": 0.8673964240006171,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 87,
+          "seconds": 0.9177473390009254,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 88,
+          "seconds": 0.9073397999745794,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 89,
+          "seconds": 0.9131465520185884,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 90,
+          "seconds": 0.8892823839851189,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 91,
+          "seconds": 0.8715348879923113,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 92,
+          "seconds": 0.9325682260096073,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 93,
+          "seconds": 0.9280693540058564,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 94,
+          "seconds": 0.9052814510068856,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 95,
+          "seconds": 0.9360774850065354,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 96,
+          "seconds": 0.9357560430071317,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 97,
+          "seconds": 0.9483493090083357,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 98,
+          "seconds": 0.890533462021267,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 99,
+          "seconds": 0.8646241179958452,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 100,
+          "seconds": 0.9018783039937261,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 101,
+          "seconds": 0.9228018120047636,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 102,
+          "seconds": 0.9047033989918418,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 103,
+          "seconds": 0.9623833319928963,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 104,
+          "seconds": 0.9095689679961652,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 105,
+          "seconds": 0.9417281790229026,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 106,
+          "seconds": 0.9260414240125101,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 107,
+          "seconds": 0.9282565820030868,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 108,
+          "seconds": 0.8991761099896394,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 109,
+          "seconds": 0.924428756989073,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 110,
+          "seconds": 0.94039907498518,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 111,
+          "seconds": 0.940127740992466,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 112,
+          "seconds": 0.9390872080111876,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 113,
+          "seconds": 0.8745325269992463,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 114,
+          "seconds": 0.9358877899940126,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 115,
+          "seconds": 0.8961010999919381,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 116,
+          "seconds": 0.8727244790061377,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 117,
+          "seconds": 0.9229403779900167,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 118,
+          "seconds": 0.8866211739950813,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 119,
+          "seconds": 0.9074258500186261,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 1034820871\nuser_usec 978716016\nsystem_usec 56104855\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 2782\nnr_throttled 120\nthrottled_usec 118262\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "879423488",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 120,
+      "p50_ms": 912.8851555142319,
+      "p95_ms": 941.8719594221329,
+      "p99_ms": 969.9337996292161,
+      "max_ms": 981.0023989994079,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    }
+  ]
+}

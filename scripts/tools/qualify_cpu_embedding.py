@@ -384,7 +384,7 @@ def quality(args):
         meta['deduplicated_train_disjoint_query_metrics'] = retrieval_metrics(vectors['queries'], vectors['corpus'],
                             [str(x['id']) for x in queries], [str(x['id']) for x in corpus], qrels, clean)
     save_json(out / 'quality.json', meta)
-    print(json.dumps(meta['metrics']), flush=True)
+    print(json.dumps(meta['metrics']['mean']), flush=True)
 
 
 def retrieval_metrics(query, corpus, qids, cids, qrels, subset=None):
