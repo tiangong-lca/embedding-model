@@ -43,10 +43,6 @@ class QualityMetricTests(unittest.TestCase):
         self.assertAlmostEqual(result['p95_ms'], 290)
         self.assertIn('not a production', result['p99_estimation'])
 
-
-if __name__ == '__main__':
-    unittest.main()
-
 class ProvenanceGuardTests(unittest.TestCase):
     def test_content_and_semantic_drift_cannot_reuse_same_ids(self):
         import copy
@@ -67,3 +63,7 @@ class ProvenanceGuardTests(unittest.TestCase):
             qualification.validate_comparison_identity(changed, meta, data, ids, ids)
         with self.assertRaisesRegex(ValueError, 'ID order'):
             qualification.validate_comparison_identity(meta, meta, data, ids, (['q'], ['different']))
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -134,10 +134,9 @@ class ResidentEncoder:
         spec = importlib.util.spec_from_file_location('reviewed_production_handler', self.path / 'code/inference.py')
         handler = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(handler)
-        texts = ['wood residue gasification heat recovery',
-                 'electricity generation Switzerland photovoltaic silicon lifecycle emissions ' * 20]
+        texts = [self.sized_text(count) for count in [32, 128, 512, 1024]]
         checks = []
-        for batch in [[texts[0]], [texts[1]], texts]:
+        for batch in [[text] for text in texts] + [[texts[0], texts[-1]]]:
             expected = np.asarray(handler.predict_fn({'inputs': batch}, (self.model, self.tokenizer)), dtype=np.float32)
             actual = self.encode(batch)
             if not np.array_equal(actual, expected):
@@ -227,7 +226,13 @@ def dataset(args):
     if set(qrels) != set(qids):
         raise ValueError('Every evaluated query must have relevance judgments')
     train_path = base / 'training.json'
-    train_queries = {x['query'] for x in read_jsonl(train_path)} if train_path.exists() else None
+    train = read_jsonl(train_path) if train_path.exists() else None
+    train_queries = {x['query'] for x in train} if train is not None else None
+    positive_texts = {text for x in train for text in x.get('pos', [])} if train is not None else None
+    corpus_seen_train_positive = sum((x['text'] if isinstance(x['text'], str) else ' '.join(x['text']))
+                                    in positive_texts for x in corpus) if positive_texts is not None else None
+    train_count = len(train) if train is not None else None
+    del train
     seen = set()
     clean = []
     for row in queries:
@@ -237,6 +242,7 @@ def dataset(args):
     meta = {'file_sha256': {p.name: sha256(p) for p in base.iterdir() if p.name in
                            ['test_queries.jsonl', 'corpus.jsonl', 'test_qrels.jsonl', 'training.json']},
             'query_count': len(queries), 'corpus_count': len(corpus), 'qrel_rows': len(labels),
+            'training_rows': train_count, 'corpus_documents_seen_train_positive': corpus_seen_train_positive,
             'unique_query_texts': len(seen), 'unique_query_text_overlap_train':
             len(seen & train_queries) if train_queries is not None else None,
             'deduplicated_train_disjoint_query_ids': clean,
@@ -281,6 +287,10 @@ def quality(args):
             'metrics': retrieval_metrics(vectors['queries'], vectors['corpus'],
                                          [str(x['id']) for x in queries], [str(x['id']) for x in corpus], qrels),
             'isolation_end': isolation_facts()}
+    clean = set(data_meta['deduplicated_train_disjoint_query_ids'])
+    if clean:
+        meta['deduplicated_train_disjoint_query_metrics'] = retrieval_metrics(vectors['queries'], vectors['corpus'],
+                            [str(x['id']) for x in queries], [str(x['id']) for x in corpus], qrels, clean)
     save_json(out / 'quality.json', meta)
     print(json.dumps(meta['metrics']), flush=True)
 
