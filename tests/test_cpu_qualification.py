@@ -46,3 +46,24 @@ class QualityMetricTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class ProvenanceGuardTests(unittest.TestCase):
+    def test_content_and_semantic_drift_cannot_reuse_same_ids(self):
+        import copy
+        manifest = {'files_sha256': {'model.safetensors': 'same'}, 'dtype': 'fp32',
+                    'max_length': 1024, 'pooling': 'last', 'normalization': 'L2',
+                    'prompts': 'none', 'padding_side': 'right', 'runtime': {'torch': '2.6.0'}}
+        meta = {'manifest': manifest, 'dataset': {'file_sha256': {'corpus.jsonl': 'original'}}}
+        data = {'file_sha256': {'corpus.jsonl': 'original'}}
+        ids = (['q'], ['d'])
+        self.assertEqual(qualification.validate_comparison_identity(meta, meta, data, ids, ids), {})
+        changed = copy.deepcopy(meta)
+        changed['manifest']['max_length'] = 512
+        with self.assertRaisesRegex(ValueError, 'max_length'):
+            qualification.validate_comparison_identity(changed, meta, data, ids, ids)
+        changed = copy.deepcopy(meta)
+        changed['dataset']['file_sha256']['corpus.jsonl'] = 'different text, same id'
+        with self.assertRaisesRegex(ValueError, 'dataset content'):
+            qualification.validate_comparison_identity(changed, meta, data, ids, ids)
+        with self.assertRaisesRegex(ValueError, 'ID order'):
+            qualification.validate_comparison_identity(meta, meta, data, ids, (['q'], ['different']))

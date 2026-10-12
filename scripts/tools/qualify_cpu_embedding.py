@@ -111,6 +111,8 @@ class ResidentEncoder:
             if expected != self.meta['files_sha256']:
                 raise ValueError('Extracted model content does not match immutable artifact manifest')
             self.meta['artifact_archive_sha256'] = identity['archive_sha256']
+        if args.verify_handler:
+            self.verify_handler()
 
     def encode(self, texts):
         torch = self.torch
@@ -124,17 +126,41 @@ class ResidentEncoder:
         # Production response calls .numpy().tolist(); bf16 candidate converts to float32.
         return emb.float().cpu().numpy()
 
+    def verify_handler(self):
+        # Execution is explicit and restricted to the previously reviewed,
+        # SHA-bound artifact handler. It reuses the resident model/tokenizer.
+        import importlib.util
+        import numpy as np
+        spec = importlib.util.spec_from_file_location('reviewed_production_handler', self.path / 'code/inference.py')
+        handler = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(handler)
+        texts = ['wood residue gasification heat recovery',
+                 'electricity generation Switzerland photovoltaic silicon lifecycle emissions ' * 20]
+        checks = []
+        for batch in [[texts[0]], [texts[1]], texts]:
+            expected = np.asarray(handler.predict_fn({'inputs': batch}, (self.model, self.tokenizer)), dtype=np.float32)
+            actual = self.encode(batch)
+            if not np.array_equal(actual, expected):
+                raise ValueError('Resident encoder differs from reviewed production handler')
+            checks.append({'batch_size': len(batch), 'input_tokens': [self.length(t) for t in batch],
+                           'max_abs_difference': float(np.max(np.abs(actual - expected)))})
+        self.meta['reviewed_handler_parity'] = checks
+
     def length(self, text):
         return len(self.tokenizer(text, truncation=False)['input_ids'])
 
     def sized_text(self, count):
         # Decoder-language LCA payload; truncate with the exact tokenizer then verify.
         words = ' electricity generation renewable photovoltaic silicon process lifecycle emissions carbon water geography technology '
-        ids = self.tokenizer(words * count, add_special_tokens=False)['input_ids'][:count]
-        text = self.tokenizer.decode(ids, skip_special_tokens=False)
-        if self.length(text) != count:
-            raise ValueError(f'Cannot construct exact {count}-token payload')
-        return text
+        ids = self.tokenizer(words * count, add_special_tokens=False)['input_ids']
+        # Some production tokenizers append EOS even for single strings. Count
+        # actual tokenizer output rather than assuming decode/encode is identity.
+        for cut in range(max(1, count - 8), count + 9):
+            text = self.tokenizer.decode(ids[:cut], skip_special_tokens=False)
+            if self.length(text) == count:
+                return text
+        raise ValueError(f'Cannot construct exact {count}-token payload')
+
 
 
 def benchmark(args):
@@ -232,9 +258,11 @@ def quality(args):
         model.encode([rows[0]['text']])
         arr = np.empty((len(rows), 1024), dtype=np.float32)
         start = time.perf_counter()
+        order = sorted(range(len(rows)), key=lambda index: lengths[index], reverse=True)
         for i in range(0, len(rows), args.batch_size):
-            texts = [x['text'] if isinstance(x['text'], str) else ' '.join(x['text']) for x in rows[i:i + args.batch_size]]
-            arr[i:i + len(texts)] = model.encode(texts)
+            indices = order[i:i + args.batch_size]
+            texts = [rows[index]['text'] if isinstance(rows[index]['text'], str) else ' '.join(rows[index]['text']) for index in indices]
+            arr[indices] = model.encode(texts)
             if i % (args.batch_size * 25) == 0:
                 print(json.dumps({'encoding': name, 'completed': min(i + len(texts), len(rows)),
                                   'total': len(rows), 'elapsed': time.perf_counter() - start}), flush=True)
@@ -244,7 +272,7 @@ def quality(args):
         save_json(out / f'{name}_ids.json', [str(x['id']) for x in rows])
         vectors[name] = arr
         data_meta[name + '_encoding'] = {'seconds': time.perf_counter() - start,
-                                         'batch_size': args.batch_size,
+                                         'batch_size': args.batch_size, 'length_bucketing': 'descending measured tokens; original ID order restored',
                                          'tokens_p50': percentile(lengths, 50),
                                          'tokens_p95': percentile(lengths, 95),
                                          'tokens_max': max(lengths),
@@ -289,13 +317,35 @@ def retrieval_metrics(query, corpus, qids, cids, qrels, subset=None):
              for key in next(iter(per_query.values()))}, 'per_query': per_query}
 
 
+def validate_comparison_identity(candidate_meta, reference_meta, data_meta, vector_ids, dataset_ids):
+    c, r = candidate_meta['manifest'], reference_meta['manifest']
+    if c['files_sha256'] != r['files_sha256']:
+        raise ValueError('Candidate/reference model or tokenizer binary identity differs')
+    if r['dtype'] != 'fp32':
+        raise ValueError('Reference must be regenerated FP32')
+    for key in ['max_length', 'pooling', 'normalization', 'prompts', 'padding_side']:
+        if c[key] != r[key]:
+            raise ValueError(f'Candidate/reference semantic setting differs: {key}')
+    current = data_meta['file_sha256']
+    if candidate_meta['dataset']['file_sha256'] != current or reference_meta['dataset']['file_sha256'] != current:
+        raise ValueError('Candidate/reference/current dataset content hashes differ')
+    if vector_ids != dataset_ids:
+        raise ValueError('Cached vectors do not match current dataset ID order')
+    return {key: {'candidate': c['runtime'].get(key), 'reference': r['runtime'].get(key)}
+            for key in set(c['runtime']) | set(r['runtime']) if c['runtime'].get(key) != r['runtime'].get(key)}
+
+
 def compare(args):
     import numpy as np
-    _, _, qrels, data_meta = dataset(args)
+    queries, corpus, qrels, data_meta = dataset(args)
     def cache(path):
         p = Path(path)
-        return (np.load(p / 'queries_embeddings.npy'), np.load(p / 'corpus_embeddings.npy'),
+        items = (np.load(p / 'queries_embeddings.npy'), np.load(p / 'corpus_embeddings.npy'),
                 json.loads((p / 'queries_ids.json').read_text()), json.loads((p / 'corpus_ids.json').read_text()))
+        for arr, ids in [(items[0], items[2]), (items[1], items[3])]:
+            if arr.shape != (len(ids), 1024) or not np.isfinite(arr).all():
+                raise ValueError('Invalid embedding shape or non-finite vectors')
+        return items
     candidate, reference = cache(args.candidate), cache(args.reference)
     provenance = []
     for path in [args.candidate, args.reference]:
@@ -303,18 +353,17 @@ def compare(args):
         if not meta_path.exists():
             raise ValueError('Unbound legacy cache: require regenerated quality.json model manifest')
         provenance.append(json.loads(meta_path.read_text()))
-    if provenance[0]['manifest']['files_sha256'] != provenance[1]['manifest']['files_sha256']:
-        raise ValueError('Candidate/reference model or tokenizer binary identity differs')
-    if provenance[1]['manifest']['dtype'] != 'fp32':
-        raise ValueError('Reference must be regenerated FP32')
     if candidate[2:] != reference[2:]:
         raise ValueError('Candidate/reference query or corpus IDs are not identically ordered')
     qids, cids = candidate[2:]
+    runtime_differences = validate_comparison_identity(provenance[0], provenance[1], data_meta,
+                              candidate[2:], ([str(x['id']) for x in queries], [str(x['id']) for x in corpus]))
     if set(qids) != set(qrels):
         raise ValueError('Vector query IDs and qrels differ')
     result = {'kind': 'cpu_quality_comparison', 'candidate': args.candidate, 'reference': args.reference,
               'dataset': data_meta, 'vectors': {}, 'rankings': {}, 'metrics': {},
               'provenance': {'reference_kind': 'regenerated offline same-artifact CPU FP32; not live GPU parity',
+                             'runtime_differences': runtime_differences,
                              'candidate_manifest': provenance[0]['manifest'],
                              'reference_manifest': provenance[1]['manifest']}}
     for label, cv, rv in [('queries', candidate[0], reference[0]), ('corpus', candidate[1], reference[1])]:
@@ -356,7 +405,7 @@ def compare(args):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('mode', choices=['benchmark', 'quality', 'compare'])
-    p.add_argument('--artifact-manifest'); p.add_argument('--model'); p.add_argument('--data'); p.add_argument('--candidate'); p.add_argument('--reference')
+    p.add_argument('--verify-handler', action='store_true'); p.add_argument('--artifact-manifest'); p.add_argument('--model'); p.add_argument('--data'); p.add_argument('--candidate'); p.add_argument('--reference')
     p.add_argument('--output', required=True)
     p.add_argument('--threads', type=int, default=4)
     p.add_argument('--dtype', choices=['fp32', 'bf16'], default='fp32')
@@ -369,6 +418,8 @@ def main():
     a = p.parse_args()
     if a.threads < 1 or a.batch_size < 1 or a.requests < 1 or a.warmup < 1 or any(x < 1 for x in a.lengths + a.concurrency):
         p.error('Counts/lengths/concurrency must be positive')
+    if a.verify_handler and (not a.artifact_manifest or a.dtype != 'fp32'):
+        p.error('--verify-handler requires reviewed --artifact-manifest and FP32')
     if a.mode != 'compare' and not a.model:
         p.error('--model is required')
     if a.mode != 'benchmark' and not a.data:
