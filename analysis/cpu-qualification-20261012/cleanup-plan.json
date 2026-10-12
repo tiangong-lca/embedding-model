@@ -1,0 +1,495 @@
+{
+  "actions": [
+    {
+      "op": "remove",
+      "resource": "container:37eeb7ecd6add6c9f4e448ccc652ce2128cff26d8c45de367cf934ed9572a365"
+    },
+    {
+      "op": "remove",
+      "resource": "container:f2f022dd6238efcd2477e373f6d39a2fca210c41f83b1e6f3afc171c9a542742"
+    },
+    {
+      "op": "remove",
+      "resource": "container:f60e47e393155075b71345f6703c9954b75452d6a021fece509b38ca5831940d"
+    }
+  ],
+  "baseline": {
+    "daemon": {
+      "context": "default",
+      "current_context": "default",
+      "endpoint": "unix:///var/run/docker.sock",
+      "id": "16a6eb7b-78a7-4100-a7a2-20a40a7b3f31"
+    },
+    "image_and_cache_policy": "Images are inventory-only; build cache is retained. No prune or image/cache mutation is implemented.",
+    "images": [
+      "sha256:008173c23f95b170204355c12626cb5a965d779a7e1283b09e9cffbb1bf33ca3",
+      "sha256:121a7a9ece6dc10b969f1f96eed64b4f07dfac0d0b8abc070f7cb83bbde86f63",
+      "sha256:200689790a0a0ea48ca45992e0450bc26ccab5307375b41c84dfc4f2475937ab",
+      "sha256:302eecfba037c7f7ada8949232eaa28f96c62716240013b222f5733613c4a5ed",
+      "sha256:48b0309ca019d89d40f670aa1bc06e426dc0931948452e8491e3d65087abc07d",
+      "sha256:491b0578c04983fd54fe99b587b6fab4404dc46d0dc16677bd6b00cc1140b308",
+      "sha256:508729e0e2d18e11fd742a5a5ca70e557b940a93948c3c95fd0123a6fd538b69",
+      "sha256:55ecc762950a32641b6a4d96195c0662ef72998eaeeda31bba0e8e218d41afef",
+      "sha256:70b9f699fc9bb868b62f1cfd4f787dfa50242f1fd92e6089787d5d7daea75fe8",
+      "sha256:8007effce89a08af0236b9529a0daab5b8b36fa939f4162f28201f1bf8731dbf",
+      "sha256:9fe1c8b3851066932a0720d837b0f9d8c542fd057b6005071fdd003e75de4af8",
+      "sha256:b09d9b21381f47a79b3cbcb30da25266dc17186ea00ae65e99fdc51396f48e70",
+      "sha256:b88541ab10490f6ee43d2e352edcfcb4b4e0e6b1fdd26ed427c89d73e3fa6a7b",
+      "sha256:ce3432cb7f1e892b9cebb4c3fbda1d6dd59afdad00148accc4ef1b284f413c57",
+      "sha256:d12f440fb894bff2d945bfebb4ca74fb5c7ce464e72d1edab9dfaaca5fe0a56c",
+      "sha256:dea7fa047caa114167efccdeb42321b12d2c11da1add8728aa2662cb8d6b8cd5",
+      "sha256:e0eb63dcc628a4359e1b3c1a05f37d290ece01c43c54f43cc19da123d6f9044e",
+      "sha256:e9622b01071c38e4fe1ca9822a3841feab630ae13ff5ad7f540f73771e56ae86"
+    ],
+    "observed_at": "2026-10-12T05:08:57.402012+00:00",
+    "resources": [
+      {
+        "auto_remove": false,
+        "container_dependencies": [],
+        "created": "2026-10-12T04:04:29.780804402Z",
+        "id": "37eeb7ecd6add6c9f4e448ccc652ce2128cff26d8c45de367cf934ed9572a365",
+        "image": "sha256:302eecfba037c7f7ada8949232eaa28f96c62716240013b222f5733613c4a5ed",
+        "kind": "container",
+        "labels": {},
+        "labels_sha256": "cb27098d05268f642d80993a7a75a4f3b7773a4b3af7e03c7fb39e56e228d532",
+        "mounts": [
+          {
+            "destination": "/data",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/projects/lca-embedding/studies/v1_tiangong_embedding/data/ft_data",
+            "type": "bind"
+          },
+          {
+            "destination": "/identity.json",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/production-artifact-file-hashes.json",
+            "type": "bind"
+          },
+          {
+            "destination": "/model",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/model",
+            "type": "bind"
+          },
+          {
+            "destination": "/results",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": true,
+            "source": "/home/david/.cache/embedding-model-42-20261012/results",
+            "type": "bind"
+          },
+          {
+            "destination": "/test",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/runtime-dc4aea5",
+            "type": "bind"
+          }
+        ],
+        "name": "/embedding-cpu-42-fp32-quality-dc4aea5",
+        "namespace_modes": {
+          "IpcMode": "private",
+          "NetworkMode": "none",
+          "PidMode": ""
+        },
+        "networks": [
+          "d62361961114cdbbaa0484b79d267f33bc13f9e7e29e515a4addf5377bbb6ffe"
+        ],
+        "restart_policy": {
+          "MaximumRetryCount": 0,
+          "Name": "no"
+        },
+        "state": {
+          "finished_at": "2026-10-12T04:54:06.38752456Z",
+          "paused": false,
+          "restart_count": 0,
+          "restarting": false,
+          "running": false,
+          "started_at": "2026-10-12T04:04:29.799834637Z",
+          "status": "exited"
+        }
+      },
+      {
+        "auto_remove": false,
+        "container_dependencies": [],
+        "created": "2026-10-09T07:13:15.292686278Z",
+        "id": "8e8aea5140ce2c5fe2210f2ff237bca85848d5c5e223c2f273b132994a12ac1b",
+        "image": "sha256:55ecc762950a32641b6a4d96195c0662ef72998eaeeda31bba0e8e218d41afef",
+        "kind": "container",
+        "labels": {
+          "com.docker.compose.project": "tiangong-gpustack-worker",
+          "com.docker.compose.service": "worker"
+        },
+        "labels_sha256": "a47e5eb77c6c16a5e32bb7e6523dff4c9cea584fe8ea091afcdd613f256315b3",
+        "mounts": [
+          {
+            "destination": "/home/david/projects/TianGong-AI-vLLM/models/Qwen3.8-Flash-Next-NVFP4",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/projects/TianGong-AI-vLLM/models/Qwen3.8-Flash-Next-NVFP4",
+            "type": "bind"
+          },
+          {
+            "destination": "/var/lib/gpustack",
+            "name": "tiangong-gpustack-worker_data",
+            "propagation": "",
+            "rw": true,
+            "source": "/var/lib/docker/volumes/tiangong-gpustack-worker_data/_data",
+            "type": "volume"
+          },
+          {
+            "destination": "/var/run/cdi",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/var/run/cdi",
+            "type": "bind"
+          },
+          {
+            "destination": "/var/run/docker.sock",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": true,
+            "source": "/var/run/docker.sock",
+            "type": "bind"
+          }
+        ],
+        "name": "/tiangong-gpustack-worker",
+        "namespace_modes": {
+          "IpcMode": "private",
+          "NetworkMode": "host",
+          "PidMode": ""
+        },
+        "networks": [
+          "468dd34045555c2200763318784bac104fc7d14e17925116ae0bc92e2a1e5dcc"
+        ],
+        "restart_policy": {
+          "MaximumRetryCount": 0,
+          "Name": "unless-stopped"
+        },
+        "state": {
+          "finished_at": "2026-10-10T10:04:39.079737684Z",
+          "paused": false,
+          "restart_count": 0,
+          "restarting": false,
+          "running": true,
+          "started_at": "2026-10-10T10:06:21.126588593Z",
+          "status": "running"
+        }
+      },
+      {
+        "auto_remove": false,
+        "container_dependencies": [],
+        "created": "2026-10-12T04:54:06.445724226Z",
+        "id": "f2f022dd6238efcd2477e373f6d39a2fca210c41f83b1e6f3afc171c9a542742",
+        "image": "sha256:302eecfba037c7f7ada8949232eaa28f96c62716240013b222f5733613c4a5ed",
+        "kind": "container",
+        "labels": {
+          "io.tiangong.workspace.classification": "disposable-test",
+          "io.tiangong.workspace.group": "cpu-qualification-20261012",
+          "io.tiangong.workspace.retain": "false",
+          "io.tiangong.workspace.task": "embedding-model#42"
+        },
+        "labels_sha256": "f577e6d19bc986f1586625a38ab494ac5594b2f20694fa0b158ab87b8a1431d0",
+        "mounts": [
+          {
+            "destination": "/identity.json",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/production-artifact-file-hashes.json",
+            "type": "bind"
+          },
+          {
+            "destination": "/model",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/model",
+            "type": "bind"
+          },
+          {
+            "destination": "/results",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": true,
+            "source": "/home/david/.cache/embedding-model-42-20261012/results",
+            "type": "bind"
+          },
+          {
+            "destination": "/test",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/runtime-f56b587",
+            "type": "bind"
+          }
+        ],
+        "name": "/embedding-cpu-42-fp32-serialized-f56b587",
+        "namespace_modes": {
+          "IpcMode": "private",
+          "NetworkMode": "none",
+          "PidMode": ""
+        },
+        "networks": [
+          "d62361961114cdbbaa0484b79d267f33bc13f9e7e29e515a4addf5377bbb6ffe"
+        ],
+        "restart_policy": {
+          "MaximumRetryCount": 0,
+          "Name": "no"
+        },
+        "state": {
+          "finished_at": "2026-10-12T04:59:44.960653991Z",
+          "paused": false,
+          "restart_count": 0,
+          "restarting": false,
+          "running": false,
+          "started_at": "2026-10-12T04:54:06.462559317Z",
+          "status": "exited"
+        }
+      },
+      {
+        "auto_remove": false,
+        "container_dependencies": [],
+        "created": "2026-10-12T03:47:59.354446956Z",
+        "id": "f60e47e393155075b71345f6703c9954b75452d6a021fece509b38ca5831940d",
+        "image": "sha256:302eecfba037c7f7ada8949232eaa28f96c62716240013b222f5733613c4a5ed",
+        "kind": "container",
+        "labels": {},
+        "labels_sha256": "5f98fa6f6bbb0d578f1593ec67c5bb7281e38c5f6aec18cc48223e027aaa2594",
+        "mounts": [
+          {
+            "destination": "/identity.json",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/production-artifact-file-hashes.json",
+            "type": "bind"
+          },
+          {
+            "destination": "/model",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/artifact/model",
+            "type": "bind"
+          },
+          {
+            "destination": "/results",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": true,
+            "source": "/home/david/.cache/embedding-model-42-20261012/results",
+            "type": "bind"
+          },
+          {
+            "destination": "/test",
+            "name": null,
+            "propagation": "rprivate",
+            "rw": false,
+            "source": "/home/david/.cache/embedding-model-42-20261012/runtime",
+            "type": "bind"
+          }
+        ],
+        "name": "/embedding-cpu-42-fp32-benchmark",
+        "namespace_modes": {
+          "IpcMode": "private",
+          "NetworkMode": "none",
+          "PidMode": ""
+        },
+        "networks": [
+          "d62361961114cdbbaa0484b79d267f33bc13f9e7e29e515a4addf5377bbb6ffe"
+        ],
+        "restart_policy": {
+          "MaximumRetryCount": 0,
+          "Name": "no"
+        },
+        "state": {
+          "finished_at": "2026-10-12T04:04:19.461177993Z",
+          "paused": false,
+          "restart_count": 0,
+          "restarting": false,
+          "running": false,
+          "started_at": "2026-10-12T03:47:59.382656759Z",
+          "status": "exited"
+        }
+      },
+      {
+        "created": "2026-08-09T19:06:54+08:00",
+        "driver": "local",
+        "id": "edu-next_alloy_data",
+        "kind": "volume",
+        "labels": {
+          "com.docker.compose.project": "edu-next"
+        },
+        "labels_sha256": "b867266248f2abc362f9be870d5a9445c81594041d2672157a38a1295e1f02d4",
+        "name": "edu-next_alloy_data",
+        "options_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "scope": "local"
+      },
+      {
+        "created": "2026-08-09T19:06:54+08:00",
+        "driver": "local",
+        "id": "edu-next_grafana_data",
+        "kind": "volume",
+        "labels": {
+          "com.docker.compose.project": "edu-next"
+        },
+        "labels_sha256": "e8b1d3ac92858b5e407130fbe261f50cb34783d7fd5bb616284bb9c1b5cb5c1c",
+        "name": "edu-next_grafana_data",
+        "options_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "scope": "local"
+      },
+      {
+        "created": "2026-08-09T19:06:54+08:00",
+        "driver": "local",
+        "id": "edu-next_loki_data",
+        "kind": "volume",
+        "labels": {
+          "com.docker.compose.project": "edu-next"
+        },
+        "labels_sha256": "b6c46bd53468227e459da74cc91d39dcffc01e14b7e1947da25b59857a71170f",
+        "name": "edu-next_loki_data",
+        "options_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "scope": "local"
+      },
+      {
+        "created": "2026-08-09T19:44:41+08:00",
+        "driver": "local",
+        "id": "edu-next_prometheus_data",
+        "kind": "volume",
+        "labels": {
+          "com.docker.compose.project": "edu-next"
+        },
+        "labels_sha256": "ac46a6bc94751415caadac3f54d0a59614197888487ec9002a69c7a548efbd43",
+        "name": "edu-next_prometheus_data",
+        "options_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "scope": "local"
+      },
+      {
+        "created": "2026-10-09T15:06:50+08:00",
+        "driver": "local",
+        "id": "tiangong-gpustack-worker_data",
+        "kind": "volume",
+        "labels": {
+          "com.docker.compose.project": "tiangong-gpustack-worker"
+        },
+        "labels_sha256": "0819e8c4e307231e68d26318483fec4435c5dc6940cdbfcd6d87750cf007ca0c",
+        "name": "tiangong-gpustack-worker_data",
+        "options_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "scope": "local"
+      },
+      {
+        "configuration_sha256": "98d4fe2736ff1f7f03b995c3099a476c302583a14627299feb5cf9d0f3697662",
+        "containers": [
+          "8e8aea5140ce2c5fe2210f2ff237bca85848d5c5e223c2f273b132994a12ac1b"
+        ],
+        "created": "2026-08-09T18:59:09.271684465+08:00",
+        "driver": "host",
+        "id": "468dd34045555c2200763318784bac104fc7d14e17925116ae0bc92e2a1e5dcc",
+        "ingress": false,
+        "internal": false,
+        "kind": "network",
+        "labels": {},
+        "labels_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "name": "host",
+        "scope": "local"
+      },
+      {
+        "configuration_sha256": "c629893ad66a6f2933405b22f604c1cee714e95c8391ec8f0341d361ade8332f",
+        "containers": [],
+        "created": "2026-09-18T16:24:27.353660592+08:00",
+        "driver": "bridge",
+        "id": "bce0725f445f538da597e210f348ee1301bbaef89d11d0e3e2ea0fdf9434b10e",
+        "ingress": false,
+        "internal": false,
+        "kind": "network",
+        "labels": {
+          "com.docker.compose.project": "tiangong-vllm"
+        },
+        "labels_sha256": "399bfcb42b6fe24dc4dc5efc301f27fe216167232b4c7deb1841504c7fff5fe9",
+        "name": "tiangong-vllm_default",
+        "scope": "local"
+      },
+      {
+        "configuration_sha256": "98d4fe2736ff1f7f03b995c3099a476c302583a14627299feb5cf9d0f3697662",
+        "containers": [],
+        "created": "2026-08-09T18:59:09.269621002+08:00",
+        "driver": "null",
+        "id": "d62361961114cdbbaa0484b79d267f33bc13f9e7e29e515a4addf5377bbb6ffe",
+        "ingress": false,
+        "internal": false,
+        "kind": "network",
+        "labels": {},
+        "labels_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "name": "none",
+        "scope": "local"
+      },
+      {
+        "configuration_sha256": "323ab646a8c1c8ed39b7aa43f437623647f382e79d3b45a204a8e424678fc7d4",
+        "containers": [],
+        "created": "2026-10-10T18:06:21.085225138+08:00",
+        "driver": "bridge",
+        "id": "eacc01f55d3eb37847bf242cb1f8828d680fa50a6833bf742994c5370cc8e65b",
+        "ingress": false,
+        "internal": false,
+        "kind": "network",
+        "labels": {},
+        "labels_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "name": "bridge",
+        "scope": "local"
+      }
+    ],
+    "schema": "workspace.dev-resources.inventory.v1"
+  },
+  "created_at": "2026-10-12T05:08:57.760506+00:00",
+  "expires_at": "2026-10-12T05:38:57.760506+00:00",
+  "manifest": {
+    "authority": "explicit-disposable-test-review",
+    "created_at": "2026-10-12T05:08:56.683924+00:00",
+    "daemon": {
+      "context": "default",
+      "current_context": "default",
+      "endpoint": "unix:///var/run/docker.sock",
+      "id": "16a6eb7b-78a7-4100-a7a2-20a40a7b3f31"
+    },
+    "reason": "Embedding issue42 offline CPU qualification is complete; exact task-created containers are disposable, all model/data/result binds and shared GPUStack are retained",
+    "resources": [
+      {
+        "disposition": "remove",
+        "fingerprint": "9c28fb50dc62456f0b1d120b5b2011f2b5d1652afb966738b09f10cd6af4deae",
+        "resource": "container:37eeb7ecd6add6c9f4e448ccc652ce2128cff26d8c45de367cf934ed9572a365"
+      },
+      {
+        "disposition": "remove",
+        "fingerprint": "2bcc6d4b085d466597cfcde53afcc4f8c4a276088fb8473cc5e52c8406e490e5",
+        "resource": "container:f2f022dd6238efcd2477e373f6d39a2fca210c41f83b1e6f3afc171c9a542742"
+      },
+      {
+        "disposition": "remove",
+        "fingerprint": "7d5f627f2ee59b138a0f274f1148f0d464fcbb89f55a098409f33f85fe2920bf",
+        "resource": "container:f60e47e393155075b71345f6703c9954b75452d6a021fece509b38ca5831940d"
+      },
+      {
+        "disposition": "retain",
+        "fingerprint": "d7fc6ddac35b108279e061d02784b54f7e530d4694eb320cefadd282b2e509d1",
+        "resource": "network:d62361961114cdbbaa0484b79d267f33bc13f9e7e29e515a4addf5377bbb6ffe"
+      }
+    ],
+    "schema": "workspace.dev-resources.manifest.v1",
+    "task": "embedding-model#42"
+  },
+  "schema": "workspace.dev-resources.plan.v2",
+  "sha256": "9d6d91f28b1ae0aed6d2c4de084da31282d2bd8d2360b13d1c45c01f2cbfabdf",
+  "stop_restarting": false,
+  "stop_running": false
+}

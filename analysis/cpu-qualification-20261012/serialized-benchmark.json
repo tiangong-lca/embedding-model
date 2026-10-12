@@ -1,0 +1,4169 @@
+{
+  "kind": "warm_cpu_benchmark",
+  "manifest": {
+    "model_directory": "/model",
+    "dtype": "fp32",
+    "max_length": 1024,
+    "pooling": "last valid token via sum(mask)-1",
+    "normalization": "L2",
+    "prompts": "none; matches deployed custom handler",
+    "padding_side": "right",
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.float32",
+    "intraop_threads": 4,
+    "interop_threads": 1,
+    "model_load_seconds_excluded_from_latency": 0.691486766008893,
+    "startup_measurement_scope": "AutoModel load only; imports/tokenizer/hash/parity are also outside all warm latency",
+    "qualification_script_sha256": "dc86a0cecd04d136c8db52041af3d1ef726834129d907d76f661b11ad2068cbd",
+    "files_sha256": {
+      "added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "chat_template.jinja": "87a2728cb8dc9fe424d624542f6060ec05a1d285ebbec578bb078900e33396b5",
+      "code/inference.py": "6034ff474d3964b12a47ac75b77d263eb9d5c9adf1d4215fe9f73f0b5f8efbaf",
+      "code/requirements.txt": "2bcc4ddc2e1caa68e3113a8bd492fb263a241a69b82c5ed28f0e627f70096667",
+      "config.json": "685a083d2f03ec3fbc292b77e9f82291b93b615894002a2ec4eb6f94b0c39f7f",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "a13692bcf8f32ca5d931132bfabdf82846289fac89a3257f343d23c6908c60c1",
+      "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "tokenizer.json": "61084483006918bd5966b448e72ac5dc520ffcab6b586d2a1e31da47bdafdcca",
+      "tokenizer_config.json": "9a7ed8853b220ac6d359ecff4abe8737326323471536e6d5f52b21db6736a5c6",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "runtime": {
+      "torch": "2.6.0+cpu",
+      "transformers": "4.51.3",
+      "numpy": "2.3.5",
+      "tokenizers": "0.21.4",
+      "safetensors": "0.8.0"
+    },
+    "isolation": {
+      "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+      "machine": "x86_64",
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "cpu.max": "400000 100000",
+      "cpuset.cpus.effective": "0-3",
+      "memory.max": "8589934592",
+      "memory.swap.max": "0",
+      "cpu.stat": "usage_usec 3959097\nuser_usec 3448729\nsystem_usec 510367\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 37\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+      "memory.peak": "315097088",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+      "cpu_model": "Intel(R) Xeon(R) w5-3425"
+    },
+    "artifact_archive_sha256": "df73c8671f74e238bdc0a41c06d7bb33a03744e795becfb507f620a908571cf2",
+    "reviewed_handler_parity": [
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          32
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          128
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          512
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 1,
+        "input_tokens": [
+          1024
+        ],
+        "max_abs_difference": 0.0
+      },
+      {
+        "batch_size": 2,
+        "input_tokens": [
+          32,
+          1024
+        ],
+        "max_abs_difference": 0.0
+      }
+    ]
+  },
+  "mode": "serialized",
+  "mode_description": "closed-loop concurrent single-input calls; serialized uses one forward at a time with queue wait included; no HTTP/network latency",
+  "cold_start_acceptable": false,
+  "cells": [
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 1,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 4,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 4.221249485999579,
+      "requests_per_second": 7.106900480414532,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.139074835984502,
+          "queue_wait_seconds": 1.1659867595881224e-06,
+          "encode_seconds": 0.1384751099976711,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 0,
+          "seconds": 0.13992559400503524,
+          "queue_wait_seconds": 7.569906301796436e-07,
+          "encode_seconds": 0.13932167200255208,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 0,
+          "seconds": 0.13922896899748594,
+          "queue_wait_seconds": 5.839974619448185e-07,
+          "encode_seconds": 0.1386310899979435,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 0.14019291001022793,
+          "queue_wait_seconds": 6.149930413812399e-07,
+          "encode_seconds": 0.13959892001003027,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 0,
+          "seconds": 0.13920810501440428,
+          "queue_wait_seconds": 5.949987098574638e-07,
+          "encode_seconds": 0.13862183099263348,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 0,
+          "seconds": 0.14295472501544282,
+          "queue_wait_seconds": 6.970076356083155e-07,
+          "encode_seconds": 0.1423697239952162,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.1408623690076638,
+          "queue_wait_seconds": 6.310001481324434e-07,
+          "encode_seconds": 0.1402738360047806,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 0,
+          "seconds": 0.13982263300567865,
+          "queue_wait_seconds": 7.469789125025272e-07,
+          "encode_seconds": 0.139234184025554,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 0,
+          "seconds": 0.14047217802726664,
+          "queue_wait_seconds": 6.160116754472256e-07,
+          "encode_seconds": 0.13989105899236165,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 0.14077622900367714,
+          "queue_wait_seconds": 6.459886208176613e-07,
+          "encode_seconds": 0.14019137300783768,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 0,
+          "seconds": 0.13884791199234314,
+          "queue_wait_seconds": 6.33997842669487e-07,
+          "encode_seconds": 0.13824952000868507,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 0,
+          "seconds": 0.1403363719873596,
+          "queue_wait_seconds": 6.629852578043938e-07,
+          "encode_seconds": 0.13973705199896358,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.14218403000268154,
+          "queue_wait_seconds": 6.229965947568417e-07,
+          "encode_seconds": 0.14157555700512603,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 0,
+          "seconds": 0.14251748600509018,
+          "queue_wait_seconds": 6.250047590583563e-07,
+          "encode_seconds": 0.14193066500592977,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 0,
+          "seconds": 0.14090438300627284,
+          "queue_wait_seconds": 8.00006091594696e-07,
+          "encode_seconds": 0.1402634929982014,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 0.14254770599654876,
+          "queue_wait_seconds": 6.979971658438444e-07,
+          "encode_seconds": 0.1419543660013005,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 0,
+          "seconds": 0.14104544799192809,
+          "queue_wait_seconds": 5.569891072809696e-07,
+          "encode_seconds": 0.14039730399963446,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 0,
+          "seconds": 0.14011493499856442,
+          "queue_wait_seconds": 5.970068741589785e-07,
+          "encode_seconds": 0.139474630006589,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.14109499400365166,
+          "queue_wait_seconds": 6.80010998621583e-07,
+          "encode_seconds": 0.1404272239888087,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 0,
+          "seconds": 0.14085376801085658,
+          "queue_wait_seconds": 6.270129233598709e-07,
+          "encode_seconds": 0.1402159639983438,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 0,
+          "seconds": 0.1421218829927966,
+          "queue_wait_seconds": 5.709880497306585e-07,
+          "encode_seconds": 0.14148859199485742,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 0.14194733600015752,
+          "queue_wait_seconds": 6.530026439577341e-07,
+          "encode_seconds": 0.1413470889965538,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 0,
+          "seconds": 0.1399231429968495,
+          "queue_wait_seconds": 6.099871825426817e-07,
+          "encode_seconds": 0.13929243900929578,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 0,
+          "seconds": 0.14012067401199602,
+          "queue_wait_seconds": 6.67001586407423e-07,
+          "encode_seconds": 0.13952313401387073,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.13908156898105517,
+          "queue_wait_seconds": 6.329792086035013e-07,
+          "encode_seconds": 0.13850105201709084,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 0,
+          "seconds": 0.14074733899906278,
+          "queue_wait_seconds": 5.54980942979455e-07,
+          "encode_seconds": 0.14014219300588593,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 0,
+          "seconds": 0.14016952400561422,
+          "queue_wait_seconds": 6.140035111457109e-07,
+          "encode_seconds": 0.13956242200220004,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 0.1402483500132803,
+          "queue_wait_seconds": 5.67990355193615e-07,
+          "encode_seconds": 0.13961365501745604,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 0,
+          "seconds": 0.1395157999941148,
+          "queue_wait_seconds": 6.920017767697573e-07,
+          "encode_seconds": 0.13892291000229307,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 0,
+          "seconds": 0.14039221999701113,
+          "queue_wait_seconds": 5.489855539053679e-07,
+          "encode_seconds": 0.13980684700072743,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 75656656\nuser_usec 70698472\nsystem_usec 4958184\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 226\nnr_throttled 25\nthrottled_usec 32464\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 140.36429599218536,
+      "p95_ms": 142.5341070003924,
+      "p99_ms": 142.83668949996354,
+      "max_ms": 142.95472501544282,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 3,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 6,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 4.213808125001378,
+      "requests_per_second": 7.119450888616384,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.14028065398451872,
+          "queue_wait_seconds": 1.1639785952866077e-06,
+          "encode_seconds": 0.13963375400635414,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 0.28117122600087896,
+          "queue_wait_seconds": 0.14021941099781543,
+          "encode_seconds": 0.14031123599852435,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 0.4214342740015127,
+          "queue_wait_seconds": 0.2811775730224326,
+          "encode_seconds": 0.13960674198460765,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 0.4201046729867812,
+          "queue_wait_seconds": 0.2810708489851095,
+          "encode_seconds": 0.1384016780066304,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 1,
+          "seconds": 0.4187372590240557,
+          "queue_wait_seconds": 0.2791487370268442,
+          "encode_seconds": 0.13897740698303096,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 2,
+          "seconds": 0.4186885009985417,
+          "queue_wait_seconds": 0.2784715729940217,
+          "encode_seconds": 0.1395581919932738,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.4193818210042082,
+          "queue_wait_seconds": 0.2796522489807103,
+          "encode_seconds": 0.13912661001086235,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 0.42187799100065604,
+          "queue_wait_seconds": 0.279800822987454,
+          "encode_seconds": 0.14143317300477065,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 0.4226276409754064,
+          "queue_wait_seconds": 0.2816586979897693,
+          "encode_seconds": 0.1403162429924123,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 0.4243911450030282,
+          "queue_wait_seconds": 0.2829042419907637,
+          "encode_seconds": 0.14087787401513197,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 1,
+          "seconds": 0.4222598480118904,
+          "queue_wait_seconds": 0.2823018350172788,
+          "encode_seconds": 0.1392986139981076,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 2,
+          "seconds": 0.4225429170182906,
+          "queue_wait_seconds": 0.2812929899955634,
+          "encode_seconds": 0.1406233820016496,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.4215754690230824,
+          "queue_wait_seconds": 0.281060861016158,
+          "encode_seconds": 0.13988580799195915,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 0.4214906880224589,
+          "queue_wait_seconds": 0.28161475001252256,
+          "encode_seconds": 0.13928633299656212,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 0.42122115701204166,
+          "queue_wait_seconds": 0.2802412210148759,
+          "encode_seconds": 0.1403166409872938,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 0.4201685580192134,
+          "queue_wait_seconds": 0.2807300240092445,
+          "encode_seconds": 0.13883069000439718,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 1,
+          "seconds": 0.42077779199462384,
+          "queue_wait_seconds": 0.2802887840080075,
+          "encode_seconds": 0.1398671600036323,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 2,
+          "seconds": 0.4201967720000539,
+          "queue_wait_seconds": 0.2797720610105898,
+          "encode_seconds": 0.1398091509763617,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.42184755101334304,
+          "queue_wait_seconds": 0.28077494600438513,
+          "encode_seconds": 0.1404437750170473,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 0.4213464990025386,
+          "queue_wait_seconds": 0.2813608410069719,
+          "encode_seconds": 0.13935684302123263,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 0.4211272170068696,
+          "queue_wait_seconds": 0.28091718000359833,
+          "encode_seconds": 0.13958253199234605,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 0.4201071720162872,
+          "queue_wait_seconds": 0.28004867301206104,
+          "encode_seconds": 0.13940948399249464,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 1,
+          "seconds": 0.4204007970110979,
+          "queue_wait_seconds": 0.2801201350230258,
+          "encode_seconds": 0.13966741500189528,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 2,
+          "seconds": 0.42090935897431336,
+          "queue_wait_seconds": 0.28019136999500915,
+          "encode_seconds": 0.14012968298629858,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.42028068099170923,
+          "queue_wait_seconds": 0.280851496005198,
+          "encode_seconds": 0.13882008698419668,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 0.42126121299224906,
+          "queue_wait_seconds": 0.2799922609992791,
+          "encode_seconds": 0.14068921300349757,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 0.4205669999937527,
+          "queue_wait_seconds": 0.28054607499507256,
+          "encode_seconds": 0.13940562898642384,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 0.42119248301605694,
+          "queue_wait_seconds": 0.2811400580103509,
+          "encode_seconds": 0.13942476399824955,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 1,
+          "seconds": 0.42010734099312685,
+          "queue_wait_seconds": 0.2799276690057013,
+          "encode_seconds": 0.13957602600567043,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 2,
+          "seconds": 0.421737271011807,
+          "queue_wait_seconds": 0.28007503299159,
+          "encode_seconds": 0.14104511801269837,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 90621343\nuser_usec 85362221\nsystem_usec 5259121\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 273\nnr_throttled 25\nthrottled_usec 32464\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 421.0182879905915,
+      "p95_ms": 422.5895151947043,
+      "p99_ms": 423.8797288350179,
+      "max_ms": 424.3911450030282,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 32,
+      "encoded_tokens": 32,
+      "concurrency": 6,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 9,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 4.240734763996443,
+      "requests_per_second": 7.074245778042525,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.1419756260002032,
+          "queue_wait_seconds": 9.149953257292509e-07,
+          "encode_seconds": 0.1413680099940393,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 0.2831892210233491,
+          "queue_wait_seconds": 0.14191750501049682,
+          "encode_seconds": 0.14066368399653584,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 0.42486584300058894,
+          "queue_wait_seconds": 0.28319583999109454,
+          "encode_seconds": 0.14105085900519043,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 3,
+          "seconds": 0.5658264869998675,
+          "queue_wait_seconds": 0.42487042598077096,
+          "encode_seconds": 0.14034847600851208,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 4,
+          "seconds": 0.7072164630226325,
+          "queue_wait_seconds": 0.5658374640042894,
+          "encode_seconds": 0.1407676270173397,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 5,
+          "seconds": 0.8475309920031577,
+          "queue_wait_seconds": 0.7072378920274787,
+          "encode_seconds": 0.13969532898045145,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.8465727609873284,
+          "queue_wait_seconds": 0.7055148219806142,
+          "encode_seconds": 0.14040476400987245,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 0.8467614899855107,
+          "queue_wait_seconds": 0.7052924839954358,
+          "encode_seconds": 0.14088463300140575,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 0.8482519710087217,
+          "queue_wait_seconds": 0.7050899580062833,
+          "encode_seconds": 0.14254189300118014,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 3,
+          "seconds": 0.8497025419783313,
+          "queue_wait_seconds": 0.7073013499903027,
+          "encode_seconds": 0.1417755029979162,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 4,
+          "seconds": 0.8507342060038354,
+          "queue_wait_seconds": 0.708320347010158,
+          "encode_seconds": 0.1417823719966691,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 5,
+          "seconds": 0.8522950460028369,
+          "queue_wait_seconds": 0.7104507939948235,
+          "encode_seconds": 0.14122936999774538,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.8536489119869657,
+          "queue_wait_seconds": 0.7112296150007751,
+          "encode_seconds": 0.14176245499402285,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 0.8532988430233672,
+          "queue_wait_seconds": 0.7121799720043782,
+          "encode_seconds": 0.14046488900203258,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 0.8511377309914678,
+          "queue_wait_seconds": 0.710146176017588,
+          "encode_seconds": 0.1403661559743341,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 3,
+          "seconds": 0.8494933659967501,
+          "queue_wait_seconds": 0.7087290269846562,
+          "encode_seconds": 0.14018742501502857,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 4,
+          "seconds": 0.8482513999915682,
+          "queue_wait_seconds": 0.7070753799926024,
+          "encode_seconds": 0.14054109301650897,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 5,
+          "seconds": 0.8476673039840534,
+          "queue_wait_seconds": 0.7064066809834912,
+          "encode_seconds": 0.14064200600842014,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.8461318670015316,
+          "queue_wait_seconds": 0.7052484870073386,
+          "encode_seconds": 0.14024065900593996,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 0.8456633510068059,
+          "queue_wait_seconds": 0.7050120930070989,
+          "encode_seconds": 0.1400043859903235,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 0.8462738739908673,
+          "queue_wait_seconds": 0.7046768309955951,
+          "encode_seconds": 0.14101395700708963,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 3,
+          "seconds": 0.8475623659905978,
+          "queue_wait_seconds": 0.7054913209867664,
+          "encode_seconds": 0.1414476000063587,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 4,
+          "seconds": 0.8485758250171784,
+          "queue_wait_seconds": 0.7064040270051919,
+          "encode_seconds": 0.14153837400954217,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 5,
+          "seconds": 0.8474936120037455,
+          "queue_wait_seconds": 0.7073171170195565,
+          "encode_seconds": 0.13957048099837266,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.8475974960019812,
+          "queue_wait_seconds": 0.7065985460067168,
+          "encode_seconds": 0.14037567499326542,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 0.8461894660140388,
+          "queue_wait_seconds": 0.7069449039991014,
+          "encode_seconds": 0.13859345400123857,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 0.8443767089920584,
+          "queue_wait_seconds": 0.7045912219909951,
+          "encode_seconds": 0.13916076300665736,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 3,
+          "seconds": 0.8425677540071774,
+          "queue_wait_seconds": 0.702295948023675,
+          "encode_seconds": 0.1396580149885267,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 4,
+          "seconds": 0.8429151599993929,
+          "queue_wait_seconds": 0.7004078690079041,
+          "encode_seconds": 0.141857145994436,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 5,
+          "seconds": 0.8439101119874977,
+          "queue_wait_seconds": 0.7027447829896118,
+          "encode_seconds": 0.14054023500648327,
+          "valid": true,
+          "response_bytes": 22733,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 107068645\nuser_usec 101505461\nsystem_usec 5563184\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 324\nnr_throttled 25\nthrottled_usec 32464\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 847.1275509946281,
+      "p95_ms": 852.8471343641286,
+      "p99_ms": 853.5473919875221,
+      "max_ms": 853.6489119869657,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 1,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 4,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 7.856837608997012,
+      "requests_per_second": 3.818330159407449,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.26233980199322104,
+          "queue_wait_seconds": 1.214008079841733e-06,
+          "encode_seconds": 0.2616787269944325,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 0,
+          "seconds": 0.25346022701705806,
+          "queue_wait_seconds": 6.119953468441963e-07,
+          "encode_seconds": 0.2528402919997461,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 0,
+          "seconds": 0.25766863700118847,
+          "queue_wait_seconds": 5.090259946882725e-07,
+          "encode_seconds": 0.25591723498655483,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 0.26429574098438025,
+          "queue_wait_seconds": 7.589987944811583e-07,
+          "encode_seconds": 0.2637085089809261,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 0,
+          "seconds": 0.2634058929979801,
+          "queue_wait_seconds": 6.979971658438444e-07,
+          "encode_seconds": 0.2628009089967236,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 0,
+          "seconds": 0.26293861799058504,
+          "queue_wait_seconds": 5.039910320192575e-07,
+          "encode_seconds": 0.26234292998560704,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.26331995500368066,
+          "queue_wait_seconds": 5.729962140321732e-07,
+          "encode_seconds": 0.2626927719975356,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 0,
+          "seconds": 0.26157827698625624,
+          "queue_wait_seconds": 5.920010153204203e-07,
+          "encode_seconds": 0.260975053999573,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 0,
+          "seconds": 0.2589007089845836,
+          "queue_wait_seconds": 7.099879439920187e-07,
+          "encode_seconds": 0.2582543489988893,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 0.2600919959950261,
+          "queue_wait_seconds": 6.050104275345802e-07,
+          "encode_seconds": 0.25950647197896615,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 0,
+          "seconds": 0.26445299698389135,
+          "queue_wait_seconds": 6.310001481324434e-07,
+          "encode_seconds": 0.2638485149946064,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 0,
+          "seconds": 0.25622762797866017,
+          "queue_wait_seconds": 5.639740265905857e-07,
+          "encode_seconds": 0.2556052520230878,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.25577638600952923,
+          "queue_wait_seconds": 6.750051397830248e-07,
+          "encode_seconds": 0.2551230620010756,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 0,
+          "seconds": 0.2594951250066515,
+          "queue_wait_seconds": 6.580085027962923e-07,
+          "encode_seconds": 0.25886651399196126,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 0,
+          "seconds": 0.2634561019949615,
+          "queue_wait_seconds": 6.149930413812399e-07,
+          "encode_seconds": 0.2628560030134395,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 0.25687733097583987,
+          "queue_wait_seconds": 7.019843906164169e-07,
+          "encode_seconds": 0.25623337499564514,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 0,
+          "seconds": 0.25433625699952245,
+          "queue_wait_seconds": 6.570189725607634e-07,
+          "encode_seconds": 0.25370176997967064,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 0,
+          "seconds": 0.26205782798933797,
+          "queue_wait_seconds": 7.389753591269255e-07,
+          "encode_seconds": 0.26140359201235697,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.26270123600261286,
+          "queue_wait_seconds": 6.149930413812399e-07,
+          "encode_seconds": 0.26205041800858453,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 0,
+          "seconds": 0.26298570400103927,
+          "queue_wait_seconds": 6.869959179311991e-07,
+          "encode_seconds": 0.26240307599073276,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 0,
+          "seconds": 0.2620553450251464,
+          "queue_wait_seconds": 5.710171535611153e-07,
+          "encode_seconds": 0.26145620000897907,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 0.26311482701567,
+          "queue_wait_seconds": 6.890040822327137e-07,
+          "encode_seconds": 0.26250045900815167,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 0,
+          "seconds": 0.26982105200295337,
+          "queue_wait_seconds": 5.649926606565714e-07,
+          "encode_seconds": 0.26916776000871323,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 0,
+          "seconds": 0.27522468101233244,
+          "queue_wait_seconds": 5.3399708122015e-07,
+          "encode_seconds": 0.27462503701099195,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.26263418802409433,
+          "queue_wait_seconds": 5.320180207490921e-07,
+          "encode_seconds": 0.2620731540082488,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 0,
+          "seconds": 0.26316067497828044,
+          "queue_wait_seconds": 5.979964043945074e-07,
+          "encode_seconds": 0.26251082299859263,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 0,
+          "seconds": 0.2636793650162872,
+          "queue_wait_seconds": 7.070193532854319e-07,
+          "encode_seconds": 0.26303795498097315,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 0.26128721301211044,
+          "queue_wait_seconds": 6.33997842669487e-07,
+          "encode_seconds": 0.26069016501423903,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 0,
+          "seconds": 0.2637029809993692,
+          "queue_wait_seconds": 9.590003173798323e-07,
+          "encode_seconds": 0.26305287398281507,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 0,
+          "seconds": 0.26190870502614416,
+          "queue_wait_seconds": 7.210182957351208e-07,
+          "encode_seconds": 0.26130511998781003,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 139614112\nuser_usec 132967594\nsystem_usec 6646518\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 412\nnr_throttled 27\nthrottled_usec 34225\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 262.4869950086577,
+      "p95_ms": 267.40542724437546,
+      "p99_ms": 273.6576285996125,
+      "max_ms": 275.22468101233244,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 3,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 6,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 7.839266679016873,
+      "requests_per_second": 3.826888563480062,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.25981262599816546,
+          "queue_wait_seconds": 1.2629898265004158e-06,
+          "encode_seconds": 0.2591899580147583,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 0.5202105210046284,
+          "queue_wait_seconds": 0.2597555639804341,
+          "encode_seconds": 0.2598293120099697,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 0.7798878580215387,
+          "queue_wait_seconds": 0.5202171890123282,
+          "encode_seconds": 0.2590721980086528,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 0.7801185149874073,
+          "queue_wait_seconds": 0.5199902659805957,
+          "encode_seconds": 0.25950178800849244,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 1,
+          "seconds": 0.7810833500116132,
+          "queue_wait_seconds": 0.519671362999361,
+          "encode_seconds": 0.2607782630075235,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 2,
+          "seconds": 0.7830207519873511,
+          "queue_wait_seconds": 0.5214099739969242,
+          "encode_seconds": 0.261002865008777,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.7779846180055756,
+          "queue_wait_seconds": 0.5228959870000836,
+          "encode_seconds": 0.25446535801165737,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 0.7748396329989191,
+          "queue_wait_seconds": 0.5165577360021416,
+          "encode_seconds": 0.25766615799511783,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 0.7781446410226636,
+          "queue_wait_seconds": 0.5132459000160452,
+          "encode_seconds": 0.2642464640084654,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 0.7821681369969156,
+          "queue_wait_seconds": 0.5230512699927203,
+          "encode_seconds": 0.25846463500056416,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 1,
+          "seconds": 0.7850607330037747,
+          "queue_wait_seconds": 0.5238876430084929,
+          "encode_seconds": 0.2605537889758125,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 2,
+          "seconds": 0.7807032080017962,
+          "queue_wait_seconds": 0.5201435600174591,
+          "encode_seconds": 0.25990785998874344,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.7855873930093367,
+          "queue_wait_seconds": 0.521596609003609,
+          "encode_seconds": 0.2633642519940622,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 0.7862721199926455,
+          "queue_wait_seconds": 0.5244090179912746,
+          "encode_seconds": 0.26123885600827634,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 0.7852896729891654,
+          "queue_wait_seconds": 0.5257193619909231,
+          "encode_seconds": 0.2589304900029674,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 0.7844662780116778,
+          "queue_wait_seconds": 0.5213057039945852,
+          "encode_seconds": 0.2625408160092775,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 1,
+          "seconds": 0.7856556769984309,
+          "queue_wait_seconds": 0.52258442400489,
+          "encode_seconds": 0.26241666200803593,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 2,
+          "seconds": 0.7854834579920862,
+          "queue_wait_seconds": 0.5260972989781294,
+          "encode_seconds": 0.2587453520100098,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.7818465489835944,
+          "queue_wait_seconds": 0.5223303159873467,
+          "encode_seconds": 0.25889190900488757,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 0.7789041649957653,
+          "queue_wait_seconds": 0.5187676069908775,
+          "encode_seconds": 0.25950250000460073,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 0.7845167680061422,
+          "queue_wait_seconds": 0.5195195970009081,
+          "encode_seconds": 0.2643634929845575,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 0.7865086339879781,
+          "queue_wait_seconds": 0.525014688988449,
+          "encode_seconds": 0.26087560699670576,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 1,
+          "seconds": 0.7871502570051234,
+          "queue_wait_seconds": 0.5263597059820313,
+          "encode_seconds": 0.2601809400075581,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 2,
+          "seconds": 0.7842600639851298,
+          "queue_wait_seconds": 0.5221445520000998,
+          "encode_seconds": 0.261506949987961,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.7853165859996807,
+          "queue_wait_seconds": 0.5227572800067719,
+          "encode_seconds": 0.2619059339922387,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 0.7838959549844731,
+          "queue_wait_seconds": 0.5245369519980159,
+          "encode_seconds": 0.2587148289894685,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 0.7865213509940077,
+          "queue_wait_seconds": 0.5217740389925893,
+          "encode_seconds": 0.2641503990162164,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 0.7876452210184652,
+          "queue_wait_seconds": 0.5239678250218276,
+          "encode_seconds": 0.263007593981456,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 1,
+          "seconds": 0.7940758150070906,
+          "queue_wait_seconds": 0.528290387999732,
+          "encode_seconds": 0.26518092400510795,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 2,
+          "seconds": 0.7888075280061457,
+          "queue_wait_seconds": 0.5293292489950545,
+          "encode_seconds": 0.2588741130020935,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 171046348\nuser_usec 163187914\nsystem_usec 7858434\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 499\nnr_throttled 27\nthrottled_usec 34225\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 784.3631709984038,
+      "p95_ms": 788.2844898616895,
+      "p99_ms": 792.5480117768166,
+      "max_ms": 794.0758150070906,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 128,
+      "encoded_tokens": 128,
+      "concurrency": 6,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 9,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 7.8592786789813545,
+      "requests_per_second": 3.817144196735408,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.2590081889939029,
+          "queue_wait_seconds": 1.3379903975874186e-06,
+          "encode_seconds": 0.2584051100129727,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 0.5195055319927633,
+          "queue_wait_seconds": 0.2589543020003475,
+          "encode_seconds": 0.25993498897878453,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 0.7816426699864678,
+          "queue_wait_seconds": 0.5195282470085658,
+          "encode_seconds": 0.2615081599797122,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 3,
+          "seconds": 1.047281306993682,
+          "queue_wait_seconds": 0.7816553929878864,
+          "encode_seconds": 0.2642160610121209,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 4,
+          "seconds": 1.3076519519963767,
+          "queue_wait_seconds": 1.047305467975093,
+          "encode_seconds": 0.25973168402560987,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 5,
+          "seconds": 1.5690750499779824,
+          "queue_wait_seconds": 1.3076696299831383,
+          "encode_seconds": 0.26075601601041853,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 1.5711466939828824,
+          "queue_wait_seconds": 1.3100034469971433,
+          "encode_seconds": 0.2605528119893279,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 1.5738801120023709,
+          "queue_wait_seconds": 1.3105857850168832,
+          "encode_seconds": 0.2626453639823012,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 1.571685806993628,
+          "queue_wait_seconds": 1.3117702649906278,
+          "encode_seconds": 0.25932090100832283,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 3,
+          "seconds": 1.564000420999946,
+          "queue_wait_seconds": 1.3060630000254605,
+          "encode_seconds": 0.2573296459740959,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 4,
+          "seconds": 1.5630591200024355,
+          "queue_wait_seconds": 1.3036527759977616,
+          "encode_seconds": 0.2587522529938724,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 5,
+          "seconds": 1.5593840880028438,
+          "queue_wait_seconds": 1.301658738986589,
+          "encode_seconds": 0.2571037530142348,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 1.5555203869880643,
+          "queue_wait_seconds": 1.2982362729962915,
+          "encode_seconds": 0.2566573150106706,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 1.5527484850026667,
+          "queue_wait_seconds": 1.2922240079788025,
+          "encode_seconds": 0.25991287000942975,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 1.5559724839986302,
+          "queue_wait_seconds": 1.2928386720013805,
+          "encode_seconds": 0.2625139480223879,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 3,
+          "seconds": 1.5607356289983727,
+          "queue_wait_seconds": 1.298032749997219,
+          "encode_seconds": 0.2620255060028285,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 4,
+          "seconds": 1.5643635540036485,
+          "queue_wait_seconds": 1.3013215879909694,
+          "encode_seconds": 0.26239211900974624,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 5,
+          "seconds": 1.5704136099957395,
+          "queue_wait_seconds": 1.306639107002411,
+          "encode_seconds": 0.2631395579956006,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 1.575726442009909,
+          "queue_wait_seconds": 1.313133827992715,
+          "encode_seconds": 0.2619688840059098,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 1.581229187984718,
+          "queue_wait_seconds": 1.315209424996283,
+          "encode_seconds": 0.2654058340121992,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 1.5778080440068152,
+          "queue_wait_seconds": 1.3180883940076455,
+          "encode_seconds": 0.25911946000996977,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 3,
+          "seconds": 1.5783534930087626,
+          "queue_wait_seconds": 1.3150999610079452,
+          "encode_seconds": 0.26263551000738516,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 4,
+          "seconds": 1.577954791020602,
+          "queue_wait_seconds": 1.3153188900032546,
+          "encode_seconds": 0.26202077101334,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 5,
+          "seconds": 1.5744745779957157,
+          "queue_wait_seconds": 1.314181131980149,
+          "encode_seconds": 0.2596478500054218,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 1.573151999997208,
+          "queue_wait_seconds": 1.3118789809814189,
+          "encode_seconds": 0.26064312100061215,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 1.5707269920094404,
+          "queue_wait_seconds": 1.3071371560217813,
+          "encode_seconds": 0.2618497049843427,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 1.5751487600209657,
+          "queue_wait_seconds": 1.311004765011603,
+          "encode_seconds": 0.2635291529877577,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 3,
+          "seconds": 1.5768173960095737,
+          "queue_wait_seconds": 1.3118862429982983,
+          "encode_seconds": 0.26431407799827866,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 4,
+          "seconds": 1.5766823269950692,
+          "queue_wait_seconds": 1.3141853800043464,
+          "encode_seconds": 0.2618555710068904,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 5,
+          "seconds": 1.5809441799938213,
+          "queue_wait_seconds": 1.3163903820095584,
+          "encode_seconds": 0.2639133989869151,
+          "valid": true,
+          "response_bytes": 22723,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 205428508\nuser_usec 196228201\nsystem_usec 9200306\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 593\nnr_throttled 27\nthrottled_usec 34225\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 1570.57030100259,
+      "p95_ms": 1579.778370850545,
+      "p99_ms": 1581.146535667358,
+      "max_ms": 1581.229187984718,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 512,
+      "encoded_tokens": 512,
+      "concurrency": 1,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 4,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 27.261120303999633,
+      "requests_per_second": 1.1004683470619705,
+      "peak_rss_mib": 3024.78125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.9258150529931299,
+          "queue_wait_seconds": 1.0259973350912333e-06,
+          "encode_seconds": 0.9251633110106923,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 0,
+          "seconds": 0.9356129619991407,
+          "queue_wait_seconds": 7.270136848092079e-07,
+          "encode_seconds": 0.935002097976394,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 0,
+          "seconds": 0.9160309910075739,
+          "queue_wait_seconds": 5.949987098574638e-07,
+          "encode_seconds": 0.9154218420153484,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 0.9342198700178415,
+          "queue_wait_seconds": 6.270129233598709e-07,
+          "encode_seconds": 0.933554416988045,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 0,
+          "seconds": 0.9184995599789545,
+          "queue_wait_seconds": 6.139744073152542e-07,
+          "encode_seconds": 0.9178723220247775,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 0,
+          "seconds": 0.9102613439899869,
+          "queue_wait_seconds": 6.179907359182835e-07,
+          "encode_seconds": 0.9096819259866606,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 0.96006514999317,
+          "queue_wait_seconds": 6.420013960450888e-07,
+          "encode_seconds": 0.9593583319801837,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 0,
+          "seconds": 0.8820974309928715,
+          "queue_wait_seconds": 5.949987098574638e-07,
+          "encode_seconds": 0.881496120011434,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 0,
+          "seconds": 0.8792017530067824,
+          "queue_wait_seconds": 6.049813237041235e-07,
+          "encode_seconds": 0.8785921550006606,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 0.9054868819948751,
+          "queue_wait_seconds": 6.220070645213127e-07,
+          "encode_seconds": 0.9048449019901454,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 0,
+          "seconds": 0.9039775330165867,
+          "queue_wait_seconds": 6.819900590926409e-07,
+          "encode_seconds": 0.9033800550096203,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 0,
+          "seconds": 0.8885829899809323,
+          "queue_wait_seconds": 4.569883458316326e-07,
+          "encode_seconds": 0.887938284984557,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 0.9155656640068628,
+          "queue_wait_seconds": 6.560003384947777e-07,
+          "encode_seconds": 0.9149647910089698,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 0,
+          "seconds": 0.9078408970090095,
+          "queue_wait_seconds": 5.119945853948593e-07,
+          "encode_seconds": 0.9071939130080864,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 0,
+          "seconds": 0.8816532299970277,
+          "queue_wait_seconds": 5.949987098574638e-07,
+          "encode_seconds": 0.8810390300059225,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 0.910374356986722,
+          "queue_wait_seconds": 5.2098766900599e-07,
+          "encode_seconds": 0.9097534419852309,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 0,
+          "seconds": 0.9150759280018974,
+          "queue_wait_seconds": 6.019836291670799e-07,
+          "encode_seconds": 0.9144659540033899,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 0,
+          "seconds": 0.8953896110178903,
+          "queue_wait_seconds": 4.949979484081268e-07,
+          "encode_seconds": 0.8947659460245632,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 0.9150000429945067,
+          "queue_wait_seconds": 6.379850674420595e-07,
+          "encode_seconds": 0.9144172639935277,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 0,
+          "seconds": 0.9138501419802196,
+          "queue_wait_seconds": 6.049813237041235e-07,
+          "encode_seconds": 0.9132234239950776,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 0,
+          "seconds": 0.8927589080121834,
+          "queue_wait_seconds": 6.580085027962923e-07,
+          "encode_seconds": 0.8921365900023375,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 0.9247672189958394,
+          "queue_wait_seconds": 7.369962986558676e-07,
+          "encode_seconds": 0.9241139579971787,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 0,
+          "seconds": 0.8785620020062197,
+          "queue_wait_seconds": 8.14005034044385e-07,
+          "encode_seconds": 0.8720462709898129,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 0,
+          "seconds": 0.9313250359846279,
+          "queue_wait_seconds": 8.859788067638874e-07,
+          "encode_seconds": 0.9225101460178848,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 0.8952822569990531,
+          "queue_wait_seconds": 9.34989657253027e-07,
+          "encode_seconds": 0.8946975050203037,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 0,
+          "seconds": 0.8803361100144684,
+          "queue_wait_seconds": 5.380134098231792e-07,
+          "encode_seconds": 0.871027728979243,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 0,
+          "seconds": 0.9172337749914732,
+          "queue_wait_seconds": 8.399947546422482e-07,
+          "encode_seconds": 0.9166074309905525,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 0.9235383930208627,
+          "queue_wait_seconds": 5.809997674077749e-07,
+          "encode_seconds": 0.9229431470157579,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 0,
+          "seconds": 0.8808284400147386,
+          "queue_wait_seconds": 5.809997674077749e-07,
+          "encode_seconds": 0.8802277560171206,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 0,
+          "seconds": 0.9179207679990213,
+          "queue_wait_seconds": 6.090267561376095e-07,
+          "encode_seconds": 0.9173157749755774,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 323319321\nuser_usec 310845817\nsystem_usec 12473503\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 902\nnr_throttled 39\nthrottled_usec 48780\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1281388544",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 912.1122494834708,
+      "p95_ms": 934.986070607556,
+      "p99_ms": 952.9740154749015,
+      "max_ms": 960.06514999317,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 512,
+      "encoded_tokens": 512,
+      "concurrency": 3,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 6,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 27.300304050993873,
+      "requests_per_second": 1.0988888601373596,
+      "peak_rss_mib": 3133.98046875,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.9404555530054495,
+          "queue_wait_seconds": 3.644003299996257e-06,
+          "encode_seconds": 0.9398031989985611,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 1.8683936439920217,
+          "queue_wait_seconds": 0.940206428989768,
+          "encode_seconds": 0.927578678005375,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 2.7681147530092858,
+          "queue_wait_seconds": 1.8684122280101292,
+          "encode_seconds": 0.8990753249963745,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 2.7244124969874974,
+          "queue_wait_seconds": 1.8277423149847891,
+          "encode_seconds": 0.8959902870119549,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 1,
+          "seconds": 2.703626672999235,
+          "queue_wait_seconds": 1.7962130590167362,
+          "encode_seconds": 0.9067869479767978,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 2,
+          "seconds": 2.7032161749957595,
+          "queue_wait_seconds": 1.8039582060009707,
+          "encode_seconds": 0.8986557539901696,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 2.7279408799950033,
+          "queue_wait_seconds": 1.8065292090177536,
+          "encode_seconds": 0.9207099079794716,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 2.73609144098009,
+          "queue_wait_seconds": 1.8205216499918606,
+          "encode_seconds": 0.9149682929855771,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 2.733712774992455,
+          "queue_wait_seconds": 1.8368504690006375,
+          "encode_seconds": 0.8962577850033995,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 2.7439386250043754,
+          "queue_wait_seconds": 1.812280632002512,
+          "encode_seconds": 0.9310452679928858,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 1,
+          "seconds": 2.7218118790187873,
+          "queue_wait_seconds": 1.8283662530011497,
+          "encode_seconds": 0.8928121240169276,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 2,
+          "seconds": 2.7319282200187445,
+          "queue_wait_seconds": 1.8249738010053989,
+          "encode_seconds": 0.9062983180047013,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 2.7459805230027996,
+          "queue_wait_seconds": 1.8002734899928328,
+          "encode_seconds": 0.9450964170100633,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 2.7579026559833437,
+          "queue_wait_seconds": 1.8525104989821557,
+          "encode_seconds": 0.9047617480100598,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 2.7582594770065043,
+          "queue_wait_seconds": 1.85095394399832,
+          "encode_seconds": 0.9066857330035418,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 2.6880224799970165,
+          "queue_wait_seconds": 1.8125451639934909,
+          "encode_seconds": 0.8748775419953745,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 1,
+          "seconds": 2.685806616995251,
+          "queue_wait_seconds": 1.7826293969992548,
+          "encode_seconds": 0.9025661219784524,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 2,
+          "seconds": 2.6922572649782524,
+          "queue_wait_seconds": 1.7785239649820141,
+          "encode_seconds": 0.91305521101458,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 2.7361025759892073,
+          "queue_wait_seconds": 1.8167818110086955,
+          "encode_seconds": 0.9186982739774976,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 2.741875331994379,
+          "queue_wait_seconds": 1.8329055979847908,
+          "encode_seconds": 0.908309429010842,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 2.744489261007402,
+          "queue_wait_seconds": 1.8281307439901866,
+          "encode_seconds": 0.9157465460011736,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 2.7506507330108434,
+          "queue_wait_seconds": 1.8251997499901336,
+          "encode_seconds": 0.9248556719976477,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 1,
+          "seconds": 2.7550572940090206,
+          "queue_wait_seconds": 1.8416532750125043,
+          "encode_seconds": 0.9127240729867481,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 2,
+          "seconds": 2.7554484799911734,
+          "queue_wait_seconds": 1.8387205390026793,
+          "encode_seconds": 0.9161033109994605,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 2.7430512010178063,
+          "queue_wait_seconds": 1.8299895860254765,
+          "encode_seconds": 0.9124480949831195,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 2.736228770983871,
+          "queue_wait_seconds": 1.8296296229818836,
+          "encode_seconds": 0.9059779160015751,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 2.7278041869867593,
+          "queue_wait_seconds": 1.8195097080024425,
+          "encode_seconds": 0.907621118996758,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 2.687497780978447,
+          "queue_wait_seconds": 1.8147502679785248,
+          "encode_seconds": 0.872128449002048,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 1,
+          "seconds": 2.68511566799134,
+          "queue_wait_seconds": 1.780894230992999,
+          "encode_seconds": 0.9035533709975425,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 2,
+          "seconds": 2.6821199340047315,
+          "queue_wait_seconds": 1.7768126490118448,
+          "encode_seconds": 0.904689438000787,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 437373066\nuser_usec 422673426\nsystem_usec 14699639\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 1202\nnr_throttled 39\nthrottled_usec 48780\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "1396850688",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 2732.8204975055996,
+      "p95_ms": 2758.098907546082,
+      "p99_ms": 2765.256722968479,
+      "max_ms": 2768.114753009286,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 512,
+      "encoded_tokens": 512,
+      "concurrency": 6,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 9,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 27.224817868001992,
+      "requests_per_second": 1.1019357464741664,
+      "peak_rss_mib": 3819.83984375,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 0.9212463760050014,
+          "queue_wait_seconds": 1.1429947335273027e-06,
+          "encode_seconds": 0.9206318079959601,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 1.830137320997892,
+          "queue_wait_seconds": 0.9211746789806057,
+          "encode_seconds": 0.9083759930217639,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 2.7395450359908864,
+          "queue_wait_seconds": 1.830142958991928,
+          "encode_seconds": 0.9088024469965603,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 3,
+          "seconds": 3.6742547279864084,
+          "queue_wait_seconds": 2.73955711198505,
+          "encode_seconds": 0.9340023190015927,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 4,
+          "seconds": 4.59655231598299,
+          "queue_wait_seconds": 3.6742779439955484,
+          "encode_seconds": 0.9216756009845994,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 5,
+          "seconds": 5.504923937987769,
+          "queue_wait_seconds": 4.596571319998475,
+          "encode_seconds": 0.9077317010087427,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 5.492239223007346,
+          "queue_wait_seconds": 4.583624790015165,
+          "encode_seconds": 0.9079814239812549,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 5.482050102000358,
+          "queue_wait_seconds": 4.583281379018445,
+          "encode_seconds": 0.8981444029777776,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 5.4852854420023505,
+          "queue_wait_seconds": 4.572654941002838,
+          "encode_seconds": 0.9120328730205074,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 3,
+          "seconds": 5.455417832999956,
+          "queue_wait_seconds": 4.55056713198428,
+          "encode_seconds": 0.904242595017422,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 4,
+          "seconds": 5.409630729001947,
+          "queue_wait_seconds": 4.533175858989125,
+          "encode_seconds": 0.8758334690064657,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 5,
+          "seconds": 5.395647116994951,
+          "queue_wait_seconds": 4.501276543014683,
+          "encode_seconds": 0.8937391269719228,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 5.3704259210207965,
+          "queue_wait_seconds": 4.486940583010437,
+          "encode_seconds": 0.8828976530057844,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 5.3829751040029805,
+          "queue_wait_seconds": 4.47173776398995,
+          "encode_seconds": 0.9106122230004985,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 5.396919380000327,
+          "queue_wait_seconds": 4.470337457023561,
+          "encode_seconds": 0.9259097749891225,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 3,
+          "seconds": 5.393753563024802,
+          "queue_wait_seconds": 4.492073752015131,
+          "encode_seconds": 0.9010768540028948,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 4,
+          "seconds": 5.413101562997326,
+          "queue_wait_seconds": 4.5173251910018735,
+          "encode_seconds": 0.895150588999968,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 5,
+          "seconds": 5.413621906976914,
+          "queue_wait_seconds": 4.518714400997851,
+          "encode_seconds": 0.894233393977629,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 5.447656906006159,
+          "queue_wait_seconds": 4.530135735985823,
+          "encode_seconds": 0.9169201530166902,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 5.433557459997246,
+          "queue_wait_seconds": 4.536409635009477,
+          "encode_seconds": 0.8965289469924755,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 5.420264394982951,
+          "queue_wait_seconds": 4.506998558994383,
+          "encode_seconds": 0.9125963920087088,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 3,
+          "seconds": 5.4291874740156345,
+          "queue_wait_seconds": 4.518565772013972,
+          "encode_seconds": 0.9099697679921519,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 4,
+          "seconds": 5.439580782986013,
+          "queue_wait_seconds": 4.533417689992348,
+          "encode_seconds": 0.9055319330072962,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 5,
+          "seconds": 5.44554308798979,
+          "queue_wait_seconds": 4.544677397992928,
+          "encode_seconds": 0.9002044349908829,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 5.4541081140050665,
+          "queue_wait_seconds": 4.528034693008522,
+          "encode_seconds": 0.9254288199881557,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 5.469190103001893,
+          "queue_wait_seconds": 4.556964796007378,
+          "encode_seconds": 0.9115637819922995,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 5.471303224010626,
+          "queue_wait_seconds": 4.555903479020344,
+          "encode_seconds": 0.9147713299898896,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 3,
+          "seconds": 5.464541691006161,
+          "queue_wait_seconds": 4.560663328011287,
+          "encode_seconds": 0.9032433789980132,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 4,
+          "seconds": 5.462636377022136,
+          "queue_wait_seconds": 4.558395863015903,
+          "encode_seconds": 0.903580960992258,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 5,
+          "seconds": 5.463060966023477,
+          "queue_wait_seconds": 4.561782533011865,
+          "encode_seconds": 0.9006649460061453,
+          "valid": true,
+          "response_bytes": 22759,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 561581083\nuser_usec 544680567\nsystem_usec 16900516\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 1530\nnr_throttled 39\nthrottled_usec 48780\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "2117943296",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 5431.37246700644,
+      "p95_ms": 5489.110021555098,
+      "p99_ms": 5501.245370643446,
+      "max_ms": 5504.923937987769,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 1024,
+      "encoded_tokens": 1024,
+      "concurrency": 1,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 4,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 54.177852171007544,
+      "requests_per_second": 0.5537318073316692,
+      "peak_rss_mib": 3819.83984375,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 1.8143428979965393,
+          "queue_wait_seconds": 9.830109775066376e-07,
+          "encode_seconds": 1.8137229909771122,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 0,
+          "seconds": 1.7875075479969382,
+          "queue_wait_seconds": 6.269838195294142e-07,
+          "encode_seconds": 1.7868874190025963,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 0,
+          "seconds": 1.7833268409885932,
+          "queue_wait_seconds": 7.420021574944258e-07,
+          "encode_seconds": 1.782724396995036,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 1.6670605639810674,
+          "queue_wait_seconds": 5.909823812544346e-07,
+          "encode_seconds": 1.6664544620143715,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 0,
+          "seconds": 1.806288793013664,
+          "queue_wait_seconds": 5.740148480981588e-07,
+          "encode_seconds": 1.8056435489852447,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 0,
+          "seconds": 1.795005781983491,
+          "queue_wait_seconds": 5.489855539053679e-07,
+          "encode_seconds": 1.7943442600080743,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 1.8337359850120265,
+          "queue_wait_seconds": 5.820184014737606e-07,
+          "encode_seconds": 1.8330949029768817,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 0,
+          "seconds": 1.8079472559911665,
+          "queue_wait_seconds": 4.940084181725979e-07,
+          "encode_seconds": 1.8073209289868828,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 0,
+          "seconds": 1.8276793630211614,
+          "queue_wait_seconds": 5.550100468099117e-07,
+          "encode_seconds": 1.827051758999005,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 1.7405583960062359,
+          "queue_wait_seconds": 6.040208972990513e-07,
+          "encode_seconds": 1.739923105982598,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 0,
+          "seconds": 1.7951103019877337,
+          "queue_wait_seconds": 5.819892976433039e-07,
+          "encode_seconds": 1.7945141819946002,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 0,
+          "seconds": 1.8183451190125197,
+          "queue_wait_seconds": 4.850153345614672e-07,
+          "encode_seconds": 1.817713399999775,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 1.7168680139875505,
+          "queue_wait_seconds": 6.149930413812399e-07,
+          "encode_seconds": 1.7162265210063197,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 0,
+          "seconds": 1.7950700289802626,
+          "queue_wait_seconds": 5.920010153204203e-07,
+          "encode_seconds": 1.7944444679887965,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 0,
+          "seconds": 1.8185945459990762,
+          "queue_wait_seconds": 6.729969754815102e-07,
+          "encode_seconds": 1.8179308300022967,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 1.8079877679992933,
+          "queue_wait_seconds": 6.00004568696022e-07,
+          "encode_seconds": 1.8073172369913664,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 0,
+          "seconds": 1.8813137109973468,
+          "queue_wait_seconds": 6.109767127782106e-07,
+          "encode_seconds": 1.8806815540010575,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 0,
+          "seconds": 1.8042022669978905,
+          "queue_wait_seconds": 6.850168574601412e-07,
+          "encode_seconds": 1.8035738729813602,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 1.8176778919878416,
+          "queue_wait_seconds": 5.239853635430336e-07,
+          "encode_seconds": 1.8170048299944028,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 0,
+          "seconds": 1.758060326013947,
+          "queue_wait_seconds": 7.199996616691351e-07,
+          "encode_seconds": 1.7574250330217183,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 0,
+          "seconds": 1.8187154489860404,
+          "queue_wait_seconds": 6.059999577701092e-07,
+          "encode_seconds": 1.8180723559926264,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 1.8614722000202164,
+          "queue_wait_seconds": 6.210175342857838e-07,
+          "encode_seconds": 1.860868653981015,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 0,
+          "seconds": 1.7911772709921934,
+          "queue_wait_seconds": 5.530018825083971e-07,
+          "encode_seconds": 1.7905466789961793,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 0,
+          "seconds": 1.8599795659829397,
+          "queue_wait_seconds": 5.750043783336878e-07,
+          "encode_seconds": 1.8592654980020598,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 1.8489884470182005,
+          "queue_wait_seconds": 7.890048436820507e-07,
+          "encode_seconds": 1.8483100500016008,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 0,
+          "seconds": 1.799143116979394,
+          "queue_wait_seconds": 6.869959179311991e-07,
+          "encode_seconds": 1.798512434004806,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 0,
+          "seconds": 1.791533363983035,
+          "queue_wait_seconds": 5.87984686717391e-07,
+          "encode_seconds": 1.790874212019844,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 1.8458214220008813,
+          "queue_wait_seconds": 6.020127329975367e-07,
+          "encode_seconds": 1.8451923879911192,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 0,
+          "seconds": 1.8476509129977785,
+          "queue_wait_seconds": 6.179907359182835e-07,
+          "encode_seconds": 1.8470049110183027,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 0,
+          "seconds": 1.8327830219932366,
+          "queue_wait_seconds": 4.770117811858654e-07,
+          "encode_seconds": 1.8321365609881468,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 795610311\nuser_usec 766801743\nsystem_usec 28808567\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 2143\nnr_throttled 58\nthrottled_usec 72265\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "2117943296",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 1807.9675119952299,
+      "p95_ms": 1860.8005147034419,
+      "p99_ms": 1875.559672813979,
+      "max_ms": 1881.3137109973468,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 1024,
+      "encoded_tokens": 1024,
+      "concurrency": 3,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 6,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 53.83864733600058,
+      "requests_per_second": 0.5572205373729688,
+      "peak_rss_mib": 3965.33203125,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 1.8172365919745062,
+          "queue_wait_seconds": 3.80899291485548e-06,
+          "encode_seconds": 1.8165927499940153,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 3.623175093001919,
+          "queue_wait_seconds": 1.8169149289897177,
+          "encode_seconds": 1.8056126589945052,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 5.394797348999418,
+          "queue_wait_seconds": 3.623187401011819,
+          "encode_seconds": 1.7709898419852834,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 0,
+          "seconds": 5.271880346990656,
+          "queue_wait_seconds": 3.5776874169823714,
+          "encode_seconds": 1.6935654229891952,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 1,
+          "seconds": 5.271991023997543,
+          "queue_wait_seconds": 3.465556565002771,
+          "encode_seconds": 1.8058116649917793,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 2,
+          "seconds": 5.294301305984845,
+          "queue_wait_seconds": 3.5004719640128314,
+          "encode_seconds": 1.7931833299808204,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 5.397773743985454,
+          "queue_wait_seconds": 3.6001063879812136,
+          "encode_seconds": 1.79700626101112,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 5.382226011017337,
+          "queue_wait_seconds": 3.591292732016882,
+          "encode_seconds": 1.7903014940093271,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 5.424012678005965,
+          "queue_wait_seconds": 3.5884090189938433,
+          "encode_seconds": 1.834976573009044,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 0,
+          "seconds": 5.424038697994547,
+          "queue_wait_seconds": 3.6263781519955955,
+          "encode_seconds": 1.7970158829994034,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 1,
+          "seconds": 5.42362768901512,
+          "queue_wait_seconds": 3.6329351130116265,
+          "encode_seconds": 1.790045686007943,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 2,
+          "seconds": 5.408353250008076,
+          "queue_wait_seconds": 3.5881681049941108,
+          "encode_seconds": 1.8195586010115221,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 5.413867841998581,
+          "queue_wait_seconds": 3.6105725670058746,
+          "encode_seconds": 1.8026658940070774,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 5.462245864007855,
+          "queue_wait_seconds": 3.62318777400651,
+          "encode_seconds": 1.8384238540020306,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 5.35516874701716,
+          "queue_wait_seconds": 3.6422132500156295,
+          "encode_seconds": 1.7123159879993182,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 0,
+          "seconds": 5.36930865800241,
+          "queue_wait_seconds": 3.551671495020855,
+          "encode_seconds": 1.817006004974246,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 1,
+          "seconds": 5.348405276017729,
+          "queue_wait_seconds": 3.530268855014583,
+          "encode_seconds": 1.817530322005041,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 2,
+          "seconds": 5.39590127998963,
+          "queue_wait_seconds": 3.635579180001514,
+          "encode_seconds": 1.7596912499866448,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 5.361486476002028,
+          "queue_wait_seconds": 3.5781348930031527,
+          "encode_seconds": 1.7827090049977414,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 5.345719339005882,
+          "queue_wait_seconds": 3.5435273369948845,
+          "encode_seconds": 1.8015291030169465,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 5.35466643399559,
+          "queue_wait_seconds": 3.5852274520148057,
+          "encode_seconds": 1.7688032959995326,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 0,
+          "seconds": 5.312133642990375,
+          "queue_wait_seconds": 3.5712960200035013,
+          "encode_seconds": 1.740223505999893,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 1,
+          "seconds": 5.350791931996355,
+          "queue_wait_seconds": 3.510112471994944,
+          "encode_seconds": 1.8400464240112342,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 2,
+          "seconds": 5.374024115997599,
+          "queue_wait_seconds": 3.5813388690003194,
+          "encode_seconds": 1.7920483599882573,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 5.480403175984975,
+          "queue_wait_seconds": 3.633221825992223,
+          "encode_seconds": 1.8465312980115414,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 5.450107801996637,
+          "queue_wait_seconds": 3.639677231985843,
+          "encode_seconds": 1.809792390995426,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 5.432779917988228,
+          "queue_wait_seconds": 3.657439336995594,
+          "encode_seconds": 1.7747176330012735,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 0,
+          "seconds": 5.409009561990388,
+          "queue_wait_seconds": 3.5854736129986122,
+          "encode_seconds": 1.8228838669892866,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 1,
+          "seconds": 5.424859808001202,
+          "queue_wait_seconds": 3.598719875997631,
+          "encode_seconds": 1.8255349370010663,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 2,
+          "seconds": 5.400997474003816,
+          "queue_wait_seconds": 3.6495053679973353,
+          "encode_seconds": 1.7508650379895698,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 1021365793\nuser_usec 981459321\nsystem_usec 39906471\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 2735\nnr_throttled 65\nthrottled_usec 78513\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "2270281728",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 5388.511680008378,
+      "p95_ms": 5456.783736102807,
+      "p99_ms": 5475.13755551161,
+      "max_ms": 5480.403175984975,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    },
+    {
+      "tokens": 1024,
+      "encoded_tokens": 1024,
+      "concurrency": 6,
+      "execution_mode": "serialized",
+      "warmup_calls_excluded": 9,
+      "requested": 30,
+      "attempted": 30,
+      "errors": 0,
+      "wall_seconds": 53.74575867500971,
+      "requests_per_second": 0.558183580241266,
+      "peak_rss_mib": 5212.640625,
+      "raw": [
+        {
+          "index": 0,
+          "worker": 0,
+          "seconds": 1.8067535650043283,
+          "queue_wait_seconds": 1.3890094123780727e-06,
+          "encode_seconds": 1.8061314020014834,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 1,
+          "worker": 1,
+          "seconds": 3.628301462973468,
+          "queue_wait_seconds": 1.8066645009967033,
+          "encode_seconds": 1.8210191329999361,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 2,
+          "worker": 2,
+          "seconds": 5.443416302994592,
+          "queue_wait_seconds": 3.6283231819979846,
+          "encode_seconds": 1.814474305982003,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 3,
+          "worker": 3,
+          "seconds": 7.2418419620080385,
+          "queue_wait_seconds": 5.443437442998402,
+          "encode_seconds": 1.797770067001693,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 4,
+          "worker": 4,
+          "seconds": 9.07378981797956,
+          "queue_wait_seconds": 7.241833948995918,
+          "encode_seconds": 1.8313443739898503,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 5,
+          "worker": 5,
+          "seconds": 10.86146041000029,
+          "queue_wait_seconds": 9.073812878981698,
+          "encode_seconds": 1.7870284100063145,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 6,
+          "worker": 0,
+          "seconds": 10.823216769000283,
+          "queue_wait_seconds": 9.054665812000167,
+          "encode_seconds": 1.7679271819943096,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 7,
+          "worker": 1,
+          "seconds": 10.752627624024171,
+          "queue_wait_seconds": 9.001583313016454,
+          "encode_seconds": 1.7504045969981235,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 8,
+          "worker": 2,
+          "seconds": 10.724365211994154,
+          "queue_wait_seconds": 8.937542158004362,
+          "encode_seconds": 1.7862266979936976,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 9,
+          "worker": 3,
+          "seconds": 10.76418512701639,
+          "queue_wait_seconds": 8.925962678011274,
+          "encode_seconds": 1.8375609350041486,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 10,
+          "worker": 4,
+          "seconds": 10.673645144997863,
+          "queue_wait_seconds": 8.932183209981304,
+          "encode_seconds": 1.7408458260179032,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 11,
+          "worker": 5,
+          "seconds": 10.696673581987852,
+          "queue_wait_seconds": 8.886080075986683,
+          "encode_seconds": 1.8099681930034421,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 12,
+          "worker": 0,
+          "seconds": 10.706752155005233,
+          "queue_wait_seconds": 8.928066399996169,
+          "encode_seconds": 1.7780229169875383,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 13,
+          "worker": 1,
+          "seconds": 10.674027120985556,
+          "queue_wait_seconds": 8.955731752997963,
+          "encode_seconds": 1.7176004759967327,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 14,
+          "worker": 2,
+          "seconds": 10.676285007997649,
+          "queue_wait_seconds": 8.887205776991323,
+          "encode_seconds": 1.7883801709976979,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 15,
+          "worker": 3,
+          "seconds": 10.662457222002558,
+          "queue_wait_seconds": 8.838024350989144,
+          "encode_seconds": 1.8237983639992308,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 16,
+          "worker": 4,
+          "seconds": 10.723149338999065,
+          "queue_wait_seconds": 8.920870363013819,
+          "encode_seconds": 1.8016654579841997,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 17,
+          "worker": 5,
+          "seconds": 10.729067134001525,
+          "queue_wait_seconds": 8.91273675300181,
+          "encode_seconds": 1.8157000739884097,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 18,
+          "worker": 0,
+          "seconds": 10.642671186011285,
+          "queue_wait_seconds": 8.950377055996796,
+          "encode_seconds": 1.6916842340142466,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 19,
+          "worker": 1,
+          "seconds": 10.74357099601184,
+          "queue_wait_seconds": 8.92436937999446,
+          "encode_seconds": 1.8185717230080627,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 20,
+          "worker": 2,
+          "seconds": 10.764490622997982,
+          "queue_wait_seconds": 8.954492555989418,
+          "encode_seconds": 1.809360439016018,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 21,
+          "worker": 3,
+          "seconds": 10.71413536099135,
+          "queue_wait_seconds": 8.939874193980359,
+          "encode_seconds": 1.7736034400004428,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 22,
+          "worker": 4,
+          "seconds": 10.737447141989833,
+          "queue_wait_seconds": 8.91204012100934,
+          "encode_seconds": 1.8247574970009737,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 23,
+          "worker": 5,
+          "seconds": 10.704304618993774,
+          "queue_wait_seconds": 8.92110867399606,
+          "encode_seconds": 1.7825789040070958,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 24,
+          "worker": 0,
+          "seconds": 10.729290413000854,
+          "queue_wait_seconds": 9.01203637800063,
+          "encode_seconds": 1.7166268750152085,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 25,
+          "worker": 1,
+          "seconds": 10.766482661972987,
+          "queue_wait_seconds": 8.90992982199532,
+          "encode_seconds": 1.8559148559870664,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 26,
+          "worker": 2,
+          "seconds": 10.769609673996456,
+          "queue_wait_seconds": 8.956600579986116,
+          "encode_seconds": 1.8123804909992032,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 27,
+          "worker": 3,
+          "seconds": 10.814052399015054,
+          "queue_wait_seconds": 8.99519849801436,
+          "encode_seconds": 1.8182209600054193,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 28,
+          "worker": 4,
+          "seconds": 10.713271543994779,
+          "queue_wait_seconds": 8.98865862301318,
+          "encode_seconds": 1.7240256149962079,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        },
+        {
+          "index": 29,
+          "worker": 5,
+          "seconds": 10.725653995992616,
+          "queue_wait_seconds": 8.930261435976718,
+          "encode_seconds": 1.7947276490158401,
+          "valid": true,
+          "response_bytes": 22742,
+          "error": null
+        }
+      ],
+      "isolation_end": {
+        "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.41",
+        "machine": "x86_64",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "cpu.max": "400000 100000",
+        "cpuset.cpus.effective": "0-3",
+        "memory.max": "8589934592",
+        "memory.swap.max": "0",
+        "cpu.stat": "usage_usec 1267252688\nuser_usec 1216494776\nsystem_usec 50757911\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 3380\nnr_throttled 70\nthrottled_usec 84314\nnr_bursts 0\nburst_usec 0",
+        "memory.peak": "3581612032",
+        "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0",
+        "cpu_model": "Intel(R) Xeon(R) w5-3425"
+      },
+      "completed": 30,
+      "p50_ms": 10718.642349995207,
+      "p95_ms": 10819.09280250693,
+      "p99_ms": 10850.369754110288,
+      "max_ms": 10861.46041000029,
+      "p99_estimation": "descriptive sample percentile; not a production tail SLO"
+    }
+  ]
+}

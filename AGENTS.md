@@ -31,9 +31,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-09-19
-lastReviewedCommit: 69eb8cee83d07753d49413b73e12017430701df1
-lastReviewedNote: "Reviewed for Embedding #8 and #14: Python TIDAS SDK is exact 0.2.14, compatible direct dependencies are current, Qwen/CUDA12 pins are executable contracts, canonical Markdown and strict-invalid behavior have isolated Python 3.12 proof, and manual CI invokes the unchanged unit-then-lint shell gate once."
+lastReviewedAt: 2026-10-12
+lastReviewedCommit: d404f672d5b50b1f740ddf8321b575cd0cc3fb44
+lastReviewedNote: "Reviewed for Embedding #42: offline exact-artifact CPU qualification uses an isolated Torch 2.6.0 CPU / Transformers 4.51.3 runtime, records warm latency and same-artifact FP32 quality evidence, and leaves the training dependency baseline and production services unchanged."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -91,6 +91,8 @@ Route those tasks to:
 - latest-compatible ML boundary: Sentence Transformers `5.7.x` remains below 6 because 6.0 requires Transformers 5; the released Qwen fine-tuning stack retains exact PEFT `0.13.0`, Transformers `4.51.3`, and Torch `2.9.1`
 - CUDA boundary: `faiss-gpu-cu12` and Torch `2.9.1` retain CUDA 12 artifacts; the dependency contract rejects CUDA 13 lock drift
 - the full GPU project cannot sync on macOS because `faiss-gpu-cu12` publishes Linux x86_64 wheels only; macOS runs the isolated TIDAS/dependency contracts, while full training/import validation belongs on the reviewed Linux x86_64 CUDA 12 environment
+
+- CPU qualification: `scripts/tools/qualify_cpu_embedding.py` is an offline, resident-model experiment. Its isolated Docker runtime reproduces deployed Torch 2.6.0 CPU and Transformers 4.51.3 without syncing or upgrading the GPU training environment. Bind immutable artifact/data hashes, record cgroup limits and warm sample counts, and use regenerated same-artifact FP32 vectors as a numerical reference; legacy caches lacking binary identity are not production goldens. Historical train-related data does not prove unseen-document generalization.
 
 ## Hard Boundaries
 
