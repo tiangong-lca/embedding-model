@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-09-19",
-  "lastReviewedCommit": "69eb8cee83d07753d49413b73e12017430701df1",
-  "lastReviewedNote": "Reviewed for Embedding #8 and #14: dependency/runtime changes retain the exact TIDAS 0.2.14 and Qwen/CUDA12 contracts, while the single manual AI-doc gate and the documented Linux CUDA12 qualification boundary remain valid.",
+  "lastReviewedAt": "2026-10-12",
+  "lastReviewedCommit": "d404f672d5b50b1f740ddf8321b575cd0cc3fb44",
+  "lastReviewedNote": "Reviewed for Embedding #42: offline exact-artifact CPU qualification uses an isolated Torch 2.6.0 CPU / Transformers 4.51.3 runtime, records warm latency and same-artifact FP32 quality evidence, and leaves the training dependency baseline and production services unchanged.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
@@ -122,7 +122,8 @@
       "notes": [
         "Issue #8 adds an isolated Python 3.12 unittest contract for exact TIDAS 0.2.14, canonical Markdown, strict invalid-data failure, direct dependency pins, and CUDA 12 lock integrity.",
         "The full GPU project is Linux x86_64/CUDA 12 only because faiss-gpu-cu12 has no macOS wheel; run the full training/import stack in that environment and use the isolated contract on macOS.",
-        "AI-doc changes should run the local pre-push gate through scripts/ai-doc-lint-gate.sh; the GitHub ai-doc-lint workflow is manual-only fallback."
+        "AI-doc changes should run the local pre-push gate through scripts/ai-doc-lint-gate.sh; the GitHub ai-doc-lint workflow is manual-only fallback.",
+        "Embedding #42 adds an independently isolated offline CPU qualification runtime; do not treat warm local CPU timings as cloud equivalence or legacy research caches as exact deployed-artifact goldens."
       ]
     }
   }
