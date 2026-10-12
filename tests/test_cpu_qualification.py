@@ -64,6 +64,29 @@ class ProvenanceGuardTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'ID order'):
             qualification.validate_comparison_identity(meta, meta, data, ids, (['q'], ['different']))
 
+class OutputIntegrityTests(unittest.TestCase):
+    def test_tampered_vectors_or_ids_cannot_reuse_completed_manifest(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as folder:
+            for name in qualification.OUTPUT_FILES:
+                (Path(folder) / name).write_bytes(b'original')
+            manifest = {'output_sha256': {name: qualification.sha256(Path(folder) / name) for name in qualification.OUTPUT_FILES}}
+            qualification.verify_output_hashes(folder, manifest)
+            (Path(folder) / 'queries_embeddings.npy').write_bytes(b'partial replacement')
+            with self.assertRaisesRegex(ValueError, 'content hash differs'):
+                qualification.verify_output_hashes(folder, manifest)
+
+    def test_existing_partial_output_is_preserved_and_refused(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder) / 'partial'
+            qualification.fresh_output(out)
+            sentinel = out / 'queries_embeddings.npy'
+            sentinel.write_bytes(b'partial run evidence')
+            with self.assertRaises(FileExistsError):
+                qualification.fresh_output(out)
+            self.assertEqual(sentinel.read_bytes(), b'partial run evidence')
+
 
 if __name__ == '__main__':
     unittest.main()

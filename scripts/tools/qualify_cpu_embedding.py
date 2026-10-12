@@ -36,6 +36,26 @@ def save_json(path, data):
     temp.replace(path)
 
 
+OUTPUT_FILES = ['queries_embeddings.npy', 'corpus_embeddings.npy', 'queries_ids.json', 'corpus_ids.json']
+
+
+def fresh_output(path):
+    """An interrupted/completed run is evidence; never reuse its directory."""
+    path = Path(path)
+    path.mkdir(parents=True, exist_ok=False)
+    return path
+
+
+def verify_output_hashes(path, metadata):
+    recorded = metadata.get('output_sha256', {})
+    if set(recorded) != set(OUTPUT_FILES):
+        raise ValueError('Missing complete vector/ID output hash manifest')
+    for name in OUTPUT_FILES:
+        file = Path(path) / name
+        if not file.is_file() or sha256(file) != recorded[name]:
+            raise ValueError(f'Vector/ID output content hash differs: {name}')
+
+
 def read_jsonl(path):
     with Path(path).open() as stream:
         rows = [json.loads(line) for line in stream if line.strip()]
@@ -165,6 +185,7 @@ class ResidentEncoder:
 
 
 def benchmark(args):
+    fresh_output(args.output)
     model = ResidentEncoder(args)
     result = {'kind': 'warm_cpu_benchmark', 'manifest': model.meta,
               'mode': 'closed-loop concurrent single-input handler calls; no HTTP/network latency',
@@ -255,11 +276,10 @@ def dataset(args):
 
 
 def quality(args):
+    out = fresh_output(args.output)
     model = ResidentEncoder(args)
     import numpy as np
     queries, corpus, qrels, data_meta = dataset(args)
-    out = Path(args.output)
-    out.mkdir(parents=True, exist_ok=True)
     vectors = {}
     for name, rows in [('queries', queries), ('corpus', corpus)]:
         lengths = [model.length(x['text'] if isinstance(x['text'], str) else ' '.join(x['text'])) for x in rows]
@@ -285,7 +305,8 @@ def quality(args):
                                          'tokens_p95': percentile(lengths, 95),
                                          'tokens_max': max(lengths),
                                          'truncated_count': sum(x > model.max_length for x in lengths)}
-    meta = {'kind': 'cpu_quality_vectors', 'manifest': model.meta, 'dataset': data_meta,
+    output_hashes = {name: sha256(out / name) for name in OUTPUT_FILES}
+    meta = {'kind': 'cpu_quality_vectors', 'output_sha256': output_hashes, 'manifest': model.meta, 'dataset': data_meta,
             'metrics': retrieval_metrics(vectors['queries'], vectors['corpus'],
                                          [str(x['id']) for x in queries], [str(x['id']) for x in corpus], qrels),
             'isolation_end': isolation_facts()}
@@ -348,6 +369,7 @@ def validate_comparison_identity(candidate_meta, reference_meta, data_meta, vect
 
 
 def compare(args):
+    out = fresh_output(args.output)
     import numpy as np
     queries, corpus, qrels, data_meta = dataset(args)
     def cache(path):
@@ -364,7 +386,9 @@ def compare(args):
         meta_path = Path(path) / 'quality.json'
         if not meta_path.exists():
             raise ValueError('Unbound legacy cache: require regenerated quality.json model manifest')
-        provenance.append(json.loads(meta_path.read_text()))
+        metadata = json.loads(meta_path.read_text())
+        verify_output_hashes(path, metadata)
+        provenance.append(metadata)
     if candidate[2:] != reference[2:]:
         raise ValueError('Candidate/reference query or corpus IDs are not identically ordered')
     qids, cids = candidate[2:]
@@ -409,7 +433,7 @@ def compare(args):
             deltas[key] = {'mean': float(diff.mean()), 'paired_bootstrap_95ci': [percentile(means, 2.5), percentile(means, 97.5)],
                             'queries_worse': int((diff < 0).sum()), 'queries_better': int((diff > 0).sum())}
         result['rankings'][name]['metric_delta'] = deltas
-    save_json(Path(args.output) / 'comparison.json', result)
+    save_json(out / 'comparison.json', result)
     print(json.dumps({'vectors': result['vectors'], 'rankings': result['rankings'],
                       'metrics': {k: v['mean'] for k, v in result['metrics'].items()}}), flush=True)
 

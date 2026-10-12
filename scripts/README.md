@@ -45,7 +45,7 @@
 
 ## Offline CPU qualification
 
-`tools/qualify_cpu_embedding.py` measures the exact locally supplied artifact, using one resident model per run. `benchmark` warms each token length and measures closed-loop single-input concurrency; `quality` regenerates embeddings and retrieval metrics; `compare` requires binary-bound regenerated FP32 reference vectors. It refuses visible GPUs and uses offline local-only loading.
+`tools/qualify_cpu_embedding.py` measures the exact locally supplied artifact, using one resident model per run. `benchmark` warms each token length and measures closed-loop single-input concurrency; `quality` regenerates embeddings and retrieval metrics; `compare` requires binary-bound regenerated FP32 reference vectors and validates hashes of every vector/ID file. Each mode requires a fresh output directory; preserve interrupted runs instead of overwriting them. Freeze the harness source in an immutable per-revision mount before starting a run. It refuses visible GPUs and uses offline local-only loading.
 
 Build `tools/cpu-qualification.Dockerfile` in an owned test directory, then run with explicit Docker CPU quota, distinct physical-core affinity, RAM and swap limits, no network/GPU, read-only model/data/script mounts, and an owned writable result mount. Example container arguments:
 
@@ -55,7 +55,7 @@ Build `tools/cpu-qualification.Dockerfile` in an owned test directory, then run 
 --security-opt=no-new-privileges --pids-limit=256
 ```
 
-Resolve affinity from the actual host topology. Capture image ID, dependency freeze, artifact/data hashes, Docker inspect, cgroup readings, raw samples, and cleanup or retention receipts. Core library pins reproduce an existing deployed model and do not replace the training lock.
+Resolve affinity from the actual host topology. Capture image ID, dependency freeze, artifact/data hashes, Docker inspect, cgroup readings, raw samples, and cleanup or retention receipts. Torch 2.6.0 and Transformers 4.51.3 reproduce the existing deployed core libraries; NumPy 2.3.5 matches the existing evaluation host baseline for comparability. These are reproduction pins, not a claim to use latest packages, and do not replace the training lock. Record the resolved base image digest and complete dependency freeze for each experiment.
 
 ```bash
 python tools/qualify_cpu_embedding.py benchmark --model /model --output /results/benchmark --requests 200
