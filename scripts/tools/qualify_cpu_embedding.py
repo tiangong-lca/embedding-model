@@ -100,7 +100,9 @@ class ResidentEncoder:
                      'attention_implementation': self.model.config._attn_implementation,
                      'parameter_dtype': str(next(self.model.parameters()).dtype),
                      'intraop_threads': torch.get_num_threads(), 'interop_threads': torch.get_num_interop_threads(),
-                     'startup_seconds_excluded_from_latency': self.load_seconds,
+                     'model_load_seconds_excluded_from_latency': self.load_seconds,
+                     'startup_measurement_scope': 'AutoModel load only; imports/tokenizer/hash/parity are also outside all warm latency',
+                     'qualification_script_sha256': sha256(Path(__file__)),
                      'files_sha256': {str(p.relative_to(self.path)): sha256(p) for p in sorted(self.path.rglob('*'))
                                       if p.is_file()},
                      'runtime': {name: importlib.metadata.version(name) for name in ['torch', 'transformers', 'numpy', 'tokenizers', 'safetensors']},
