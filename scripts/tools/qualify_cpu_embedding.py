@@ -17,6 +17,8 @@ from pathlib import Path
 import platform
 import resource
 import statistics
+import threading
+from datetime import datetime, timezone
 import time
 
 
@@ -185,53 +187,120 @@ class ResidentEncoder:
 
 
 def benchmark(args):
-    fresh_output(args.output)
+    out = fresh_output(args.output)
     model = ResidentEncoder(args)
+    model_lock = threading.Lock() if args.execution_mode == 'serialized' else None
+    def forward(text):
+        if model_lock is None:
+            return model.encode([text])
+        with model_lock:
+            return model.encode([text])
     result = {'kind': 'warm_cpu_benchmark', 'manifest': model.meta,
-              'mode': 'closed-loop concurrent single-input handler calls; no HTTP/network latency',
+              'mode': args.execution_mode,
+              'mode_description': 'closed-loop concurrent single-input calls; serialized uses one forward at a time with queue wait included; no HTTP/network latency',
               'cold_start_acceptable': False, 'cells': []}
-    path = Path(args.output) / 'benchmark.json'
+    path = out / 'benchmark.json'
     for length in args.lengths:
         text = model.sized_text(length)
         for _ in range(args.warmup):
-            model.encode([text])
+            forward(text)
         for concurrency in args.concurrency:
-            # Warm each participating inference thread before timed requests.
-            with ThreadPoolExecutor(max_workers=concurrency) as executor:
-                list(executor.map(lambda _: model.encode([text]), range(concurrency)))
-                records = []
-                total_started = time.perf_counter()
-                def worker(worker_id):
-                    local = []
-                    for index in range(worker_id, args.requests, concurrency):
-                        t = time.perf_counter()
-                        try:
-                            vector = model.encode([text])
-                            serialized = json.dumps({'embeddings': vector.tolist(), 'normalized': True})
-                            valid = bool(model.np.isfinite(vector).all()) and vector.shape == (1, 1024)
-                            local.append({'index': index, 'seconds': time.perf_counter() - t,
-                                          'valid': valid, 'response_bytes': len(serialized), 'error': None})
-                        except Exception as error:
-                            local.append({'index': index, 'seconds': time.perf_counter() - t,
-                                          'valid': False, 'error': f'{type(error).__name__}: {error}'})
-                    return local
-                for local in executor.map(worker, range(concurrency)):
-                    records.extend(local)
-            elapsed = time.perf_counter() - total_started
-            good = [r['seconds'] for r in records if r['valid']]
-            cell = {'tokens': length, 'encoded_tokens': min(length, model.max_length),
-                    'concurrency': concurrency, 'warmup_calls_excluded': args.warmup + concurrency,
-                    'requested': args.requests, 'errors': len(records) - len(good),
-                    'wall_seconds': elapsed, 'requests_per_second': len(good) / elapsed,
-                    'peak_rss_mib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
-                    'raw': sorted(records, key=lambda r: r['index']), 'isolation_end': isolation_facts()}
-            if good:
-                cell.update(latency_summary(good))
-            result['cells'].append(cell)
-            save_json(path, result)
-            print(json.dumps({k: v for k, v in cell.items() if k not in ['raw', 'isolation_end']}), flush=True)
+            cell_started = time.perf_counter()
+            progress_path = out / f'progress-{length}-c{concurrency}.jsonl'
+            state_path = out / f'cell-{length}-c{concurrency}.json'
+            checkpoint_lock = threading.Lock()
+            observed = []
+            state = {'tokens': length, 'concurrency': concurrency, 'requested': args.requests,
+                     'execution_mode': args.execution_mode, 'phase': 'warming',
+                     'started_at': datetime.now(timezone.utc).isoformat(), 'wall_limit_seconds': args.cell_seconds}
+            with checkpoint_lock:
+                save_json(state_path, state)
+            def terminate_cell(state=state, state_path=state_path, checkpoint_lock=checkpoint_lock,
+                               observed=observed, cell_started=cell_started):
+                should_exit = True
+                try:
+                    with checkpoint_lock:
+                        if state['phase'] == 'complete':
+                            should_exit = False
+                            return
+                        interrupted = dict(state, interrupted=True, exit_code=124,
+                                           completed_checkpoints=len(observed), elapsed_seconds=time.perf_counter() - cell_started)
+                        save_json(state_path, interrupted)
+                finally:
+                    # A native forward cannot be cancelled safely within a thread.
+                    # Exit even if the receipt cannot be saved (e.g. disk failure).
+                    if should_exit:
+                        os._exit(124)
+            watchdog = threading.Timer(args.cell_seconds, terminate_cell)
+            watchdog.daemon = True
+            watchdog.start()
+            try:
+                with ThreadPoolExecutor(max_workers=concurrency) as executor:
+                    # Warmup follows the selected serving policy, including serialization.
+                    list(executor.map(lambda _: forward(text), range(concurrency)))
+                    with checkpoint_lock:
+                        state['phase'] = 'timing'
+                        save_json(state_path, state)
+                    records = []
+                    total_started = time.perf_counter()
+                    def worker(worker_id):
+                        local = []
+                        for index in range(worker_id, args.requests, concurrency):
+                            if time.perf_counter() - cell_started >= args.cell_seconds:
+                                terminate_cell()
+                            t = time.perf_counter()
+                            queued = 0.0
+                            try:
+                                if model_lock is None:
+                                    encode_started = time.perf_counter()
+                                    vector = model.encode([text])
+                                    encode_seconds = time.perf_counter() - encode_started
+                                else:
+                                    with model_lock:
+                                        encode_started = time.perf_counter()
+                                        queued = encode_started - t
+                                        vector = model.encode([text])
+                                        encode_seconds = time.perf_counter() - encode_started
+                                serialized = json.dumps({'embeddings': vector.tolist(), 'normalized': True})
+                                valid = bool(model.np.isfinite(vector).all()) and vector.shape == (1, 1024)
+                                record = {'index': index, 'worker': worker_id, 'seconds': time.perf_counter() - t,
+                                          'queue_wait_seconds': queued, 'encode_seconds': encode_seconds, 'valid': valid,
+                                          'response_bytes': len(serialized), 'error': None}
+                            except Exception as error:
+                                record = {'index': index, 'worker': worker_id, 'seconds': time.perf_counter() - t,
+                                          'queue_wait_seconds': queued, 'valid': False,
+                                          'error': f'{type(error).__name__}: {error}'}
+                            local.append(record)
+                            with checkpoint_lock:
+                                with progress_path.open('a') as checkpoint:
+                                    checkpoint.write(json.dumps(record) + '\n')
+                                observed.append(record)
+                        return local
+                    for local in executor.map(worker, range(concurrency)):
+                        records.extend(local)
+                if time.perf_counter() - cell_started >= args.cell_seconds:
+                    terminate_cell()
+                elapsed = time.perf_counter() - total_started
+                good = [r['seconds'] for r in records if r['valid']]
+                cell = {'tokens': length, 'encoded_tokens': min(length, model.max_length),
+                        'concurrency': concurrency, 'execution_mode': args.execution_mode,
+                        'warmup_calls_excluded': args.warmup + concurrency,
+                        'requested': args.requests, 'attempted': len(records), 'errors': len(records) - len(good),
+                        'wall_seconds': elapsed, 'requests_per_second': len(good) / elapsed,
+                        'peak_rss_mib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
+                        'raw': sorted(records, key=lambda r: r['index']), 'isolation_end': isolation_facts()}
+                if good:
+                    cell.update(latency_summary(good))
+                result['cells'].append(cell)
+                save_json(path, result)
+                with checkpoint_lock:
+                    state['phase'] = 'complete'
+                    save_json(state_path, dict(state, completed_checkpoints=len(observed)))
+                print(json.dumps({k: v for k, v in cell.items() if k not in ['raw', 'isolation_end']}), flush=True)
+            finally:
+                watchdog.cancel()
+                watchdog.join()
     return result
-
 
 def dataset(args):
     base = Path(args.data)
@@ -443,6 +512,8 @@ def main():
     p.add_argument('mode', choices=['benchmark', 'quality', 'compare'])
     p.add_argument('--verify-handler', action='store_true'); p.add_argument('--artifact-manifest'); p.add_argument('--model'); p.add_argument('--data'); p.add_argument('--candidate'); p.add_argument('--reference')
     p.add_argument('--output', required=True)
+    p.add_argument('--execution-mode', choices=['parallel', 'serialized'], default='parallel')
+    p.add_argument('--cell-seconds', type=float, default=300)
     p.add_argument('--threads', type=int, default=4)
     p.add_argument('--dtype', choices=['fp32', 'bf16'], default='fp32')
     p.add_argument('--max-length', type=int, default=1024)
@@ -452,6 +523,8 @@ def main():
     p.add_argument('--requests', type=int, default=200)
     p.add_argument('--warmup', type=int, default=3)
     a = p.parse_args()
+    if a.cell_seconds <= 0:
+        p.error('--cell-seconds must be positive')
     if a.threads < 1 or a.batch_size < 1 or a.requests < 1 or a.warmup < 1 or any(x < 1 for x in a.lengths + a.concurrency):
         p.error('Counts/lengths/concurrency must be positive')
     if a.verify_handler and (not a.artifact_manifest or a.dtype != 'fp32'):

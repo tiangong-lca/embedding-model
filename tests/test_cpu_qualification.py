@@ -87,6 +87,101 @@ class OutputIntegrityTests(unittest.TestCase):
                 qualification.fresh_output(out)
             self.assertEqual(sentinel.read_bytes(), b'partial run evidence')
 
+class BenchmarkControlTests(unittest.TestCase):
+    def test_serialized_queue_and_per_call_checkpoints(self):
+        import tempfile
+        import time
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        try:
+            import numpy as np
+        except ImportError:
+            self.skipTest('NumPy is required; run in qualification runtime')
+        class Encoder:
+            meta = {}
+            def __init__(self, args):
+                self.np = np
+                self.max_length = 1024
+            def sized_text(self, length):
+                return 'fixture'
+            def encode(self, texts):
+                time.sleep(0.02)
+                return np.ones((1, 1024), dtype=np.float32)
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder) / 'run'
+            args = SimpleNamespace(output=str(out), execution_mode='serialized',
+                                   lengths=[32], concurrency=[2], requests=4, warmup=1, cell_seconds=2)
+            with patch.object(qualification, 'ResidentEncoder', Encoder):
+                result = qualification.benchmark(args)
+            raw = result['cells'][0]['raw']
+            self.assertEqual(len(raw), 4)
+            self.assertGreater(max(row['queue_wait_seconds'] for row in raw), 0.01)
+            self.assertTrue(all(row['seconds'] >= row['queue_wait_seconds'] for row in raw))
+            self.assertEqual(len((out / 'progress-32-c2.jsonl').read_text().splitlines()), 4)
+
+    def test_native_forward_watchdog_exits_owned_process_with_stage_receipt(self):
+        import json
+        import subprocess
+        import sys
+        import tempfile
+        script = Path(__file__).parents[1] / 'scripts/tools/qualify_cpu_embedding.py'
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder) / 'timeout-run'
+            code = f'''import importlib.util, time
+from types import SimpleNamespace
+spec = importlib.util.spec_from_file_location('qualification', {str(script)!r})
+q = importlib.util.module_from_spec(spec); spec.loader.exec_module(q)
+class Encoder:
+    meta = {{}}
+    calls = 0
+    def __init__(self, args): pass
+    def sized_text(self, length): return 'fixture'
+    def encode(self, texts):
+        self.calls += 1
+        if self.calls > 1: time.sleep(10)
+q.ResidentEncoder = Encoder
+q.benchmark(SimpleNamespace(output={str(out)!r},execution_mode='serialized',lengths=[32],concurrency=[1],requests=1,warmup=1,cell_seconds=0.05))
+'''
+            result = subprocess.run([sys.executable, '-c', code], timeout=3, capture_output=True)
+            self.assertEqual(result.returncode, 124, result.stderr.decode())
+            receipt = json.loads((out / 'cell-32-c1.json').read_text())
+            self.assertTrue(receipt['interrupted'])
+            self.assertEqual(receipt['phase'], 'warming')
+            self.assertEqual(receipt['completed_checkpoints'], 0)
+
+    def test_delayed_watchdog_cannot_claim_complete_partial_cell(self):
+        import json
+        import subprocess
+        import sys
+        import tempfile
+        script = Path(__file__).parents[1] / 'scripts/tools/qualify_cpu_embedding.py'
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder) / 'delayed-watchdog'
+            code = f'''import importlib.util, time
+from types import SimpleNamespace
+spec = importlib.util.spec_from_file_location('qualification', {str(script)!r})
+q = importlib.util.module_from_spec(spec); spec.loader.exec_module(q)
+class DelayedTimer:
+    def __init__(self, *args): pass
+    def start(self): pass
+    def cancel(self): pass
+class Encoder:
+    meta = {{}}
+    def __init__(self, args): pass
+    def sized_text(self, length): return 'fixture'
+    def encode(self, texts): time.sleep(0.02)
+q.threading.Timer = DelayedTimer
+q.ResidentEncoder = Encoder
+q.benchmark(SimpleNamespace(output={str(out)!r},execution_mode='serialized',lengths=[32],concurrency=[1],requests=2,warmup=1,cell_seconds=0.01))
+'''
+            result = subprocess.run([sys.executable, '-c', code], timeout=3, capture_output=True)
+            self.assertEqual(result.returncode, 124, result.stderr.decode())
+            receipt = json.loads((out / 'cell-32-c1.json').read_text())
+            self.assertTrue(receipt['interrupted'])
+            self.assertEqual(receipt['phase'], 'timing')
+            self.assertEqual(receipt['completed_checkpoints'], 0)
+            self.assertFalse((out / 'benchmark.json').exists())
+
 
 if __name__ == '__main__':
     unittest.main()
