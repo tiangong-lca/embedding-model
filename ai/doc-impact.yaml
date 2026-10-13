@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-12",
-  "lastReviewedCommit": "d404f672d5b50b1f740ddf8321b575cd0cc3fb44",
-  "lastReviewedNote": "Reviewed for Embedding #42: offline exact-artifact CPU qualification uses an isolated Torch 2.6.0 CPU / Transformers 4.51.3 runtime, records warm latency and same-artifact FP32 quality evidence, and leaves the training dependency baseline and production services unchanged.",
+  "lastReviewedAt": "2026-10-13",
+  "lastReviewedCommit": "af5bb2dcefc4dd56fdb5ec2af383d5f5b9e555f5",
+  "lastReviewedNote": "Reviewed for Embedding #45: immutable public Nemotron releases, standard-library download/scoring validation and isolated optional inference; existing Qwen and CPU qualification runtimes remain unchanged.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
@@ -66,6 +66,14 @@
         {
           "path": "config/**",
           "kind": "experiment-config"
+        },
+        {
+          "path": "environments/**",
+          "kind": "runtime-config"
+        },
+        {
+          "path": "docs/releases/**",
+          "kind": "release-guide"
         }
       ],
       "requiredDocs": [

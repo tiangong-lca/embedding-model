@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "kind": "benchmark",
+  "repo_id": "Tiangong-LCA/LCA-Retrieval-Benchmark",
+  "revision": "355ae546cbe5a3649c21934e84b368e360b89038",
+  "files": {
+    "README.md": {
+      "bytes": 5937,
+      "sha256": "5437e6cf2beeef358fe8c7c0903a1702019a81117e93445a227ca6f1d0edeb0f"
+    },
+    "corpus.jsonl": {
+      "sha256": "363a10f1f838002f6cc5f9ebddd425a0fa40cad8b6e4f577e710cc54ffcb5579",
+      "bytes": 34828741
+    },
+    "evaluate.py": {
+      "sha256": "a2b84dcece19c109112ddc7e88c967a3f61b071a0187de07c373bfbb6361b2fb",
+      "bytes": 2632
+    },
+    "model-rankings.jsonl": {
+      "sha256": "0c5c0f2df35a67319a3f889fecd309cb8e41f203b24708eb5a660443a8c6cec8",
+      "bytes": 153546
+    },
+    "model-results.json": {
+      "sha256": "9c771e80ddaa84ebd6563a618a9ce45c62d86ae945b97dfa8f427d9e2213065b",
+      "bytes": 284
+    },
+    "qrels.jsonl": {
+      "sha256": "c2c9a95defaac6a1aec4bc9d22f3e654b4d05da89d0f11f1e621050924194f90",
+      "bytes": 2648001
+    },
+    "queries.jsonl": {
+      "sha256": "b80e982c9455d0150ec2f97219326f43781373d4d756e93feb53ab680b99e144",
+      "bytes": 75198
+    },
+    "checksums.json": {
+      "bytes": 993,
+      "sha256": "8a4972332031604d08d5321a2c6a19e43d9bad92fe9f0b9606f53269577802ef"
+    }
+  },
+  "row_counts": {
+    "queries.jsonl": 100,
+    "corpus.jsonl": 15671,
+    "qrels.jsonl": 14182,
+    "model-rankings.jsonl": 100
+  },
+  "source_group_count": 42,
+  "protocol": "lca-fixed-five-reference-v1",
+  "reference_metrics": {
+    "coverage_at_5": 0.3368899999999999,
+    "coverage_at_10": 0.458947,
+    "ndcg_at_5": 0.37277081304151594,
+    "ndcg_at_10": 0.4403736443252218
+  }
+}

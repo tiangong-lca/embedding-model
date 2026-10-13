@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "model",
+  "repo_id": "Tiangong-LCA/LCA-Nemotron-Embed-1B",
+  "revision": "6d77edaa3b92dd1b7e3dd8a152ea7170a8b581c5",
+  "files": {
+    "1_Pooling/config.json": {
+      "bytes": 298,
+      "sha256": "6dcf44c2f7e7878ac0ee2e992c8e7d1f6812e12724b00d1d0cb0fa3336f07f0d"
+    },
+    "CHANGES.md": {
+      "bytes": 981,
+      "sha256": "d9029cf7c19d124476993246c73e754ea715f15b6eadedf4f6393aa2f2510066"
+    },
+    "LICENSE": {
+      "bytes": 2796,
+      "sha256": "5ae76a0d16eef67e28c81bfdb0b3c8687d14e9b57094090151e7541aac457ae9"
+    },
+    "NOTICE": {
+      "bytes": 1381,
+      "sha256": "22f544b05a669f13a6f59920debbc86d2031c0420763c8421dcdc05f5db27f57"
+    },
+    "README.md": {
+      "bytes": 9754,
+      "sha256": "43ab733f66a16423867bde51c016654cf8cb879b2bb41d6a743fd0faaa583a1e"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "bytes": 24774,
+      "sha256": "31aa40574e995ae5741c61970e35bc2104dde1a6fc2b29bf2fb645511667ee81"
+    },
+    "config.json": {
+      "bytes": 1091,
+      "sha256": "6a6ef596e7c7d554611a4676a221bd94476f96b4d089e6dff9f03ffad58b8ecb"
+    },
+    "config_sentence_transformers.json": {
+      "bytes": 261,
+      "sha256": "dc2bc223baa9e5eedd8593d1d4230210681001e7dec73ac53d89697df97079ee"
+    },
+    "encode.py": {
+      "bytes": 2876,
+      "sha256": "aa0118c63051cfbed8f0909fe43a4639a9af2a5214a265d601bea54056007330"
+    },
+    "model.safetensors": {
+      "bytes": 4563688976,
+      "sha256": "07fe9d06a60d89b269f62314a36c17be04448eed5f2a11001954e65badaa51cb"
+    },
+    "modules.json": {
+      "bytes": 350,
+      "sha256": "21ddb3037a55ebf4549eb5c1dc44c3f28f10b56ec7f1335c92fd90e5b30d88ac"
+    },
+    "requirements-inference.txt": {
+      "bytes": 258,
+      "sha256": "b1a3462169c1477c7e867de3895d76b9e60c1383d7c70ffa252215b728288c34"
+    },
+    "sentence_bert_config.json": {
+      "bytes": 56,
+      "sha256": "0b1d25d4d13c72c255a7eaaf8921ca481c4cd61ad894e7209c52dc5e1ac3f3bd"
+    },
+    "serve.py": {
+      "bytes": 3389,
+      "sha256": "34b350047119276c52fb16fa5841eb3eb25efbe1807174aecb7f21760252aba3"
+    },
+    "tokenizer.json": {
+      "bytes": 17077833,
+      "sha256": "f2f0c7ebc8e67fd00f8e69279630546a59c76fc5f4bf253da1d9a047d3c56056"
+    },
+    "tokenizer_config.json": {
+      "bytes": 21216,
+      "sha256": "77c3827af101771129e6a5e13f38cc854cbb1c17aad99ef2c02a9de67ec0b08e"
+    },
+    "validation.json": {
+      "bytes": 1638,
+      "sha256": "1c0a6aebd152c3a53fb39b0fa74e9f1ec8c46976de47f6aea2e0198fd10d367f"
+    },
+    "release-manifest.json": {
+      "bytes": 3502,
+      "sha256": "62d3eb257c096ffaaf6cbcd40e7126f3108b9e289b9574481ed2eac95bf00e28"
+    }
+  },
+  "inference": {
+    "dimension": 2048,
+    "query_prompt": "query: ",
+    "document_prompt": "passage: ",
+    "query_tokens": 512,
+    "document_tokens": 2048,
+    "pooling": "attention-mask mean including prompt",
+    "normalization": "L2",
+    "storage_dtype": "float32",
+    "cuda_dtype": "bfloat16"
+  }
+}

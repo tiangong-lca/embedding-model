@@ -27,13 +27,15 @@ checkPaths:
   - scripts/**
   - tests/**
   - config/**
+  - environments/**
+  - docs/releases/**
   - data/**
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-10-12
-lastReviewedCommit: d404f672d5b50b1f740ddf8321b575cd0cc3fb44
-lastReviewedNote: "Reviewed for Embedding #42: offline exact-artifact CPU qualification uses an isolated Torch 2.6.0 CPU / Transformers 4.51.3 runtime, records warm latency and same-artifact FP32 quality evidence, and leaves the training dependency baseline and production services unchanged."
+lastReviewedAt: 2026-10-13
+lastReviewedCommit: af5bb2dcefc4dd56fdb5ec2af383d5f5b9e555f5
+lastReviewedNote: "Reviewed for Embedding #45: immutable public Nemotron model/dataset manifests, standard-library download/scoring validation and an isolated optional inference environment; existing Qwen training and CPU qualification runtimes remain unchanged."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -93,6 +95,8 @@ Route those tasks to:
 - the full GPU project cannot sync on macOS because `faiss-gpu-cu12` publishes Linux x86_64 wheels only; macOS runs the isolated TIDAS/dependency contracts, while full training/import validation belongs on the reviewed Linux x86_64 CUDA 12 environment
 
 - CPU qualification: `scripts/tools/qualify_cpu_embedding.py` is an offline, resident-model experiment. Its isolated Docker runtime reproduces deployed Torch 2.6.0 CPU and Transformers 4.51.3 without syncing or upgrading the GPU training environment. Bind immutable artifact/data hashes, record cgroup limits and warm sample counts, and use regenerated same-artifact FP32 vectors as a numerical reference; legacy caches lacking binary identity are not production goldens. Historical train-related data does not prove unseen-document generalization.
+
+- Public Nemotron releases: `docs/releases/lca-nemotron-embed-1b.md` owns download, integrity and benchmark usage. `config/releases/` and `config/datasets/` pin Hub commits and every payload's size/SHA256. Download and score tools use the standard library; `environments/nemotron-inference/` independently locks the optional Linux CUDA 12.9 inference runtime. This does not replace the Qwen baseline. The published benchmark uses fixed-five-reference probability coverage/nDCG, not the older Qwen evaluation protocol. Store downloaded weights/data in ignored caches, not Git.
 
 ## Hard Boundaries
 

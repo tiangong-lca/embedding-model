@@ -2,6 +2,26 @@
 
 This project asks one question: for professional Lifecycle Assessment (LCA) retrieval, how much does domain embedding fine-tuning help?
 
+## Published LCA models and datasets
+
+| Resource | Use |
+|---|---|
+| [LCA-Nemotron-Embed-1B](https://huggingface.co/Tiangong-LCA/LCA-Nemotron-Embed-1B) | 2048-dimensional LCI process retrieval embeddings |
+| [LCA Embedding Training](https://huggingface.co/datasets/Tiangong-LCA/LCA-Embedding-Training) | Final-stage graded supervision, corpus and sampling |
+| [LCA Retrieval Benchmark](https://huggingface.co/datasets/Tiangong-LCA/LCA-Retrieval-Benchmark) | Full-corpus retrieval tasks, reference weights and reproducible scoring |
+| [LCA-Qwen3-0.6B](https://huggingface.co/BIaoo/lca-qwen3-embedding) | Existing Qwen-based embedding release |
+
+Start with the [Nemotron download, integrity checks and evaluation guide](docs/releases/lca-nemotron-embed-1b.md).
+Pinned revisions and SHA-256 manifests live in `config/releases/` and `config/datasets/`.
+The download/scoring commands use only Python's standard library; GPU inference has
+its own optional environment in `environments/nemotron-inference/`.
+
+On LCA Retrieval Benchmark, LCA-Nemotron-Embed-1B scores **nDCG@10 0.44037** and
+**Coverage@10 0.45895**. The Qwen experiment described below uses a different dataset
+and scoring protocol; its relative improvements are not directly comparable.
+
+## Qwen experiment and pipeline
+
 ## Runtime and dependency baseline
 
 - Python: 3.12; dependency manager: `uv`
