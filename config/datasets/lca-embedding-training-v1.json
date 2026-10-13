@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "kind": "training",
+  "repo_id": "Tiangong-LCA/LCA-Embedding-Training",
+  "revision": "9e06cda5c18571214878dbd6562431e15d40eeb7",
+  "files": {
+    "README.md": {
+      "bytes": 5793,
+      "sha256": "1ef512b7e0dfabad9d0893d1195a3ee33febca161151f099dd7cc06b4f9547e7"
+    },
+    "corpus.jsonl": {
+      "sha256": "b1db410317793f00b2d19fb465992234997a8b413fb000a0225c9c76cb67b303",
+      "bytes": 14282575
+    },
+    "queries.jsonl": {
+      "sha256": "19bc3e5bd027cf8febbdeadc4e5a8a075e0cf86587450b027b9cb6c3cc522044",
+      "bytes": 874487
+    },
+    "relations.jsonl": {
+      "sha256": "ab58a06a9e9a7981f995f6cf852fe05c0993c1f8dd5d53a7aa30e941b82a395f",
+      "bytes": 9384417
+    },
+    "retention.jsonl": {
+      "sha256": "5146dec0fda83d9958bf45b5362288a7e05a7220c8ec66f32420a0e59d447686",
+      "bytes": 2496582
+    },
+    "sampling.jsonl": {
+      "sha256": "e33068a4041ca84cb9ff06a12ddf5e3f626d4dcdbc1b1c2a085789805c3881cf",
+      "bytes": 191402
+    },
+    "checksums.json": {
+      "bytes": 861,
+      "sha256": "9e2b3f3e1c306c524463514c95a222a43979d64fe77d71b778e70d093c0c22f0"
+    }
+  },
+  "row_counts": {
+    "queries.jsonl": 1256,
+    "corpus.jsonl": 6228,
+    "relations.jsonl": 12605,
+    "sampling.jsonl": 2048,
+    "retention.jsonl": 11848
+  },
+  "retention_query_count": 1200,
+  "scope": "final-stage supervision snapshot"
+}

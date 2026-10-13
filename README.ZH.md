@@ -2,6 +2,25 @@
 
 本项目聚焦一个问题：在生命周期评价（LCA）这类专业语料的检索任务中，领域化的向量微调能带来多大收益？
 
+## 已发布模型与数据集
+
+| 资源 | 用途 |
+|---|---|
+| [LCA-Nemotron-Embed-1B](https://huggingface.co/Tiangong-LCA/LCA-Nemotron-Embed-1B) | 2048 维 LCI 过程检索向量 |
+| [LCA Embedding Training](https://huggingface.co/datasets/Tiangong-LCA/LCA-Embedding-Training) | 最终阶段分级监督、语料、采样与保持监督 |
+| [LCA Retrieval Benchmark](https://huggingface.co/datasets/Tiangong-LCA/LCA-Retrieval-Benchmark) | 全语料检索任务、参考权重与可复算指标 |
+| [LCA-Qwen3-0.6B](https://huggingface.co/BIaoo/lca-qwen3-embedding) | 现有 Qwen 系列模型 |
+
+见 [Nemotron 下载、校验与评测指南](docs/releases/lca-nemotron-embed-1b.md)。
+`config/releases/` 和 `config/datasets/` 固定发布版本与 SHA-256。
+下载和已有排名评分仅依赖 Python 标准库；GPU 推理环境独立位于
+`environments/nemotron-inference/`，不改变现有 Qwen 依赖。
+
+LCA-Nemotron 在 LCA Retrieval Benchmark 上的 **nDCG@10 为 0.44037，Coverage@10 为 0.45895**。
+下面的 Qwen 实验使用另一套数据及指标口径，其相对提升不能与上述指标直接比较。
+
+## Qwen 实验与处理管线
+
 ## 背景与目标
 
 通用向量模型在开放领域表现良好，但在 LCA 场景中往往会出现“语义相近但不满足领域约束”的错排；而 LCA 文档通常较长、字段多（地理/技术路径/时间等），对检索排序与覆盖提出更强的领域一致性要求。本项目通过统一评测对比，量化领域微调相对通用基线与云端模型的效果差异。

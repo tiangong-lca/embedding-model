@@ -26,6 +26,11 @@
 
 辅助工具：
 
+- `download_lca_release.py`：按不可变版本下载模型/数据，校验大小、SHA-256、行数和关联；`--verify-only` 离线核验。
+- `evaluate_lca_benchmark.py`：仅用标准库对 Top10 JSONL 排名评分，输出指标、未判定数量和输入身份。
+- `retrieve_lca_benchmark.py`：在独立 Nemotron 环境中生成全语料纯 embedding 排名；显式运行才占用 GPU。
+- 用法及数据口径见 [发布指南](../docs/releases/lca-nemotron-embed-1b.md)。
+
 - apply_hard_negatives.py, mine_hard_negatives.py
 - export_embedding_atlas_dataset.py（导出 Embedding Atlas 可视化数据集）
 - export_embedding_atlas_markdown_dir.py（将 Supabase 导出的 markdown 目录打包为 Embedding Atlas 数据集）

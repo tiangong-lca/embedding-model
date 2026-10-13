@@ -22,7 +22,8 @@ embedding-tutorials/
 
 sftp.json
 
-docs/
+docs/*
+!docs/releases/
 
 reports/
 
