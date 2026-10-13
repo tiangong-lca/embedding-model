@@ -90,6 +90,9 @@ python scripts/tools/evaluate_lca_benchmark.py --data-dir data/releases/benchmar
 The runner verifies both releases, loads only local model files without remote code,
 encodes all documents, sorts cosine scores with document-ID tie breaking, and writes
 rankings plus a runtime/revision receipt to a new directory. It uses no reranking.
+A tiny CPU regression checks that the pinned Transformers runtime propagates the
+saved bidirectional configuration, preserves padded/unpadded batch equality and
+matches eager attention, without downloading model weights.
 Precision and hardware can affect close rankings. The GPU run is an explicit optional
 validation step, separate from the standard-library tests and reference-score parity.
 
@@ -98,6 +101,7 @@ validation step, separate from the standard-library tests and reference-score pa
 ```bash
 python3.12 -m unittest discover -s tests -p 'test_lca_*.py' -v
 uv lock --check --project environments/nemotron-inference --python 3.12
+PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with torch==2.11.0 --with transformers==5.4.0 python tests/check_nemotron_attention_runtime.py
 ```
 
 Release updates require new verified commit/hash manifests and metric parity checks;
