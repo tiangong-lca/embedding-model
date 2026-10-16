@@ -1,8 +1,8 @@
 {
   "version": 1,
   "lastReviewedAt": "2026-10-16",
-  "lastReviewedCommit": "2d0c7d36a00b14dc1cc19d7ac6f94887f9d45d35",
-  "lastReviewedNote": "Embedding #47: scoped portable Python 3.12 PR checks and root-only uv/Actions discovery retain exact ML/SDK/lock contracts; no GPU sync, dependency upgrade or production operation.",
+  "lastReviewedCommit": "8364123e0e16533b2b1511c581f434c8d239ed33",
+  "lastReviewedNote": "Embedding #54: bounded Datasets 5.1 and Sentence Transformers 6 discovery exclusions follow hosted resolver evidence; #53 owns future root-stack qualification. Runtime, manifest, lock and test contracts are unchanged.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
