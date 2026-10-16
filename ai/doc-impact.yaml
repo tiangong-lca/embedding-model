@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-13",
-  "lastReviewedCommit": "af5bb2dcefc4dd56fdb5ec2af383d5f5b9e555f5",
-  "lastReviewedNote": "Reviewed for Embedding #45: immutable public Nemotron releases, standard-library download/scoring validation and isolated optional inference; existing Qwen and CPU qualification runtimes remain unchanged.",
+  "lastReviewedAt": "2026-10-16",
+  "lastReviewedCommit": "2d0c7d36a00b14dc1cc19d7ac6f94887f9d45d35",
+  "lastReviewedNote": "Embedding #47: scoped portable Python 3.12 PR checks and root-only uv/Actions discovery retain exact ML/SDK/lock contracts; no GPU sync, dependency upgrade or production operation.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
@@ -175,6 +175,32 @@
         }
       ],
       "reason": "Repo-local AI doc maintenance automation changes alter the maintenance gate and should refresh the AI contract docs."
+    },
+    {
+      "id": "domain-embedding-dependency-maintenance",
+      "scope": "repo",
+      "repo": "domain-embedding",
+      "triggers": [
+        {
+          "path": ".github/dependabot.yml",
+          "kind": "dependency-discovery"
+        },
+        {
+          "path": ".github/workflows/portable-python.yml",
+          "kind": "portable-pr-validation"
+        },
+        {
+          "path": "ai/dependency-maintenance.md",
+          "kind": "maintenance-guide"
+        }
+      ],
+      "requiredDocs": [
+        {
+          "path": "ai/dependency-maintenance.md",
+          "mode": "review_or_update"
+        }
+      ],
+      "reason": "Discovery traffic and portable CI scope have a focused maintenance guide; exact manifest/source compatibility contracts remain governed separately."
     }
   ]
 }

@@ -1,0 +1,63 @@
+version: 2
+updates:
+  # Root Qwen training graph only; Nemotron has independent qualification.
+  - package-ecosystem: uv
+    directory: /
+    target-branch: main
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "05:30"
+      timezone: Asia/Shanghai
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 2
+    groups:
+      training-compatibility-minor-and-patch:
+        patterns:
+          - accelerate
+          - datasets
+          - deepspeed
+          - faiss-gpu-cu12
+          - flagembedding
+          - gguf
+          - modelscope
+          - peft
+          - sentence-transformers
+          - torch
+          - transformers
+        update-types: [minor, patch]
+      supporting-libraries-minor-and-patch:
+        patterns: ["*"]
+        exclude-patterns:
+          - accelerate
+          - datasets
+          - deepspeed
+          - faiss-gpu-cu12
+          - flagembedding
+          - gguf
+          - modelscope
+          - peft
+          - sentence-transformers
+          - torch
+          - transformers
+        update-types: [minor, patch]
+    commit-message:
+      prefix: chore(deps)
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: main
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "05:45"
+      timezone: Asia/Shanghai
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 1
+    groups:
+      actions-minor-and-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    commit-message:
+      prefix: chore(deps)

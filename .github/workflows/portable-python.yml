@@ -1,0 +1,55 @@
+name: Portable Python contracts
+
+on:
+  pull_request:
+    paths:
+      - pyproject.toml
+      - uv.lock
+      - src/**
+      - scripts/**/*.py
+      - tests/**
+      - config/**
+      - .github/workflows/**
+      - .github/scripts/**
+      - .github/dependabot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portable-python-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  portable:
+    name: Python 3.12 portable contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Set up uv and select Python 3.12
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          version: "0.13.1"
+          python-version: "3.12"
+          enable-cache: false
+
+      - name: Check root lock without installing the GPU project
+        run: uv lock --check --python 3.12
+
+      - name: Run existing portable SDK and dependency contracts
+        env:
+          PYTHONPATH: .
+        run: uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v
+
+      - name: Check source syntax without importing model runtimes
+        run: uv run --isolated --no-project --python 3.12 python -m compileall -q src scripts tests
+
+      - name: Run existing repository automation tests
+        run: node --test .github/scripts/ai-doc-lint.test.mjs

@@ -33,9 +33,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-10-13
-lastReviewedCommit: af5bb2dcefc4dd56fdb5ec2af383d5f5b9e555f5
-lastReviewedNote: "Reviewed for Embedding #45: immutable public Nemotron model/dataset manifests, standard-library download/scoring validation and an isolated optional inference environment; existing Qwen training and CPU qualification runtimes remain unchanged."
+lastReviewedAt: 2026-10-16
+lastReviewedCommit: 2d0c7d36a00b14dc1cc19d7ac6f94887f9d45d35
+lastReviewedNote: "Embedding #47: scoped portable Python 3.12 PR checks and root-only uv/Actions discovery retain exact ML/SDK/lock contracts; no GPU sync, dependency upgrade or production operation."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -85,6 +85,7 @@ Route those tasks to:
 ## Runtime Facts
 
 - Repo-local AI-doc maintenance is enforced by the `.githooks/pre-push` hook via `scripts/ai-doc-lint-gate.sh`; `.github/workflows/ai-doc-lint.yml` is manual-only fallback.
+- `.github/workflows/portable-python.yml` adds scoped, secretless Python 3.12 PR checks using the existing isolated contracts and syntax baseline. It never syncs the GPU project. `ai/dependency-maintenance.md` owns root-only updater coverage, bounded traffic and the separate ML qualification requirement.
 - Python baseline: `>=3.12`
 - Package/dependency manager: `uv`
 - dependency/runtime proof: `uv lock --check --python 3.12` and `PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v`
