@@ -41,6 +41,12 @@ python3.12 -m compileall -q src scripts tests
 
 Run full model imports, training, and FAISS/GPU stages on the reviewed Linux x86_64 CUDA 12 environment.
 
+Relevant dependency/source PRs run the existing portable baseline through
+`.github/workflows/portable-python.yml`, without installing the GPU project.
+Unrelated documentation changes do not trigger it. Root-only uv/Actions
+monitoring, manual acceptance and separate ML/GPU qualification are described in
+[dependency maintenance](ai/dependency-maintenance.md).
+
 ## Background & Goal
 
 Generic embedding models work well in open domains, but LCA retrieval often requires domain constraints (e.g., geography/technology/time) and long, multi-field documents. We use a unified evaluation setup to quantify the impact of domain fine-tuning versus a generic baseline and cloud embedding models.

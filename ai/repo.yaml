@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-13",
-  "lastReviewedCommit": "af5bb2dcefc4dd56fdb5ec2af383d5f5b9e555f5",
-  "lastReviewedNote": "Reviewed for Embedding #45: immutable public Nemotron releases, standard-library download/scoring validation and isolated optional inference; existing Qwen and CPU qualification runtimes remain unchanged.",
+  "lastReviewedAt": "2026-10-16",
+  "lastReviewedCommit": "2d0c7d36a00b14dc1cc19d7ac6f94887f9d45d35",
+  "lastReviewedNote": "Embedding #47: scoped portable Python 3.12 PR checks and root-only uv/Actions discovery retain exact ML/SDK/lock contracts; no GPU sync, dependency upgrade or production operation.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
@@ -70,6 +70,14 @@
         {
           "path": "TODO.md",
           "role": "durable experiment backlog"
+        },
+        {
+          "path": ".github/workflows/portable-python.yml",
+          "role": "Scoped portable Python 3.12 PR proof without syncing the GPU project"
+        },
+        {
+          "path": ".github/dependabot.yml",
+          "role": "Bounded root-only uv and GitHub Actions proposal discovery"
         }
       ],
       "nonOwnerBoundaries": [
@@ -131,7 +139,8 @@
         "Issue #8 adds an isolated Python 3.12 unittest contract for exact TIDAS 0.2.14, canonical Markdown, strict invalid-data failure, direct dependency pins, and CUDA 12 lock integrity.",
         "The full GPU project is Linux x86_64/CUDA 12 only because faiss-gpu-cu12 has no macOS wheel; run the full training/import stack in that environment and use the isolated contract on macOS.",
         "AI-doc changes should run the local pre-push gate through scripts/ai-doc-lint-gate.sh; the GitHub ai-doc-lint workflow is manual-only fallback.",
-        "Embedding #42 adds an independently isolated offline CPU qualification runtime; do not treat warm local CPU timings as cloud equivalence or legacy research caches as exact deployed-artifact goldens."
+        "Embedding #42 adds an independently isolated offline CPU qualification runtime; do not treat warm local CPU timings as cloud equivalence or legacy research caches as exact deployed-artifact goldens.",
+        "Embedding #47 adds path-scoped secretless PR proof using the existing portable commands; NumPy-only CPU cases remain explicit qualification-runtime skips. See ai/dependency-maintenance.md for root-only updater scope, live merge-authority checks and independent ML/GPU qualification."
       ]
     }
   }
