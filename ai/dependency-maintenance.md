@@ -15,9 +15,9 @@ checkPaths:
   - .github/dependabot.yml
   - .github/workflows/portable-python.yml
   - ai/dependency-maintenance.md
-lastReviewedAt: 2026-10-18
-lastReviewedCommit: 7cad2083cb70da6fac3a88cf2f88e005ea046ae7
-lastReviewedNote: "Embedding #65: reviewed supporting upgrades and deliberate TIDAS 0.3 consumer adoption with constrained portable proof; security, ML and independent environment boundaries remain unchanged."
+lastReviewedAt: 2026-10-19
+lastReviewedCommit: 25c37fa94a05cfe6863fcaf9c4331e327b2fd645
+lastReviewedNote: "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51."
 ---
 
 # Dependency maintenance
@@ -116,6 +116,12 @@ as routine updater accommodation. Accepted ML changes require a separately
 tracked compatibility decision and Linux x86_64 CUDA qualification of actual
 model imports, fine-tuning and relevant FAISS/inference behavior. Portable CI
 does not establish that qualification, even when it is green.
+
+## Opt-in CPU API evidence
+
+[The explicit diagnostic lane](../scripts/diagnostics/README.md) compares complete, source-bound root-stack proposals on native macOS arm64 with actual Torch/Transformers/PEFT/Sentence Transformers/Accelerate/DeepSpeed/ModelScope packages. Owned environments and original-lock artifact hashes remain separate from the ML-free portable runner. Its tiny random model and authored data can expose Python/API failures without pretrained downloads. Native network and compiler execution restrictions, actual RSS/time/disk limits and per-stage failures are retained. Default import-order failures are primary results; supplemental DeepSpeed-first diagnostics cannot replace them or turn a partial tuple into a pass.
+
+This source fixture delivery does not adopt any dependency update, relax CUDA12 assertions, accept original #51 or retire the independent #53 scope. A pure-Python DeepSpeed wheel or absence of installed native extensions alone does not prove that its historical build never executed a compiler capability probe. An explicitly compiler-denied build must be distinguished from earlier unconfined builds; denied probes are not real native-op compatibility proof. Actual Linux CUDA/model qualification remains required.
 
 ## Coverage and hosted follow-through
 

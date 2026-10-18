@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-18",
-  "lastReviewedCommit": "7cad2083cb70da6fac3a88cf2f88e005ea046ae7",
-  "lastReviewedNote": "Embedding #65 / original #52: reviewed TIDAS 0.3 consumer adoption and supporting updates with root-lock-bound offline proof; security, Qwen/CUDA 12 and independent environment boundaries remain intact.",
+  "lastReviewedAt": "2026-10-19",
+  "lastReviewedCommit": "25c37fa94a05cfe6863fcaf9c4331e327b2fd645",
+  "lastReviewedNote": "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
@@ -78,6 +78,10 @@
         {
           "path": ".github/dependabot.yml",
           "role": "Bounded root-only uv and GitHub Actions proposal discovery"
+        },
+        {
+          "path": "scripts/diagnostics/**",
+          "role": "Explicit resource-bounded, offline CPU training API diagnostics; separate from portable discovery and GPU acceptance"
         }
       ],
       "nonOwnerBoundaries": [
@@ -140,7 +144,8 @@
         "The full GPU project is Linux x86_64/CUDA 12 only because faiss-gpu-cu12 has no macOS wheel; run the full training/import stack in that environment and use the isolated contract on macOS.",
         "AI-doc changes should run the local pre-push gate through scripts/ai-doc-lint-gate.sh; the GitHub ai-doc-lint workflow is manual-only fallback.",
         "Embedding #42 adds an independently isolated offline CPU qualification runtime; do not treat warm local CPU timings as cloud equivalence or legacy research caches as exact deployed-artifact goldens.",
-        "Embedding #47 adds path-scoped secretless PR proof. Embedding #65 deliberately adopts TIDAS 0.3.0 after bounded legacy consumer comparisons and executes the actual supporting-client tests with every installed transitive constrained to the root lock; NumPy-only cases now run, without qualifying the GPU stack. See ai/dependency-maintenance.md."
+        "Embedding #47 adds path-scoped secretless PR proof. Embedding #65 deliberately adopts TIDAS 0.3.0 after bounded legacy consumer comparisons and executes the actual supporting-client tests with every installed transitive constrained to the root lock; NumPy-only cases now run, without qualifying the GPU stack. See ai/dependency-maintenance.md.",
+        "Embedding #66 adds opt-in native macOS arm64 full-tuple CPU diagnostics with verified local artifacts, random tiny weights, real LoRA/trainer/Accelerator calls and explicit resource/network controls. Run its stdlib controls separately; normal portable proof remains ML-free. See scripts/diagnostics/README.md. Baseline/default failures and supplemental import-order diagnostics do not establish Linux CUDA/model acceptance or retire original #51/#53."
       ]
     }
   }
