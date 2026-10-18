@@ -34,7 +34,7 @@ checkPaths:
   - report.md
   - report.ZH.md
 lastReviewedAt: 2026-10-19
-lastReviewedCommit: 25c37fa94a05cfe6863fcaf9c4331e327b2fd645
+lastReviewedCommit: 3518fbc12cab19e2353eff656d648695821b62f1
 lastReviewedNote: "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51."
 related:
   - ai/repo.yaml

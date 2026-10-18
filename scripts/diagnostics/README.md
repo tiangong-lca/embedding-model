@@ -148,3 +148,45 @@ Actual Linux x86_64 GPU/model/fine-tuning/FAISS and numerical acceptance still
 require an explicitly authorized qualification with immutable model/data inputs,
 resource ownership and scientific thresholds. Source delivery of this fixture
 requires its own reviewed PR and exact workspace integration.
+
+## Bounded observations from Issue66
+
+The [Issue66](https://github.com/tiangong-lca/embedding-model/issues/66)
+investigation executed both complete selected tuples above using the same
+fixture source, verified initial weights/tokenizer/configuration hashes and
+native CPU settings. Each row attempted 19 stages: 14 passed and 5 failed.
+Ordinary PEFT/ST imports and the ordinary Qwen/LoRA/trainer stages encountered
+`transformers.modeling_utils -> deepspeed.runtime.hybrid_engine ->
+transformers.models.opt.modeling_opt`, ending in a partially initialized
+`PreTrainedModel` import. This occurs in **both** baseline and candidate on this
+Mac; it does not establish an upgrade-caused regression or a Linux result.
+Both rows remain aggregate failures.
+
+The explicitly DeepSpeed-first supplemental stages ran the actual full tuples
+without patching libraries or the repository helpers. The identical authored
+model/tokenizer fixture occupies 49,450 bytes. Both rows passed CPU forward,
+normalization/padding, LoRA gradients/optimizer/base freeze and two actual
+SentenceTransformerTrainer steps. LoRA loss was 0.015525261871516705 in each;
+trainer loss was 2.9052172899246216 (B) and 2.905216932296753 (C). Each row had
+finite nonzero CPU gradients and zero same-row save/reload differences with
+explicit eager attention on both sides. This is supplemental API evidence,
+not a repair of the ordinary entrypoint or a passing complete row.
+
+Post-step tensors are not byte-identical across rows. On these same synthetic
+inputs, descriptive cross-row maximum absolute F32 differences were
+1.862645149230957e-9 for adapters (20 differing elements) and
+3.725290298461914e-9 for trainer weights (810 differing elements). No real-model
+quality threshold or scientific-equivalence acceptance follows from these tiny
+fixtures. Original51 remains unqualified under the retained CUDA12 contract.
+
+Every installed distribution was bound to its row's frozen lock and verified
+local official artifact, except the separately recorded pure-Python `wheel`
+0.48.0 build prerequisite. B installed 67 distributions and C installed 70;
+selected dependency closure changes are part of the evidence, not silently
+shared mutable packages. Per-stage resource receipts stayed below 0.6 GiB
+actual RSS and 4 GiB total owned scratch usage; these are resource bounds,
+not production performance or capacity claims. Earlier unconfined DeepSpeed
+source builds provide no proof that compiler capability probes never ran.
+Final source builds used compiler-exec and network denial, `DS_BUILD_OPS=0`,
+empty `ext_modules`, and no installed native operations. Runtime probes were
+also denied; no real native operation compatibility was measured.
