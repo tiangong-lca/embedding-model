@@ -25,8 +25,8 @@ and scoring protocol; its relative improvements are not directly comparable.
 ## Runtime and dependency baseline
 
 - Python: 3.12; dependency manager: `uv`
-- TIDAS: exact `tidas-sdk==0.2.14`; process conversion uses the SDK's canonical `to_markdown()` surface and keeps strict validation failures observable
-- current compatible direct graph: Accelerate 1.14.0, Datasets 5.0.1, DeepSpeed 0.19.6, FAISS GPU CUDA12 1.14.1.post1, FlagEmbedding 1.4.2, GGUF 0.19.0, Matplotlib 3.11.1, ModelScope 1.39.1, OpenAI 3.6.0, python-dotenv 1.2.3, Requests 2.34.2, Sentence Transformers 5.7.0, and Supabase 2.31.0
+- TIDAS: exact `tidas-sdk==0.3.0`; process conversion uses the SDK's canonical `to_markdown()` surface and keeps strict validation failures observable
+- current compatible direct graph: Accelerate 1.14.0, Datasets 5.0.1, DeepSpeed 0.19.6, FAISS GPU CUDA12 1.14.1.post1, FlagEmbedding 1.4.2, GGUF 0.19.0, Matplotlib 3.11.2, ModelScope 1.39.1, OpenAI 3.35.1, python-dotenv 1.2.4, Requests 2.34.2, Sentence Transformers 5.7.0, and Supabase 2.33.0
 - Qwen compatibility pins: `peft==0.13.0`, `transformers==4.51.3`, and `torch==2.9.1`
 
 The 2026-08-31 PyPI audit found Sentence Transformers 6.0.1, but it requires Transformers 5.x and is incompatible with this repository's released Qwen/Transformers 4 training line. Sentence Transformers therefore stays on the latest compatible 5.7.x line. Torch is explicit at the already reviewed 2.9.1 so the Linux training lock stays on CUDA 12 with `faiss-gpu-cu12`; an unconstrained upgrade would mix in CUDA 13 packages.
@@ -35,9 +35,11 @@ The 2026-08-31 PyPI audit found Sentence Transformers 6.0.1, but it requires Tra
 
 ```bash
 uv lock --check --python 3.12
-PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v
+uv run --isolated --no-project --python 3.12 python scripts/tools/run_portable_tests.py
 python3.12 -m compileall -q src scripts tests
 ```
+
+The portable runner derives disposable frozen constraints from `uv.lock`, installs only the consumer libraries and their locked transitives, records installed versions/lock identity, and runs the complete unittest suite. It makes no real provider/database request or model/data download. TIDAS 0.3 adoption preserves 127 bounded legacy Process/Flow consumer results; this is not all-SDK strict-validation parity. python-dotenv 1.2.4 intentionally parses `KEY= # comment` as an empty value. See [dependency maintenance](ai/dependency-maintenance.md) for the exact scope.
 
 Run full model imports, training, and FAISS/GPU stages on the reviewed Linux x86_64 CUDA 12 environment.
 

@@ -15,9 +15,9 @@ checkPaths:
   - .github/dependabot.yml
   - .github/workflows/portable-python.yml
   - ai/dependency-maintenance.md
-lastReviewedAt: 2026-10-16
-lastReviewedCommit: 8364123e0e16533b2b1511c581f434c8d239ed33
-lastReviewedNote: "Embedding #54: two bounded discovery exclusions follow actual resolver failures and official metadata; root runtime/lock/tests and independent GPU qualification remain unchanged."
+lastReviewedAt: 2026-10-18
+lastReviewedCommit: 7cad2083cb70da6fac3a88cf2f88e005ea046ae7
+lastReviewedNote: "Embedding #65: reviewed supporting upgrades and deliberate TIDAS 0.3 consumer adoption with constrained portable proof; security, ML and independent environment boundaries remain unchanged."
 ---
 
 # Dependency maintenance
@@ -44,14 +44,69 @@ Python sources, tests, experiment configuration or repository discovery/CI input
 change. Unrelated documentation-only PRs gain no job. No new globally required
 check or local development step is introduced.
 
-The workflow selects Python 3.12 and pins uv 0.13.1, verifies the unchanged root
-lock without syncing the project, then runs the existing isolated TIDAS SDK
-0.2.14 unittest discovery, source compilation and repository automation unit
-tests. The isolated environment
-installs the SDK and its dependencies only. It imports no trained model and
-downloads no model/data artifacts. Existing NumPy-dependent CPU-qualification
-cases explicitly skip in this lightweight environment; their numerical proof
-belongs to the separate qualification runtime.
+The workflow selects Python 3.12 and pins uv 0.13.1, checks the root lock
+without syncing the project, then invokes `scripts/tools/run_portable_tests.py`.
+The runner uses `uv export --frozen` to derive temporary root constraints and
+selects TIDAS, Matplotlib, OpenAI, python-dotenv, Supabase, tqdm and Loguru in an
+isolated `uv run --no-project` environment. Every installed transitive, including
+NumPy, Pydantic, httpx and httpx2, must match the root lock; missing, unrecorded
+or training packages fail before the complete unittest suite runs. The export
+is disposable proof input, not a second committed dependency authority. Its
+requirements format cannot express per-package indexes, so standard-library
+code downloads only the selected OpenAI universal wheel from its root-locked,
+credential-free official HTTPS URL into a fresh owned path. Its SHA256 and size
+are checked before the isolated installer runs; that verified local wheel is
+passed to uv. Runtime proof rechecks those bytes and the installed name/version
+and local direct-source URL, binding them to the original source/lock receipt.
+uv 0.13.1 did not enforce a deliberately wrong URL hash fragment in the reviewed
+negative probe and left PEP610 archive_info empty; neither is used as integrity
+proof. A maintained bad-hash case must stop before the isolated installer.
+Other packages retain the root default index and frozen version constraints.
+The runtime/lock inventory and commands are retained in the requested new
+evidence directory. Source compilation and repository automation tests follow.
+
+Tests execute real consumer serialization, mocked HTTP transports, headless
+plotting, owned dummy dotenv inputs and local Process/Flow conversion fixtures.
+They perform no provider/auth/database request, model import or model/data
+download. NumPy-only CPU helper cases now execute in this subset; this does not
+qualify any model, resident CPU runtime, training pipeline or GPU environment.
+
+### Reviewed supporting-library adoption
+
+Embedding #65 composes original #52 with accepted main, deliberately adopting
+TIDAS 0.3.0 for the canonical Markdown consumers, Matplotlib 3.11.2, OpenAI
+3.35.1, python-dotenv 1.2.4 and the aligned Supabase 2.33.0 family. The original
+bot proposed OpenAI 3.26.1 and Supabase 2.32.0; current official stable metadata
+and offline consumer proof support the reviewed manual selection. The existing
+seven-day discovery cooldown remains configured. Accepted PyJWT 2.15.1,
+multidict 6.9.1 and urllib3 2.8.0 are preserved rather than overwritten by the
+older proposal's stale lock.
+
+The default registry remains Aliyun. Only OpenAI has an `explicit = true` public
+PyPI index binding. In the reviewed uv 0.13.1 environment, the identical minimal
+`openai==3.35.1` requirement failed candidate discovery against Aliyun and
+resolved through PyPI, including an isolated Python 3.12 reproduction. Aliyun
+advertised and served the same valid wheel/hash; a missing artifact or Python
+incompatibility is not established. The root cause below that resolver
+interface remains unproven. This narrow source exception preserves every
+unrelated registry origin/hash and does not change index priority/trust policy,
+release-age settings, or discovery cooldown.
+
+The reviewed TIDAS comparison contains 127 matching local entity/language,
+pipeline/sanitization, strict-incomplete and batch/resume/preprocessing results.
+Handwritten SDK Markdown/factory code is unchanged between the two releases,
+but generated models and schemas changed. These partially authored fixtures
+are not a real strict-valid corpus or all-SDK acceptance/diagnostic equivalence.
+The complete maintained suite retains strict-invalid checks and fixes reviewed
+version facts without dropping assertions. Existing Process output remains
+`processs/`; its spelling is unrelated to this upgrade.
+
+python-dotenv 1.2.4 intentionally fixes `KEY= # comment` to mean an empty string;
+1.2.3 returned literal `# comment`. Ordinary dummy-key retrieval and environment
+precedence are tested; arbitrary dotenv byte-equivalence is not claimed. Actual
+client requests/results and decoded heatmap pixels matched the prior baseline
+in the bounded offline investigation. Live providers, database permissions/RLS,
+real corpus migration and platform-wide rendering remain separate proof.
 
 The existing dependency contracts continue to assert every reviewed direct
 manifest constraint and exact locked version, including PEFT 0.13.0,

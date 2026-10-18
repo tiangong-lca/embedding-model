@@ -43,10 +43,10 @@ jobs:
       - name: Check root lock without installing the GPU project
         run: uv lock --check --python 3.12
 
-      - name: Run existing portable SDK and dependency contracts
+      - name: Run root-lock-bound portable consumer contracts
         env:
           PYTHONPATH: .
-        run: uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v
+        run: uv run --isolated --no-project --python 3.12 python scripts/tools/run_portable_tests.py --evidence-dir "$RUNNER_TEMP/portable-proof"
 
       - name: Check source syntax without importing model runtimes
         run: uv run --isolated --no-project --python 3.12 python -m compileall -q src scripts tests

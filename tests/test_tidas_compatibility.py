@@ -1,4 +1,4 @@
-"""Compatibility proof for the reviewed Python TIDAS SDK 0.2 runtime."""
+"""Compatibility proof for the reviewed Python TIDAS SDK 0.3 runtime."""
 
 from __future__ import annotations
 
@@ -73,7 +73,7 @@ PROCESS_FIXTURE = {
 
 class TidasCompatibilityTest(unittest.TestCase):
     def test_installed_sdk_is_the_reviewed_release(self) -> None:
-        self.assertEqual(version("tidas-sdk"), "0.2.14")
+        self.assertEqual(version("tidas-sdk"), "0.3.0")
 
     def test_adapter_delegates_to_canonical_sdk_markdown(self) -> None:
         process = create_process_from_json(json.dumps(PROCESS_FIXTURE))

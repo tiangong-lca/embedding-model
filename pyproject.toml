@@ -21,10 +21,20 @@ dependencies = [
     "requests>=2.34.2",
     "sentence-transformers>=5.7.0,<6.0.0",
     "supabase>=2.31.0",
-    "tidas-sdk==0.2.14",
+    "tidas-sdk==0.3.0",
     "torch==2.9.1",
     "transformers==4.51.3",
 ]
 
 [tool.uv]
 index-url = "https://mirrors.aliyun.com/pypi/simple"
+
+# The default mirror serves this wheel, but uv 0.13.1 does not discover its
+# candidate there; the identical exact requirement resolves through public PyPI.
+[[tool.uv.index]]
+name = "openai-pypi"
+url = "https://pypi.org/simple"
+explicit = true
+
+[tool.uv.sources]
+openai = { index = "openai-pypi" }

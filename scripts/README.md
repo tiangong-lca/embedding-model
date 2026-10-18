@@ -12,7 +12,11 @@
 - 06_evaluate_cached.py
 - 07_evaluate_st.py
 
-`01_generate_markdown.py` resolves its default `data/` directories from the repository root and delegates process/flow rendering to TIDAS SDK 0.2.14's canonical Markdown surface. Use `python scripts/pipeline/01_generate_markdown.py --help` for the exact current arguments.
+`01_generate_markdown.py` resolves its default `data/` directories from the repository root and delegates process/flow rendering to TIDAS SDK 0.3.0's canonical Markdown surface. Use `python scripts/pipeline/01_generate_markdown.py --help` for the exact current arguments.
+
+The existing Process output directory is literally `processs/`; this supporting-library adoption preserves that spelling. The maintained synthetic fixtures compare English/Chinese/fallback Markdown, parsed values, timestamp sanitization, strict incomplete rejection, ordering, batch/resume and preprocessing against the reviewed 0.2.14 consumer baseline. They are not a strict-valid corpus or all-SDK parity claim.
+
+`tools/run_portable_tests.py` runs the complete portable unittest suite using only the consumer subset constrained by a temporary export of the root lock. Use Python 3.12 and uv 0.13.1. `--evidence-dir <new-directory>` retains the frozen export, installed runtime inventory and commands; otherwise temporary proof files are cleaned automatically. The one explicit OpenAI source is downloaded to a fresh owned path and checked against its root-locked SHA256/size before local installation; installed provenance is verified separately; other packages use root-index frozen constraints. It never syncs the GPU project.
 
 ## reports/
 

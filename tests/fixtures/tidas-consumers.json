@@ -1,0 +1,3749 @@
+{
+  "referenceSdk": "0.2.14",
+  "scope": "Synthetic partially authored consumer fixtures; not a strict-valid corpus or all-SDK parity claim.",
+  "fixedTimestamp": "2026-01-02T03:04:05+00:00",
+  "cases": [
+    {
+      "kind": "process",
+      "case": "baseline",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "empty-name",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {},
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "missing-name",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Process\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "name": {
+                "functionalUnitFlowProperties": []
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "singleton-language",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": {
+                  "@xml:lang": "en",
+                  "#text": "Singleton"
+                }
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Singleton\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# Singleton\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Singleton\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Singleton"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "language-fallback",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "fr",
+                    "#text": "Electricite"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricite\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# Electricite\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricite\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "fr",
+                    "#text": "Electricite"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "reversed-order",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "unresolved-reference",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "99"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "99",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "empty-collections",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": []
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Classification:** Electricity supply > Power generation"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": []
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "missing-admin",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n**Classification:** Electricity supply > Power generation\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "D",
+                      "#text": "Electricity supply"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "35",
+                      "#text": "Power generation"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:accessRestrictions": []
+            }
+          },
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "process",
+      "case": "named-classifications",
+      "input": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ]
+              },
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": [
+                  {
+                    "@name": "CPC",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "D",
+                        "#text": "Energy"
+                      }
+                    ]
+                  },
+                  {
+                    "@name": "HS",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "E",
+                        "#text": "Electricity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1"
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "meanAmount": "1.0",
+                "exchangeDirection": "Output",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            },
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity, solar, at plant\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "zh": "# 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n## Main Outputs\n\n- Electricity, medium voltage: 1",
+        "de": "# Electricity, solar, at plant | 太阳能电力，工厂交付\n\n**Entity:** Process\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Flow:** Electricity, medium voltage\n**Amount:** 1\n\n## Main Outputs\n\n- Electricity, medium voltage: 1"
+      },
+      "expectedParsed": {
+        "processDataSet": {
+          "processInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity, solar, at plant"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能电力，工厂交付"
+                  }
+                ],
+                "functionalUnitFlowProperties": []
+              },
+              "common:synonyms": [],
+              "classificationInformation": {
+                "common:classification": [
+                  {
+                    "@name": "CPC",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "D",
+                        "#text": "Energy"
+                      }
+                    ]
+                  },
+                  {
+                    "@name": "HS",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "E",
+                        "#text": "Electricity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "common:generalComment": []
+            },
+            "quantitativeReference": {
+              "@type": "Reference flow(s)",
+              "referenceToReferenceFlow": "1",
+              "functionalUnitOrOther": []
+            },
+            "technology": {
+              "technologicalApplicability": []
+            },
+            "mathematicalRelations": {
+              "modelDescription": []
+            },
+            "time": {
+              "common:timeRepresentativenessDescription": []
+            },
+            "geography": {}
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000",
+              "common:accessRestrictions": []
+            }
+          },
+          "exchanges": {
+            "exchange": [
+              {
+                "@dataSetInternalID": "1",
+                "referenceToFlowDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow data set",
+                  "@version": "01.00.000",
+                  "@uri": "../flows/22222222-2222-4222-8222-222222222222.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Electricity, medium voltage"
+                    }
+                  ]
+                },
+                "exchangeDirection": "Output",
+                "meanAmount": "1.0",
+                "generalComment": []
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Process",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Process ../../schemas/ILCD_ProcessDataSet.xsd",
+          "modellingAndValidation": {}
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "baseline",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "empty-name",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {},
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "missing-name",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Flow\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "singleton-language",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": {
+                  "@xml:lang": "en",
+                  "#text": "Singleton"
+                },
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Singleton | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# Singleton | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Singleton | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Singleton"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "language-fallback",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "fr",
+                    "#text": "Electricite"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricite | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# Electricite | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricite | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "fr",
+                    "#text": "Electricite"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "reversed-order",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "unresolved-reference",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "99"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "99"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "empty-collections",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": []
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** Power\n\n## Description\n\nMetered electricity",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** 动力\n\n## Description\n\n计量电力",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": []
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    },
+    {
+      "kind": "flow",
+      "case": "missing-admin",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": {
+                  "common:class": [
+                    {
+                      "@level": "1",
+                      "@classId": "1.1",
+                      "#text": "Power"
+                    },
+                    {
+                      "@level": "0",
+                      "@classId": "1",
+                      "#text": "Energy"
+                    }
+                  ]
+                }
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "directError": "AttributeError"
+    },
+    {
+      "kind": "flow",
+      "case": "named-classifications",
+      "input": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ]
+              },
+              "classificationInformation": {
+                "common:classification": [
+                  {
+                    "@name": "CPC",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "D",
+                        "#text": "Energy"
+                      }
+                    ]
+                  },
+                  {
+                    "@name": "HS",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "E",
+                        "#text": "Electricity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05+00:00"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          }
+        }
+      },
+      "expectedMarkdown": {
+        "en": "# Electricity | Grid mix | Solar\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n## Description\n\nMetered electricity\n\n## Flow Properties\n\n- Energy: 1",
+        "zh": "# 电力 | 电网组合 | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** 能量\n**Property Mean:** 1\n**Synonyms:** 动力\n\n## Description\n\n计量电力\n\n## Flow Properties\n\n- 能量: 1",
+        "de": "# Electricity | 电力 | Grid mix | 电网组合 | Solar | 太阳能\n\n**Entity:** Flow\n**UUID:** `11111111-1111-4111-8111-111111111111`\n**Version:** 01.00.000\n**Reference Property:** Energy\n**Property Mean:** 1\n**Synonyms:** Power\n\n动力\n\n## Description\n\nMetered electricity\n\n计量电力\n\n## Flow Properties\n\n- Energy: 1"
+      },
+      "expectedParsed": {
+        "flowDataSet": {
+          "flowInformation": {
+            "dataSetInformation": {
+              "common:UUID": "11111111-1111-4111-8111-111111111111",
+              "name": {
+                "baseName": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Electricity"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电力"
+                  }
+                ],
+                "treatmentStandardsRoutes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Solar"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "太阳能"
+                  }
+                ],
+                "mixAndLocationTypes": [
+                  {
+                    "@xml:lang": "en",
+                    "#text": "Grid mix"
+                  },
+                  {
+                    "@xml:lang": "zh",
+                    "#text": "电网组合"
+                  }
+                ],
+                "flowProperties": []
+              },
+              "common:synonyms": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Power"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "动力"
+                }
+              ],
+              "classificationInformation": {
+                "common:classification": [
+                  {
+                    "@name": "CPC",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "D",
+                        "#text": "Energy"
+                      }
+                    ]
+                  },
+                  {
+                    "@name": "HS",
+                    "common:class": [
+                      {
+                        "@level": "0",
+                        "@classId": "E",
+                        "#text": "Electricity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "common:generalComment": [
+                {
+                  "@xml:lang": "en",
+                  "#text": "Metered electricity"
+                },
+                {
+                  "@xml:lang": "zh",
+                  "#text": "计量电力"
+                }
+              ]
+            },
+            "quantitativeReference": {
+              "referenceToReferenceFlowProperty": "1"
+            }
+          },
+          "administrativeInformation": {
+            "dataEntryBy": {
+              "common:timeStamp": "2026-01-02T03:04:05Z"
+            },
+            "publicationAndOwnership": {
+              "common:dataSetVersion": "01.00.000"
+            }
+          },
+          "flowProperties": {
+            "flowProperty": [
+              {
+                "@dataSetInternalID": "1",
+                "meanValue": "1",
+                "referenceToFlowPropertyDataSet": {
+                  "@refObjectId": "22222222-2222-4222-8222-222222222222",
+                  "@type": "flow property data set",
+                  "@version": "01.00.000",
+                  "@uri": "../properties/x.xml",
+                  "common:shortDescription": [
+                    {
+                      "@xml:lang": "en",
+                      "#text": "Energy"
+                    },
+                    {
+                      "@xml:lang": "zh",
+                      "#text": "能量"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "@xmlns": "http://lca.jrc.it/ILCD/Flow",
+          "@xmlns:common": "http://lca.jrc.it/ILCD/Common",
+          "@xmlns:ecn": "http://eplca.jrc.ec.europa.eu/ILCD/Extensions/2018/ECNumber",
+          "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+          "@version": "1.1",
+          "@locations": "../ILCDLocations.xml",
+          "@xsi:schemaLocation": "http://lca.jrc.it/ILCD/Flow ../../schemas/ILCD_FlowDataSet.xsd"
+        }
+      }
+    }
+  ]
+}

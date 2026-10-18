@@ -34,8 +34,8 @@ checkPaths:
   - report.md
   - report.ZH.md
 lastReviewedAt: 2026-10-18
-lastReviewedCommit: 0e0e612d626335c6c077b0778d7ab3a5f5c596de
-lastReviewedNote: "Embedding #64 / original PR #50: reviewed immutable setup-node 7.1.0 for the existing manual-only read-only AI-doc gate with Node 24; triggers, inputs, shell enforcement and portable Python proof remain unchanged. Accepted security lock, TIDAS 0.2.14 and frozen Qwen/CUDA 12 boundaries are preserved; hosted Action qualification is separate."
+lastReviewedCommit: 7cad2083cb70da6fac3a88cf2f88e005ea046ae7
+lastReviewedNote: "Embedding #65 / original #52: deliberate TIDAS 0.3 consumer adoption and reviewed supporting-library updates retain security/ML pins; portable proof uses a constrained root-lock subset with actual offline clients and rendering. Bounded fixture evidence is not all-SDK or GPU qualification."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -88,9 +88,11 @@ Route those tasks to:
 - `.github/workflows/portable-python.yml` adds scoped, secretless Python 3.12 PR checks using the existing isolated contracts and syntax baseline. It never syncs the GPU project. `ai/dependency-maintenance.md` owns root-only updater coverage, bounded traffic and the separate ML qualification requirement.
 - Python baseline: `>=3.12`
 - Package/dependency manager: `uv`
-- dependency/runtime proof: `uv lock --check --python 3.12` and `PYTHONPATH=. uv run --isolated --no-project --python 3.12 --with tidas-sdk==0.2.14 python -m unittest discover -s tests -v`
+- dependency/runtime proof: `uv lock --check --python 3.12` and `uv run --isolated --no-project --python 3.12 python scripts/tools/run_portable_tests.py`
 - source syntax proof: `python3.12 -m compileall -q src scripts tests`
-- TIDAS baseline: exact Python SDK `0.2.14`; `src.pre_process` and the legacy public wrapper delegate to the SDK's canonical `TidasProcess.to_markdown()` instead of duplicating the 0.1 object model
+- TIDAS baseline: exact Python SDK `0.3.0`; `src.pre_process` and the legacy public wrapper delegate to the SDK's canonical `TidasProcess.to_markdown()` instead of duplicating the 0.1 object model
+- the root default index remains Aliyun; only OpenAI uses the explicit public PyPI source recorded in `pyproject.toml`; portable proof verifies its root-lock universal wheel bytes/hash/size before local installation, without an index-wide fallback
+- portable consumer proof exports frozen root-lock constraints, installs only the TIDAS/supporting-client subset and locked transitives, and rejects unrecorded or training packages before unittest discovery; it does not sync the GPU project
 - latest-compatible ML boundary: Sentence Transformers `5.7.x` remains below 6 because 6.0 requires Transformers 5; the released Qwen fine-tuning stack retains exact PEFT `0.13.0`, Transformers `4.51.3`, and Torch `2.9.1`
 - CUDA boundary: `faiss-gpu-cu12` and Torch `2.9.1` retain CUDA 12 artifacts; the dependency contract rejects CUDA 13 lock drift
 - the full GPU project cannot sync on macOS because `faiss-gpu-cu12` publishes Linux x86_64 wheels only; macOS runs the isolated TIDAS/dependency contracts, while full training/import validation belongs on the reviewed Linux x86_64 CUDA 12 environment
