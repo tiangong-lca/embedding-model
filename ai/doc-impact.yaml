@@ -1,8 +1,8 @@
 {
   "version": 1,
   "lastReviewedAt": "2026-10-18",
-  "lastReviewedCommit": "0e0e612d626335c6c077b0778d7ab3a5f5c596de",
-  "lastReviewedNote": "Embedding #64 / original PR #50: reviewed immutable setup-node 7.1.0 for the existing manual-only read-only AI-doc gate with Node 24; triggers, inputs, shell enforcement and portable Python proof remain unchanged. Accepted security lock, TIDAS 0.2.14 and frozen Qwen/CUDA 12 boundaries are preserved; hosted Action qualification is separate.",
+  "lastReviewedCommit": "7cad2083cb70da6fac3a88cf2f88e005ea046ae7",
+  "lastReviewedNote": "Embedding #65 / original #52: reviewed TIDAS 0.3 consumer adoption and supporting updates with root-lock-bound offline proof; security, Qwen/CUDA 12 and independent environment boundaries remain intact.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
