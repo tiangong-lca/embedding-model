@@ -43,6 +43,8 @@ The portable runner derives disposable frozen constraints from `uv.lock`, instal
 
 Run full model imports, training, and FAISS/GPU stages on the reviewed Linux x86_64 CUDA 12 environment.
 
+The separate, explicitly provisioned [CPU API diagnostic lane](scripts/diagnostics/README.md) exercises actual training libraries with random tiny Qwen3 weights, LoRA and synthetic trainer microsteps on native macOS arm64. It is outside portable discovery, preserves full-tuple import failures and cannot establish GPU/model acceptance or approve original training update #51.
+
 Relevant dependency/source PRs run the existing portable baseline through
 `.github/workflows/portable-python.yml`, without installing the GPU project.
 Unrelated documentation changes do not trigger it. Root-only uv/Actions

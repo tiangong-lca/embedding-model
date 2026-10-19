@@ -33,6 +33,8 @@ python3.12 -m compileall -q src scripts tests
 
 验证器从根 `uv.lock` 导出临时冻结约束，只安装 TIDAS/辅助客户端及其锁定的传递依赖，记录实际安装版本，并执行完整 unittest。它不会同步 GPU 工程、调用真实供应商/数据库或下载模型/数据。TIDAS 升级的 127 项比较仅覆盖已记录的本地 Process/Flow 消费路径，不代表完整严格语料或 SDK 全部语义等价。python-dotenv 1.2.4 将 `KEY= # comment` 修正为空值。详细边界见 [依赖维护说明](ai/dependency-maintenance.md)。
 
+显式运行的 [CPU API 诊断](scripts/diagnostics/README.md) 在独立原生 macOS arm64 环境中，用随机微型 Qwen3 权重、自建 tokenizer 和合成数据执行真实 LoRA/训练器步骤。它不进入普通可移植测试发现，不隐藏完整依赖组合的默认导入失败，也不能证明 Linux CUDA/真实模型验收或接收原训练升级 #51。
+
 ## 背景与目标
 
 通用向量模型在开放领域表现良好，但在 LCA 场景中往往会出现“语义相近但不满足领域约束”的错排；而 LCA 文档通常较长、字段多（地理/技术路径/时间等），对检索排序与覆盖提出更强的领域一致性要求。本项目通过统一评测对比，量化领域微调相对通用基线与云端模型的效果差异。

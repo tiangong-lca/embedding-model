@@ -33,9 +33,9 @@ checkPaths:
   - analysis/**
   - report.md
   - report.ZH.md
-lastReviewedAt: 2026-10-18
-lastReviewedCommit: 7cad2083cb70da6fac3a88cf2f88e005ea046ae7
-lastReviewedNote: "Embedding #65 / original #52: deliberate TIDAS 0.3 consumer adoption and reviewed supporting-library updates retain security/ML pins; portable proof uses a constrained root-lock subset with actual offline clients and rendering. Bounded fixture evidence is not all-SDK or GPU qualification."
+lastReviewedAt: 2026-10-19
+lastReviewedCommit: 3518fbc12cab19e2353eff656d648695821b62f1
+lastReviewedNote: "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51."
 related:
   - ai/repo.yaml
   - ai/doc-impact.yaml
@@ -96,6 +96,8 @@ Route those tasks to:
 - latest-compatible ML boundary: Sentence Transformers `5.7.x` remains below 6 because 6.0 requires Transformers 5; the released Qwen fine-tuning stack retains exact PEFT `0.13.0`, Transformers `4.51.3`, and Torch `2.9.1`
 - CUDA boundary: `faiss-gpu-cu12` and Torch `2.9.1` retain CUDA 12 artifacts; the dependency contract rejects CUDA 13 lock drift
 - the full GPU project cannot sync on macOS because `faiss-gpu-cu12` publishes Linux x86_64 wheels only; macOS runs the isolated TIDAS/dependency contracts, while full training/import validation belongs on the reviewed Linux x86_64 CUDA 12 environment
+
+- Opt-in CPU API diagnostics: `scripts/diagnostics/run_ml_cpu_diagnostics.py` supervises separately provisioned, root-lock/artifact-bound native macOS arm64 rows with actual RSS/time/disk limits and native deny-network confinement. Its random tiny Qwen3/LoRA/trainer stages are outside ordinary portable unittest discovery. Preserve default import failures; explicitly labeled DeepSpeed-first diagnostics do not replace them. Read `scripts/diagnostics/README.md` before provisioning or running. This lane neither changes root ML pins nor accepts original #51 or independent #53.
 
 - CPU qualification: `scripts/tools/qualify_cpu_embedding.py` is an offline, resident-model experiment. Its isolated Docker runtime reproduces deployed Torch 2.6.0 CPU and Transformers 4.51.3 without syncing or upgrading the GPU training environment. Bind immutable artifact/data hashes, record cgroup limits and warm sample counts, and use regenerated same-artifact FP32 vectors as a numerical reference; legacy caches lacking binary identity are not production goldens. Historical train-related data does not prove unseen-document generalization.
 

@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-18",
-  "lastReviewedCommit": "7cad2083cb70da6fac3a88cf2f88e005ea046ae7",
-  "lastReviewedNote": "Embedding #65 / original #52: reviewed TIDAS 0.3 consumer adoption and supporting updates with root-lock-bound offline proof; security, Qwen/CUDA 12 and independent environment boundaries remain intact.",
+  "lastReviewedAt": "2026-10-19",
+  "lastReviewedCommit": "3518fbc12cab19e2353eff656d648695821b62f1",
+  "lastReviewedNote": "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51.",
   "rules": [
     {
       "id": "domain-embedding-bootstrap-contract",
