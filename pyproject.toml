@@ -15,14 +15,14 @@ dependencies = [
     "matplotlib>=3.11.1",
     "modelscope>=1.39.1",
     "openai>=3.6.0",
-    "peft==0.13.0",
+    "peft==0.21.2",
     "python-dotenv>=1.2.3",
     "pytrec-eval>=0.5",
     "requests>=2.34.2",
     "sentence-transformers>=5.7.0,<6.0.0",
     "supabase>=2.31.0",
     "tidas-sdk==0.3.0",
-    "torch==2.9.1",
+    "torch==2.14.1",
     "transformers==4.51.3",
 ]
 
