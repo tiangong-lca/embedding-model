@@ -15,9 +15,9 @@ checkPaths:
   - .github/dependabot.yml
   - .github/workflows/portable-python.yml
   - ai/dependency-maintenance.md
-lastReviewedAt: 2026-10-19
-lastReviewedCommit: 3518fbc12cab19e2353eff656d648695821b62f1
-lastReviewedNote: "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51."
+lastReviewedAt: 2026-11-19
+lastReviewedCommit: 708e622e9d4b8e0db595d2d222cef8282692078c
+lastReviewedNote: "Embedding #76: reviewed original #75 supporting-client adoption with eligible OpenAI 3.49.0 and the aligned Supabase 2.34.1 family, official wheel integrity and the root-lock-bound offline portable consumers. ML/CUDA12 pins, explicit source controls, provider/database authorization and deferred #51/#53 GPU qualification remain unchanged."
 ---
 
 # Dependency maintenance
@@ -81,6 +81,21 @@ and offline consumer proof support the reviewed manual selection. The existing
 seven-day discovery cooldown remains configured. Accepted PyJWT 2.15.1,
 multidict 6.9.1 and urllib3 2.8.0 are preserved rather than overwritten by the
 older proposal's stale lock.
+
+Embedding #76 retains original #75 and qualifies OpenAI 3.49.0 with the
+aligned six-member Supabase 2.34.1 family. Official [OpenAI metadata](https://pypi.org/pypi/openai/3.49.0/json)
+and [Supabase metadata](https://pypi.org/pypi/supabase/2.34.1/json) put these
+releases outside the seven-day cooldown on 2026-11-19. OpenAI 3.55.1 is newer
+but remains inside that cooldown; the original proposed 3.48.0. The exact
+OpenAI universal wheel comes from its existing explicit PyPI source and retains
+the SHA256/size check before installation. All other root-lock records retain
+the reviewed Main values except the six Supabase packages and the now-unused
+StrEnum dependency removed by supabase-functions. The [Supabase 2.34 release notes](https://github.com/supabase/supabase-py/blob/v2.34.1/CHANGELOG.md)
+drop Python 3.9/3.10 support; this repository already requires Python 3.12 or newer.
+Realtime adds an httpx HTTP/2 dependency using the already locked closure.
+Offline request serialization, responses, error handling, filtering, pagination
+and retry assertions remain required. This scope makes no live service, auth,
+storage, model or training compatibility claim and leaves original #51/#53 held.
 
 The default registry remains Aliyun. Only OpenAI has an `explicit = true` public
 PyPI index binding. In the reviewed uv 0.13.1 environment, the identical minimal

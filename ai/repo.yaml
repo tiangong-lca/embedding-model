@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "lastReviewedAt": "2026-10-19",
-  "lastReviewedCommit": "3518fbc12cab19e2353eff656d648695821b62f1",
-  "lastReviewedNote": "Embedding #66: reviewed the explicit native CPU diagnostic lane, frozen artifact-bound full tuples, default import-order failures and separately labeled DeepSpeed-first synthetic diagnostics. Portable discovery, exact root ML/security pins, CUDA12 and independent #53 qualification remain unchanged; CPU proof does not accept original #51.",
+  "lastReviewedAt": "2026-11-19",
+  "lastReviewedCommit": "708e622e9d4b8e0db595d2d222cef8282692078c",
+  "lastReviewedNote": "Embedding #76: reviewed original #75 supporting-client adoption with eligible OpenAI 3.49.0 and the aligned Supabase 2.34.1 family, official wheel integrity and the root-lock-bound offline portable consumers. ML/CUDA12 pins, explicit source controls, provider/database authorization and deferred #51/#53 GPU qualification remain unchanged.",
   "repo": {
     "id": "domain-embedding",
     "path": "embedding-model",
