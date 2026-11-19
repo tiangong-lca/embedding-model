@@ -21,7 +21,7 @@ LCA-Nemotron 在 LCA Retrieval Benchmark 上的 **nDCG@10 为 0.44037，Coverage
 
 ## Qwen 实验与处理管线
 
-当前 Python 3.12 / uv 根锁采用 TIDAS SDK 0.3.0、Matplotlib 3.11.2、OpenAI 3.35.1、python-dotenv 1.2.4 和 Supabase 2.33.0；Qwen/CUDA 12 训练依赖保持既有固定版本。
+当前 Python 3.12 / uv 根锁采用 TIDAS SDK 0.3.0、Matplotlib 3.11.2、OpenAI 3.49.0、python-dotenv 1.2.4 和 Supabase 2.34.1；Qwen/CUDA 12 训练依赖保持既有固定版本。
 
 可移植验证：
 

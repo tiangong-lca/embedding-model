@@ -26,7 +26,7 @@ and scoring protocol; its relative improvements are not directly comparable.
 
 - Python: 3.12; dependency manager: `uv`
 - TIDAS: exact `tidas-sdk==0.3.0`; process conversion uses the SDK's canonical `to_markdown()` surface and keeps strict validation failures observable
-- current compatible direct graph: Accelerate 1.14.0, Datasets 5.0.1, DeepSpeed 0.19.6, FAISS GPU CUDA12 1.14.1.post1, FlagEmbedding 1.4.2, GGUF 0.19.0, Matplotlib 3.11.2, ModelScope 1.39.1, OpenAI 3.35.1, python-dotenv 1.2.4, Requests 2.34.2, Sentence Transformers 5.7.0, and Supabase 2.33.0
+- current compatible direct graph: Accelerate 1.14.0, Datasets 5.0.1, DeepSpeed 0.19.6, FAISS GPU CUDA12 1.14.1.post1, FlagEmbedding 1.4.2, GGUF 0.19.0, Matplotlib 3.11.2, ModelScope 1.39.1, OpenAI 3.49.0, python-dotenv 1.2.4, Requests 2.34.2, Sentence Transformers 5.7.0, and Supabase 2.34.1
 - Qwen compatibility pins: `peft==0.13.0`, `transformers==4.51.3`, and `torch==2.9.1`
 
 The 2026-08-31 PyPI audit found Sentence Transformers 6.0.1, but it requires Transformers 5.x and is incompatible with this repository's released Qwen/Transformers 4 training line. Sentence Transformers therefore stays on the latest compatible 5.7.x line. Torch is explicit at the already reviewed 2.9.1 so the Linux training lock stays on CUDA 12 with `faiss-gpu-cu12`; an unconstrained upgrade would mix in CUDA 13 packages.

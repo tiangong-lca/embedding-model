@@ -56,13 +56,13 @@ class DependencyContractTest(unittest.TestCase):
             "loguru": "0.7.3",
             "matplotlib": "3.11.2",
             "modelscope": "1.39.1",
-            "openai": "3.35.1",
+            "openai": "3.49.0",
             "peft": "0.13.0",
             "python-dotenv": "1.2.4",
             "pytrec-eval": "0.5",
             "requests": "2.34.2",
             "sentence-transformers": "5.7.0",
-            "supabase": "2.33.0",
+            "supabase": "2.34.1",
             "tidas-sdk": "0.3.0",
             "torch": "2.9.1",
             "transformers": "4.51.3",
@@ -90,7 +90,7 @@ class DependencyContractTest(unittest.TestCase):
 
     def test_supabase_family_stays_aligned(self) -> None:
         for name in ("supabase", "postgrest", "storage3", "supabase-auth", "supabase-functions", "realtime"):
-            self.assertEqual(self.locked_versions[name], "2.33.0")
+            self.assertEqual(self.locked_versions[name], "2.34.1")
 
     def test_cuda12_training_boundary_rejects_cuda13_drift(self) -> None:
         self.assertFalse(any("cu13" in name for name in self.locked_versions))
