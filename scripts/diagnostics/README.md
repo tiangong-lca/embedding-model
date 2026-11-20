@@ -4,6 +4,9 @@ This opt-in lane diagnoses the actual Python training libraries with a tiny,
 randomly initialized Qwen3 model, an authored tokenizer and four synthetic
 training records. It does not load a pretrained model or research dataset.
 It is outside `tests/` and is never invoked by portable unittest discovery.
+Project acceptance, merge and release use the applicable CPU/portable checks
+and source review. This diagnostic and hardware-specific experiments are
+opt-in, with results scoped to the exact measured tuple and fixtures.
 
 The portable runner deliberately excludes these ML libraries. The separate
 `tools/qualify_cpu_embedding.py` experiment reproduces deployed Torch 2.6.0
@@ -144,10 +147,11 @@ Both use Transformers 4.51.3, Sentence Transformers 5.7.0 and Datasets 5.0.1.
 The original proposal's Linux lock introduces CUDA13 beside FAISS CUDA12.
 Successful CPU diagnostics cannot relax the reviewed CUDA12 contract, accept
 original51, change its dependency assertions or retire the independent Issue53.
-Actual Linux x86_64 GPU/model/fine-tuning/FAISS and numerical acceptance still
-require an explicitly authorized qualification with immutable model/data inputs,
-resource ownership and scientific thresholds. Source delivery of this fixture
-requires its own reviewed PR and exact workspace integration.
+Dependency adoption uses the reviewed manifest/lock compatibility and applicable
+CPU tests under Issue53. Optional model-quality or hardware-specific experiments
+bind their model/data inputs, resource ownership and scientific thresholds.
+Source delivery of this fixture follows its reviewed PR and exact workspace
+integration.
 
 ## Bounded observations from Issue66
 

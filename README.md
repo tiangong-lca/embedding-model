@@ -41,14 +41,14 @@ python3.12 -m compileall -q src scripts tests
 
 The portable runner derives disposable frozen constraints from `uv.lock`, installs only the consumer libraries and their locked transitives, records installed versions/lock identity, and runs the complete unittest suite. It makes no real provider/database request or model/data download. TIDAS 0.3 adoption preserves 127 bounded legacy Process/Flow consumer results; this is not all-SDK strict-validation parity. python-dotenv 1.2.4 intentionally parses `KEY= # comment` as an empty value. See [dependency maintenance](ai/dependency-maintenance.md) for the exact scope.
 
-Run full model imports, training, and FAISS/GPU stages on the reviewed Linux x86_64 CUDA 12 environment.
+CPU-only validation and applicable source/compatibility review are sufficient for project acceptance, merge and release. GPU verification is optional. The declared CUDA 12 dependency and Linux wheel compatibility remain part of the frozen dependency review. Optional CUDA training or FAISS execution uses the reviewed Linux x86_64 environment.
 
-The separate, explicitly provisioned [CPU API diagnostic lane](scripts/diagnostics/README.md) exercises actual training libraries with random tiny Qwen3 weights, LoRA and synthetic trainer microsteps on native macOS arm64. It is outside portable discovery, preserves full-tuple import failures and cannot establish GPU/model acceptance or approve original training update #51.
+The separate, explicitly provisioned [CPU API diagnostic lane](scripts/diagnostics/README.md) exercises actual training libraries with random tiny Qwen3 weights, LoRA and synthetic trainer microsteps on native macOS arm64. It is outside portable discovery and preserves full-tuple import failures. Its measured CPU API behavior supports review of the exact tested tuple. Model-quality and hardware-specific claims use their own recorded measurements; original training update #51 retains its unresolved compatibility findings.
 
 Relevant dependency/source PRs run the existing portable baseline through
 `.github/workflows/portable-python.yml`, without installing the GPU project.
 Unrelated documentation changes do not trigger it. Root-only uv/Actions
-monitoring, manual acceptance and separate ML/GPU qualification are described in
+monitoring, manual acceptance and CPU-based compatibility qualification are described in
 [dependency maintenance](ai/dependency-maintenance.md).
 
 ## Background & Goal
