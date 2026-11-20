@@ -15,9 +15,9 @@ checkPaths:
   - .github/dependabot.yml
   - .github/workflows/portable-python.yml
   - ai/dependency-maintenance.md
-lastReviewedAt: 2026-11-19
-lastReviewedCommit: 708e622e9d4b8e0db595d2d222cef8282692078c
-lastReviewedNote: "Embedding #76: reviewed original #75 supporting-client adoption with eligible OpenAI 3.49.0 and the aligned Supabase 2.34.1 family, official wheel integrity and the root-lock-bound offline portable consumers. ML/CUDA12 pins, explicit source controls, provider/database authorization and deferred #51/#53 GPU qualification remain unchanged."
+lastReviewedAt: 2026-11-20
+lastReviewedCommit: 8eabf503f7c72777a1631bea0f04e9a214cc6aed
+lastReviewedNote: "Embedding #77: reviewed CPU-only project acceptance, merge and release policy, optional hardware experiments, frozen dependency and CUDA12 packaging compatibility, and preserved model/data and historical qualification evidence."
 ---
 
 # Dependency maintenance
@@ -128,15 +128,16 @@ manifest constraint and exact locked version, including PEFT 0.13.0,
 Transformers 4.51.3, Torch 2.9.1, Sentence Transformers below 6 and CUDA 12.
 A bot proposal that violates them should fail. Do not relax those assertions
 as routine updater accommodation. Accepted ML changes require a separately
-tracked compatibility decision and Linux x86_64 CUDA qualification of actual
-model imports, fine-tuning and relevant FAISS/inference behavior. Portable CI
-does not establish that qualification, even when it is green.
+tracked compatibility decision, a consistent frozen graph and passing applicable CPU/portable checks. Review the
+declared CUDA and platform artifact compatibility from that graph. GPU execution
+is optional for project acceptance, merge and release. Evidence supports only
+the tested API, model and hardware claims. A portable pass keeps that scope.
 
 ## Opt-in CPU API evidence
 
 [The explicit diagnostic lane](../scripts/diagnostics/README.md) compares complete, source-bound root-stack proposals on native macOS arm64 with actual Torch/Transformers/PEFT/Sentence Transformers/Accelerate/DeepSpeed/ModelScope packages. Owned environments and original-lock artifact hashes remain separate from the ML-free portable runner. Its tiny random model and authored data can expose Python/API failures without pretrained downloads. Native network and compiler execution restrictions, actual RSS/time/disk limits and per-stage failures are retained. Default import-order failures are primary results; supplemental DeepSpeed-first diagnostics cannot replace them or turn a partial tuple into a pass.
 
-This source fixture delivery does not adopt any dependency update, relax CUDA12 assertions, accept original #51 or retire the independent #53 scope. A pure-Python DeepSpeed wheel or absence of installed native extensions alone does not prove that its historical build never executed a compiler capability probe. An explicitly compiler-denied build must be distinguished from earlier unconfined builds; denied probes are not real native-op compatibility proof. Actual Linux CUDA/model qualification remains required.
+This source fixture delivery does not adopt any dependency update, relax CUDA12 assertions, accept original #51 or retire the independent #53 scope. A pure-Python DeepSpeed wheel or absence of installed native extensions alone does not prove that its historical build never executed a compiler capability probe. An explicitly compiler-denied build must be distinguished from earlier unconfined builds; denied probes are not real native-op compatibility proof. Optional hardware-specific experiments and model-quality measurements retain their own evidence scopes. Project acceptance, merge and release use the applicable CPU checks and source review.
 
 ## Coverage and hosted follow-through
 
@@ -159,7 +160,7 @@ CI when proposed rather than silently extending these exclusions.
 
 [Root-stack qualification #53](https://github.com/tiangong-lca/embedding-model/issues/53)
 owns the explicit revisit: remove an exclusion when the corresponding reviewed
-manifest/lock/contract migration and authorized Linux CUDA/model qualification
+manifest/lock/contract migration and passing CPU/portable qualification
 are merged, then prove the fresh hosted updater and candidate validation.
 A blocked-version security alert still needs triage; an exclusion does not
 retire that alert or authorize an unqualified migration. Existing unadopted bot
@@ -194,5 +195,5 @@ triage follows urgency. No extra reminder or status feed is required.
 
 Configuration and local tests do not prove that GitHub's hosted updater can
 regenerate this root graph. The first real candidate still needs the frozen
-lock check, unchanged contracts and any applicable independent GPU qualification.
+lock check, reviewed contracts and applicable CPU compatibility checks.
 See the [workspace policy](https://github.com/tiangong-lca/workspace/blob/main/_docs/workspace-dependency-update-policy.md).

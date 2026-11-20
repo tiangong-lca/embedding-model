@@ -23,6 +23,8 @@ LCA-Nemotron 在 LCA Retrieval Benchmark 上的 **nDCG@10 为 0.44037，Coverage
 
 当前 Python 3.12 / uv 根锁采用 TIDAS SDK 0.3.0、Matplotlib 3.11.2、OpenAI 3.49.0、python-dotenv 1.2.4 和 Supabase 2.34.1；Qwen/CUDA 12 训练依赖保持既有固定版本。
 
+项目验收、合并和发布采用 CPU 可移植验证及适用的源码、依赖兼容性评审，GPU 验证为可选调查。冻结依赖的 CUDA 12 打包与平台兼容性继续核对；模型质量和特定硬件表现按实际测量记录。
+
 可移植验证：
 
 ```bash
@@ -33,7 +35,7 @@ python3.12 -m compileall -q src scripts tests
 
 验证器从根 `uv.lock` 导出临时冻结约束，只安装 TIDAS/辅助客户端及其锁定的传递依赖，记录实际安装版本，并执行完整 unittest。它不会同步 GPU 工程、调用真实供应商/数据库或下载模型/数据。TIDAS 升级的 127 项比较仅覆盖已记录的本地 Process/Flow 消费路径，不代表完整严格语料或 SDK 全部语义等价。python-dotenv 1.2.4 将 `KEY= # comment` 修正为空值。详细边界见 [依赖维护说明](ai/dependency-maintenance.md)。
 
-显式运行的 [CPU API 诊断](scripts/diagnostics/README.md) 在独立原生 macOS arm64 环境中，用随机微型 Qwen3 权重、自建 tokenizer 和合成数据执行真实 LoRA/训练器步骤。它不进入普通可移植测试发现，不隐藏完整依赖组合的默认导入失败，也不能证明 Linux CUDA/真实模型验收或接收原训练升级 #51。
+显式运行的 [CPU API 诊断](scripts/diagnostics/README.md) 在独立原生 macOS arm64 环境中，用随机微型 Qwen3 权重、自建 tokenizer 和合成数据执行真实 LoRA/训练器步骤。诊断入口独立于普通可移植测试发现，并保留完整依赖组合的默认导入失败。其结果用于评审实际测试组合的 CPU API 行为，原训练升级 #51 的未解决兼容性问题继续由 #53 跟踪。
 
 ## 背景与目标
 
